@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manutenzione e Supporto Continuo - WebInbound</title>
+  <meta name="description" content="Piani di manutenzione WebInbound per mantenere il sito sempre sicuro, aggiornato, monitorato e supportato nel tempo." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#f4f7f4;
+      --bg-soft:#f8fbf8;
+      --panel:#ffffff;
+      --panel-2:#fbfcfb;
+      --text:#0d1412;
+      --muted:#61706a;
+      --line:rgba(13,20,18,.08);
+      --line-strong:rgba(13,20,18,.14);
+      --green:#16b05b;
+      --green-2:#0d6b36;
+      --green-3:#1ace66;
+      --green-soft:#eaf9f0;
+      --green-deep:#083d21;
+      --dark:#0f1720;
+      --shadow:0 24px 70px rgba(11,25,18,.08);
+      --shadow-soft:0 14px 40px rgba(10,20,18,.06);
+      --shadow-strong:0 28px 90px rgba(9,22,18,.14);
+      --radius-xl:34px;
+      --radius-lg:26px;
+      --radius-md:18px;
+      --container:1240px;
+      --nav-h:84px;
+      --transition:.28s cubic-bezier(.2,.8,.2,1);
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:"Inter",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(22,176,91,.08), transparent 24%),
+        radial-gradient(circle at top right, rgba(13,107,54,.06), transparent 22%),
+        linear-gradient(180deg,#f8fbf8 0%,#f4f7f4 100%);
+      line-height:1.55;
+      overflow-x:hidden;
+    }
+
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      background:
+        radial-gradient(circle at 18% 8%, rgba(22,176,91,.05), transparent 18%),
+        radial-gradient(circle at 100% 24%, rgba(13,107,54,.05), transparent 18%);
+      z-index:-1;
+    }
+
+    a{text-decoration:none;color:inherit}
+    button{font:inherit}
+    .container{width:min(var(--container), calc(100% - 40px)); margin:0 auto}
+
+    .site-header{
+      position:sticky;
+      top:0;
+      z-index:100;
+      backdrop-filter:blur(14px);
+      background:rgba(248,251,248,.82);
+      border-bottom:1px solid rgba(13,20,18,.05);
+    }
+    .site-header.scrolled{
+      background:rgba(255,255,255,.95);
+      border-bottom-color:rgba(13,20,18,.08);
+      box-shadow:0 10px 30px rgba(15,23,42,.08);
+    }
+    .nav-wrap{
+      min-height:var(--nav-h);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:24px;
+    }
+    .brand img{height:48px; width:auto; display:block}
+    .site-nav{
+      display:flex;
+      align-items:center;
+      gap:22px;
+    }
+    .site-nav a{
+      color:#183226;
+      font-weight:600;
+      opacity:.92;
+      transition:var(--transition);
+    }
+    .site-nav a:hover,
+    .site-nav a.active{
+      color:#0b1410;
+      opacity:1;
+    }
+    .nav-toggle{
+      display:none;
+      background:transparent;
+      border:1px solid rgba(15,23,42,0.10);
+      color:#0b1410;
+      padding:.7rem .9rem;
+      border-radius:12px;
+      cursor:pointer;
+    }
+
+    .btn{
+      appearance:none;
+      border:none;
+      cursor:pointer;
+      border-radius:16px;
+      padding:14px 20px;
+      font-weight:700;
+      font-size:15px;
+      transition:transform var(--transition), box-shadow var(--transition), background var(--transition), border-color var(--transition), opacity var(--transition);
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      white-space:nowrap;
+    }
+    .btn:hover{transform:translateY(-2px)}
+    .btn-primary{
+      color:#fff;
+      background:linear-gradient(135deg,var(--green),var(--green-3));
+      box-shadow:0 16px 34px rgba(22,176,91,.22);
+    }
+    .btn-secondary{
+      color:var(--text);
+      background:#fff;
+      border:1px solid var(--line);
+      box-shadow:var(--shadow-soft);
+    }
+    .btn-dark{
+      color:#fff;
+      background:var(--dark);
+      box-shadow:0 16px 34px rgba(15,23,42,.16);
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      padding:8px 14px;
+      border-radius:999px;
+      background:var(--green-soft);
+      color:var(--green-2);
+      border:1px solid rgba(22,176,91,.16);
+      font-size:12px;
+      font-weight:800;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+
+    .section{padding:108px 0}
+    .section-tight{padding:84px 0}
+    .section-head{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-end;
+      gap:24px;
+      margin-bottom:40px;
+    }
+    .section-head h2{
+      margin:14px 0 10px;
+      font-size:clamp(2.15rem,4vw,3.8rem);
+      line-height:1.03;
+      letter-spacing:-.055em;
+      max-width:760px;
+    }
+    .section-head p{
+      margin:0;
+      max-width:540px;
+      color:var(--muted);
+      font-size:1.03rem;
+    }
+
+    .hero{
+      padding:88px 0 54px;
+      position:relative;
+    }
+    .hero::before{
+      content:"";
+      position:absolute;
+      right:6%;
+      top:10%;
+      width:420px;
+      height:420px;
+      background:radial-gradient(circle, rgba(22,176,91,.12), transparent 68%);
+      filter:blur(16px);
+      pointer-events:none;
+    }
+    .hero-shell{
+      display:grid;
+      grid-template-columns:1.06fr .94fr;
+      gap:28px;
+      align-items:stretch;
+    }
+    .hero-copy,
+    .hero-panel,
+    .why-shell,
+    .pricing-shell,
+    .includes-shell,
+    .steps-shell,
+    .notes-shell,
+    .final-cta{
+      background:rgba(255,255,255,.84);
+      border:1px solid rgba(13,20,18,.08);
+      box-shadow:var(--shadow);
+      backdrop-filter:blur(12px);
+      border-radius:var(--radius-xl);
+    }
+    .hero-copy{
+      padding:36px;
+    }
+    .hero-copy h1{
+      margin:18px 0 18px;
+      font-size:clamp(3.1rem,6vw,5.7rem);
+      line-height:.92;
+      letter-spacing:-.07em;
+      max-width:700px;
+    }
+    .hero-copy p{
+      margin:0;
+      color:var(--muted);
+      font-size:1.08rem;
+      max-width:760px;
+    }
+    .hero-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:14px;
+      margin-top:28px;
+    }
+    .hero-trust{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-top:22px;
+    }
+    .trust-pill{
+      padding:10px 14px;
+      border-radius:999px;
+      background:#f4f8f5;
+      border:1px solid rgba(13,20,18,.06);
+      color:#20302b;
+      font-size:.92rem;
+      font-weight:700;
+    }
+    .hero-panel{
+      padding:28px;
+      display:grid;
+      gap:14px;
+      align-content:start;
+    }
+    .hero-panel-head{
+      padding-bottom:16px;
+      border-bottom:1px solid rgba(13,20,18,.07);
+    }
+    .panel-kicker{
+      display:block;
+      font-size:12px;
+      font-weight:800;
+      letter-spacing:.08em;
+      color:var(--green-2);
+      text-transform:uppercase;
+      margin-bottom:8px;
+    }
+    .hero-panel h3{
+      margin:0 0 8px;
+      font-size:1.45rem;
+      letter-spacing:-.04em;
+    }
+    .hero-panel p{
+      margin:0;
+      color:var(--muted);
+      font-size:.98rem;
+    }
+    .hero-side-card{
+      padding:18px;
+      border-radius:22px;
+      background:linear-gradient(180deg,#fbfcfb,#f2f6f3);
+      border:1px solid rgba(13,20,18,.06);
+    }
+    .hero-side-card strong{
+      display:block;
+      margin-bottom:8px;
+      font-size:1rem;
+      letter-spacing:-.02em;
+    }
+    .hero-side-card span{
+      display:block;
+      color:var(--muted);
+      font-size:.94rem;
+      line-height:1.52;
+    }
+
+    .why-shell{
+      padding:34px;
+    }
+    .why-grid{
+      display:grid;
+      grid-template-columns:1.02fr .98fr;
+      gap:24px;
+    }
+    .why-main h3{
+      margin:16px 0 14px;
+      font-size:clamp(2rem,4vw,3.4rem);
+      line-height:1.04;
+      letter-spacing:-.05em;
+    }
+    .why-main p{
+      margin:0;
+      color:var(--muted);
+      font-size:1.03rem;
+    }
+    .why-points{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:14px;
+      margin-top:24px;
+    }
+    .why-point{
+      padding:18px;
+      border-radius:22px;
+      background:#f8faf8;
+      border:1px solid rgba(13,20,18,.06);
+    }
+    .why-point strong{
+      display:block;
+      margin-bottom:8px;
+      font-size:1rem;
+    }
+    .why-point span{
+      color:var(--muted);
+      font-size:.95rem;
+    }
+    .why-side{
+      display:grid;
+      gap:14px;
+    }
+    .why-side-card{
+      padding:22px;
+      border-radius:24px;
+      background:linear-gradient(180deg,#fbfcfb,#f4f8f5);
+      border:1px solid rgba(13,20,18,.06);
+    }
+    .why-side-card strong{
+      display:block;
+      margin-bottom:8px;
+      font-size:1.05rem;
+      letter-spacing:-.02em;
+    }
+    .why-side-card p{
+      margin:0;
+      color:var(--muted);
+    }
+
+    .pricing-shell{
+      padding:34px;
+    }
+    .pricing-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:22px;
+      align-items:stretch;
+    }
+    .pricing-card{
+      position:relative;
+      padding:28px;
+      border-radius:30px;
+      background:#fff;
+      border:1px solid rgba(13,20,18,.08);
+      box-shadow:var(--shadow-soft);
+      display:flex;
+      flex-direction:column;
+      transition:var(--transition);
+    }
+    .pricing-card:hover{
+      transform:translateY(-6px);
+      box-shadow:var(--shadow);
+    }
+    .pricing-card-featured{
+      border-color:rgba(22,176,91,.34);
+      box-shadow:0 28px 80px rgba(22,176,91,.14);
+      transform:translateY(-8px);
+    }
+    .pricing-card-featured:hover{
+      transform:translateY(-12px);
+    }
+    .featured-badge{
+      position:absolute;
+      left:28px;
+      right:28px;
+      top:-14px;
+      text-align:center;
+      padding:10px 14px;
+      border-radius:999px;
+      background:linear-gradient(135deg,var(--green),var(--green-3));
+      color:#fff;
+      font-size:12px;
+      font-weight:800;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+    .pricing-top{
+      padding-bottom:20px;
+      border-bottom:1px solid rgba(13,20,18,.07);
+      margin-bottom:20px;
+    }
+    .pricing-top h3{
+      margin:0 0 8px;
+      font-size:1.9rem;
+      letter-spacing:-.04em;
+    }
+    .pricing-top p{
+      margin:0 0 18px;
+      color:var(--muted);
+      min-height:72px;
+    }
+    .pricing-meta{
+      color:var(--muted);
+      font-size:.92rem;
+      margin-bottom:6px;
+    }
+    .pricing-value{
+      font-size:3rem;
+      line-height:1;
+      font-weight:900;
+      letter-spacing:-.07em;
+      margin-bottom:8px;
+    }
+    .pricing-value small{
+      font-size:1rem;
+      font-weight:700;
+      letter-spacing:0;
+      color:var(--muted);
+    }
+    .pricing-target{
+      padding:10px 12px;
+      border-radius:14px;
+      background:#f2f5f3;
+      color:#23302b;
+      font-size:.9rem;
+      font-weight:600;
+    }
+    .feature-list{
+      list-style:none;
+      padding:0;
+      margin:0 0 22px;
+      display:grid;
+      gap:14px;
+      flex:1;
+    }
+    .feature-list li{
+      position:relative;
+      padding-left:28px;
+      color:#21302c;
+    }
+    .feature-list li::before{
+      content:"✓";
+      position:absolute;
+      left:0;
+      top:0;
+      width:20px;
+      height:20px;
+      display:grid;
+      place-items:center;
+      border-radius:50%;
+      background:var(--green-soft);
+      color:var(--green-2);
+      font-size:12px;
+      font-weight:900;
+    }
+
+    .includes-shell{
+      padding:34px;
+    }
+    .includes-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:18px;
+    }
+    .include-card{
+      padding:24px;
+      border-radius:24px;
+      background:#fff;
+      border:1px solid rgba(13,20,18,.08);
+      box-shadow:var(--shadow-soft);
+    }
+    .include-icon{
+      width:48px;
+      height:48px;
+      display:grid;
+      place-items:center;
+      border-radius:16px;
+      background:var(--green-soft);
+      color:var(--green-2);
+      font-weight:900;
+      margin-bottom:16px;
+    }
+    .include-card h3{
+      margin:0 0 10px;
+      font-size:1.18rem;
+      letter-spacing:-.03em;
+    }
+    .include-card p{
+      margin:0;
+      color:var(--muted);
+      font-size:.97rem;
+    }
+
+    .steps-shell{
+      padding:34px;
+    }
+    .steps-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:18px;
+    }
+    .step-card{
+      padding:24px;
+      border-radius:24px;
+      background:#fff;
+      border:1px solid rgba(13,20,18,.08);
+      box-shadow:var(--shadow-soft);
+    }
+    .step-num{
+      width:42px;
+      height:42px;
+      border-radius:14px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:var(--green-soft);
+      color:var(--green-2);
+      font-weight:900;
+      margin-bottom:16px;
+    }
+    .step-card h3{
+      margin:0 0 8px;
+      font-size:1.12rem;
+      letter-spacing:-.03em;
+    }
+    .step-card p{
+      margin:0;
+      color:var(--muted);
+      font-size:.96rem;
+    }
+
+    .notes-shell{
+      padding:30px;
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+    }
+    .note-card{
+      padding:22px;
+      border-radius:24px;
+      background:#fff;
+      border:1px solid rgba(13,20,18,.08);
+      box-shadow:var(--shadow-soft);
+    }
+    .note-card strong{
+      display:block;
+      margin-bottom:8px;
+      font-size:1rem;
+      letter-spacing:-.02em;
+    }
+    .note-card p{
+      margin:0;
+      color:var(--muted);
+      font-size:.95rem;
+    }
+
+    .final-cta{
+      padding:34px;
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:24px;
+      align-items:center;
+    }
+    .final-cta h2{
+      margin:14px 0 10px;
+      font-size:clamp(2.15rem,4vw,3.6rem);
+      line-height:1.02;
+      letter-spacing:-.055em;
+      max-width:720px;
+    }
+    .final-cta p{
+      margin:0;
+      color:var(--muted);
+      max-width:640px;
+      font-size:1.03rem;
+    }
+    .final-cta-side{
+      display:grid;
+      gap:14px;
+      justify-items:end;
+    }
+    .final-cta-info{
+      width:100%;
+      padding:20px;
+      border-radius:24px;
+      background:linear-gradient(180deg,#fbfcfb,#f2f6f3);
+      border:1px solid rgba(13,20,18,.06);
+    }
+    .final-cta-info strong{
+      display:block;
+      margin-bottom:8px;
+      font-size:1.05rem;
+      letter-spacing:-.03em;
+    }
+    .final-cta-info span{
+      display:block;
+      color:var(--muted);
+      font-size:.96rem;
+    }
+    .final-cta-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      justify-content:flex-end;
+    }
+
+    .site-footer{
+      padding:0 0 34px;
+    }
+    .footer-shell{
+      padding:28px;
+      border-radius:30px;
+      background:rgba(255,255,255,.86);
+      border:1px solid rgba(13,20,18,.08);
+      box-shadow:var(--shadow);
+    }
+    .footer-grid{
+      display:grid;
+      grid-template-columns:1.3fr .8fr .9fr;
+      gap:24px;
+      padding-bottom:22px;
+      border-bottom:1px solid var(--line);
+    }
+    .footer-brand img{
+      height:52px;
+      width:auto;
+      display:block;
+      margin-bottom:14px;
+    }
+    .footer-brand p,
+    .footer-col a,
+    .footer-meta{
+      color:var(--muted);
+    }
+    .footer-col{
+      display:grid;
+      gap:10px;
+      align-content:start;
+    }
+    .footer-col h4{
+      margin:0 0 4px;
+      font-size:1rem;
+    }
+    .footer-bottom{
+      padding-top:18px;
+      display:flex;
+      justify-content:space-between;
+      gap:16px;
+      color:var(--muted);
+      font-size:.94rem;
+    }
+    .footer-legal-links{
+      display:flex;
+      gap:18px;
+      flex-wrap:wrap;
+    }
+
+    @media (max-width: 1080px){
+      .hero-shell,
+      .why-grid,
+      .pricing-grid,
+      .includes-grid,
+      .steps-grid,
+      .notes-shell,
+      .final-cta,
+      .footer-grid{
+        grid-template-columns:1fr;
+      }
+      .pricing-card-featured{
+        transform:none;
+      }
+      .final-cta-actions{
+        justify-content:flex-start;
+      }
+      .final-cta-side{
+        justify-items:start;
+      }
+    }
+
+    @media (max-width: 820px){
+      .site-header .nav-wrap{
+        position:relative;
+      }
+      .nav-toggle{
+        display:inline-flex;
+      }
+      .site-nav{
+        position:absolute;
+        top:calc(100% + .75rem);
+        right:0;
+        left:0;
+        display:none;
+        flex-direction:column;
+        align-items:flex-start;
+        padding:1rem;
+        border-radius:20px;
+        background:rgba(255,255,255,0.98);
+        border:1px solid rgba(15,23,42,0.08);
+        box-shadow:0 24px 70px rgba(15,23,42,0.12);
+      }
+      .site-nav.open{
+        display:flex;
+      }
+      .site-nav .btn{
+        width:100%;
+      }
+      .section-head{
+        margin-bottom:28px;
+      }
+      .hero-copy,
+      .hero-panel,
+      .why-shell,
+      .pricing-shell,
+      .includes-shell,
+      .steps-shell,
+      .notes-shell,
+      .final-cta,
+      .footer-shell{
+        padding:22px;
+      }
+      .hero-actions,
+      .final-cta-actions{
+        display:grid;
+      }
+      .btn{
+        width:100%;
+      }
+      .hero-copy h1{
+        font-size:clamp(2.7rem, 12vw, 4.4rem);
+      }
+      .pricing-value{
+        font-size:2.4rem;
+      }
+      .why-points{
+        grid-template-columns:1fr;
+      }
+      .footer-bottom{
+        flex-direction:column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a href="../index.html" class="brand" aria-label="WebInbound home">
+        <img src="../images/logo.png" alt="Logo WebInbound" />
+      </a>
+
+      <button class="nav-toggle" aria-label="Apri menu" aria-expanded="false">☰</button>
+
+      <nav class="site-nav">
+        <a href="../index.html">Home</a>
+        <a href="servizi.html">Servizi</a>
+        <a href="progetti.html">Progetti</a>
+        <a href="prezzi.html">Prezzi</a>
+        <a href="contatti.html">Contatti</a>
+        <a href="iniziaora.html" class="btn btn-primary">Inizia Ora</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-shell">
+        <div class="hero-copy">
+          <span class="eyebrow">Supporto continuo</span>
+          <h1>Manutenzione e Supporto Continuo</h1>
+          <p>
+            I nostri piani di manutenzione garantiscono sicurezza, aggiornamenti regolari e supporto tecnico
+            per mantenere il tuo sito sempre performante.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#piani" class="btn btn-primary">Scopri i piani</a>
+            <a href="contatti.html" class="btn btn-secondary">Contattaci</a>
+          </div>
+
+          <div class="hero-trust">
+            <div class="trust-pill">Sicurezza costante</div>
+            <div class="trust-pill">Supporto tecnico</div>
+            <div class="trust-pill">Backup e monitoraggio</div>
+            <div class="trust-pill">Tranquillità operativa</div>
+          </div>
+        </div>
+
+        <aside class="hero-panel">
+          <div class="hero-panel-head">
+            <span class="panel-kicker">Messaggio chiave</span>
+            <h3>Un sito web non si conclude con la pubblicazione</h3>
+            <p>
+              Per rimanere sicuro, aggiornato e performante ha bisogno di manutenzione continua.
+            </p>
+          </div>
+          <div class="hero-side-card">
+            <strong>Più continuità</strong>
+            <span>Un sito curato nel tempo riduce imprevisti e interruzioni, mantenendo stabile l’esperienza per utenti e azienda.</span>
+          </div>
+          <div class="hero-side-card">
+            <strong>Più serenità</strong>
+            <span>Monitoraggio, backup e supporto aiutano a gestire il progetto con un approccio più ordinato e professionale.</span>
+          </div>
+          <div class="hero-side-card">
+            <strong>Più valore nel tempo</strong>
+            <span>Il lavoro fatto in fase di sviluppo resta più protetto, più affidabile e più semplice da far evolvere.</span>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section-tight">
+      <div class="container">
+        <div class="why-shell">
+          <div class="why-grid">
+            <div class="why-main">
+              <span class="eyebrow">Perché conta</span>
+              <h3>Perché un sito web ha bisogno di manutenzione</h3>
+              <p>
+                Un progetto digitale vive nel tempo: tecnologie, plugin, CMS, integrazioni e componenti esterni cambiano.
+                Mantenere il sito aggiornato significa proteggerlo, conservarne le prestazioni e ridurre il rischio di problemi tecnici.
+              </p>
+
+              <div class="why-points">
+                <div class="why-point">
+                  <strong>Sicurezza costante</strong>
+                  <span>Aggiornamenti e controlli aiutano a ridurre vulnerabilità e criticità operative.</span>
+                </div>
+                <div class="why-point">
+                  <strong>Sito sempre funzionante</strong>
+                  <span>Monitoraggio e manutenzione prevengono molti problemi prima che diventino blocchi reali.</span>
+                </div>
+                <div class="why-point">
+                  <strong>Assistenza tecnica</strong>
+                  <span>Un riferimento operativo ti permette di gestire richieste e imprevisti con maggiore rapidità.</span>
+                </div>
+                <div class="why-point">
+                  <strong>Tranquillità</strong>
+                  <span>Backup e verifiche ricorrenti aiutano a proteggere il progetto nel tempo.</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="why-side">
+              <div class="why-side-card">
+                <strong>Aggiornamenti regolari</strong>
+                <p>I siti web devono essere aggiornati per mantenere compatibilità tecnica e affidabilità complessiva.</p>
+              </div>
+              <div class="why-side-card">
+                <strong>Backup ricorrenti</strong>
+                <p>Copie di sicurezza regolari aiutano a ridurre il rischio di perdita dati e a gestire eventuali imprevisti.</p>
+              </div>
+              <div class="why-side-card">
+                <strong>Monitoraggio tecnico</strong>
+                <p>Controllare il sito nel tempo permette di intercettare criticità prima che impattino l’attività.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="piani">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Piani di manutenzione</span>
+            <h2>Un supporto mensile semplice, chiaro e professionale</h2>
+          </div>
+          <p>
+            I nostri piani sono pensati per accompagnare siti diversi con livelli di supporto diversi,
+            mantenendo sempre al centro sicurezza, continuità e qualità operativa.
+          </p>
+        </div>
+
+        <div class="pricing-shell">
+          <div class="pricing-grid">
+            <article class="pricing-card">
+              <div class="pricing-top">
+                <h3>Basic</h3>
+                <p>Ideale per siti semplici che vogliono continuità tecnica di base senza complicazioni.</p>
+                <div class="pricing-meta">piano mensile</div>
+                <div class="pricing-value">€49 <small>/ mese</small></div>
+                <div class="pricing-target">Per siti vetrina e progetti essenziali</div>
+              </div>
+
+              <ul class="feature-list">
+                <li>Aggiornamenti CMS</li>
+                <li>Aggiornamenti plugin</li>
+                <li>Backup mensile</li>
+                <li>Controllo sicurezza base</li>
+                <li>Supporto email</li>
+              </ul>
+
+              <a href="contatti.html" class="btn btn-secondary">Attiva un piano</a>
+            </article>
+
+            <article class="pricing-card pricing-card-featured">
+              <div class="featured-badge">Più scelto</div>
+              <div class="pricing-top">
+                <h3>Professional</h3>
+                <p>La soluzione più scelta per aziende che vogliono un sito seguito in modo più continuativo.</p>
+                <div class="pricing-meta">piano mensile</div>
+                <div class="pricing-value">€99 <small>/ mese</small></div>
+                <div class="pricing-target">Per chi vuole più controllo e più continuità</div>
+              </div>
+
+              <ul class="feature-list">
+                <li>Aggiornamenti CMS</li>
+                <li>Aggiornamenti plugin</li>
+                <li>Backup settimanali</li>
+                <li>Monitoraggio sicurezza</li>
+                <li>Supporto email prioritario</li>
+                <li>Piccole modifiche contenuti</li>
+              </ul>
+
+              <a href="contatti.html" class="btn btn-primary">Attiva un piano</a>
+            </article>
+
+            <article class="pricing-card">
+              <div class="pricing-top">
+                <h3>Premium</h3>
+                <p>Ideale per aziende che desiderano maggiore supporto, più attenzione tecnica e più reattività.</p>
+                <div class="pricing-meta">piano mensile</div>
+                <div class="pricing-value">€200 <small>/ mese</small></div>
+                <div class="pricing-target">Per siti più evoluti e aziende con esigenze continuative</div>
+              </div>
+
+              <ul class="feature-list">
+                <li>Aggiornamenti completi del sito</li>
+                <li>Backup automatici</li>
+                <li>Monitoraggio sicurezza avanzato</li>
+                <li>Supporto prioritario</li>
+                <li>Piccole modifiche al sito</li>
+                <li>Assistenza tecnica dedicata</li>
+              </ul>
+
+              <a href="contatti.html" class="btn btn-dark">Attiva un piano</a>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-tight">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Cosa include</span>
+            <h2>La manutenzione come servizio chiaro, continuo e concreto</h2>
+          </div>
+          <p>
+            Ogni piano può avere intensità diverse, ma la logica resta la stessa: prevenire problemi,
+            mantenere il sito aggiornato e garantire supporto quando serve.
+          </p>
+        </div>
+
+        <div class="includes-shell">
+          <div class="includes-grid">
+            <article class="include-card">
+              <div class="include-icon">A</div>
+              <h3>Aggiornamenti</h3>
+              <p>Manteniamo il sito aggiornato per garantire sicurezza, stabilità e compatibilità nel tempo.</p>
+            </article>
+            <article class="include-card">
+              <div class="include-icon">B</div>
+              <h3>Backup</h3>
+              <p>Creiamo copie di sicurezza per prevenire perdita di dati e gestire eventuali imprevisti.</p>
+            </article>
+            <article class="include-card">
+              <div class="include-icon">C</div>
+              <h3>Controllo sicurezza</h3>
+              <p>Monitoriamo il sito per individuare eventuali criticità tecniche e intervenire in modo ordinato.</p>
+            </article>
+            <article class="include-card">
+              <div class="include-icon">D</div>
+              <h3>Supporto tecnico</h3>
+              <p>Offriamo assistenza per richieste, verifiche e piccole esigenze operative nel tempo.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-tight">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Note importanti</span>
+            <h2>Un servizio pensato per prevenire, non solo per correggere</h2>
+          </div>
+          <p>
+            Manteniamo il servizio chiaro e ordinato, così il cliente sa sempre cosa aspettarsi e come viene gestita la continuità tecnica del sito.
+          </p>
+        </div>
+
+        <div class="notes-shell">
+          <article class="note-card">
+            <strong>Interventi standard inclusi</strong>
+            <p>I piani coprono attività di manutenzione ricorrente, controllo, aggiornamento e supporto coerenti con il livello scelto.</p>
+          </article>
+          <article class="note-card">
+            <strong>Modifiche più complesse</strong>
+            <p>Richieste più estese o evolutive possono richiedere una valutazione dedicata, così da mantenere il servizio chiaro e sostenibile.</p>
+          </article>
+          <article class="note-card">
+            <strong>Prevenzione nel tempo</strong>
+            <p>La manutenzione aiuta a ridurre criticità tecniche, proteggere il sito e conservare nel tempo il valore del progetto pubblicato.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-tight">
+      <div class="container">
+        <div class="final-cta">
+          <div>
+            <span class="eyebrow">Gestione tecnica continua</span>
+            <h2>Lascia a noi la gestione tecnica del tuo sito</h2>
+            <p>
+              Con i nostri piani di manutenzione il tuo sito rimane sempre sicuro, aggiornato e funzionante.
+            </p>
+          </div>
+
+          <div class="final-cta-side">
+            <div class="final-cta-info">
+              <strong>Un supporto che protegge il progetto</strong>
+              <span>È il modo più semplice per trasformare il sito pubblicato in un asset digitale stabile e seguito nel tempo.</span>
+            </div>
+            <div class="final-cta-actions">
+              <a href="contatti.html" class="btn btn-primary">Attiva un piano</a>
+              <a href="contatti.html" class="btn btn-secondary">Contattaci</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-shell">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <img src="../images/logo.png" alt="WebInbound" class="footer-logo" />
+            <p>Agenzia digitale specializzata in siti web orientati ai risultati.</p>
+          </div>
+          <div class="footer-col">
+            <h4>Link</h4>
+            <a href="servizi.html">Servizi</a>
+            <a href="progetti.html">Portfolio</a>
+            <a href="prezzi.html">Prezzi</a>
+            <a href="contatti.html">Contatti</a>
+          </div>
+          <div class="footer-col">
+            <h4>Contatti</h4>
+            <a href="mailto:info@webinbound.it">info@webinbound.it</a>
+            <a href="mailto:support@webinbound.it">support@webinbound.it</a>
+            <a href="tel:+393791465762">+39 379 146 5762</a>
+            <span class="footer-meta">P.IVA: 02841450022</span>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span>© 2026 Web Inbound. Tutti i diritti riservati. P.IVA: 02841450022</span>
+          <div class="footer-legal-links">
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="cookie.html">Cookie Policy</a>
+            <a href="termini.html">Termini</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/cookie-banner.js"></script>
+  <script>
+    const navToggle = document.querySelector('.nav-toggle');
+    const siteNav = document.querySelector('.site-nav');
+    const siteHeader = document.querySelector('.site-header');
+
+    if (navToggle && siteNav) {
+      navToggle.addEventListener('click', () => {
+        const isOpen = siteNav.classList.toggle('open');
+        navToggle.setAttribute('aria-expanded', String(isOpen));
+      });
+
+      siteNav.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          siteNav.classList.remove('open');
+          navToggle.setAttribute('aria-expanded', 'false');
+        });
+      });
+    }
+
+    window.addEventListener('scroll', () => {
+      if (!siteHeader) return;
+      siteHeader.classList.toggle('scrolled', window.scrollY > 12);
+    }, { passive: true });
+  </script>
+</body>
+</html>

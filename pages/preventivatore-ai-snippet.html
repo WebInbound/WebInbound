@@ -1,0 +1,88 @@
+<link rel="stylesheet" href="../css/preventivatore-ai.css">
+
+<section class="section" data-preventivatore-ai data-pricing-path="../config/pricing.json" data-contacts-path="contatti.html">
+  <div class="wb-ai-shell">
+    <div class="wb-ai-panel">
+      <div class="wb-ai-head">
+        <div>
+          <span class="wb-ai-kicker">Sistema di preventivazione avanzato</span>
+          <h2>Analisi progetto premium</h2>
+          <p>
+            Racconta il progetto in modo libero. Il sistema individua il settore, raccoglie solo le informazioni
+            utili e prepara una stima iniziale professionale, senza sembrare una chat.
+          </p>
+        </div>
+        <div class="wb-ai-badge">Preventivatore intelligente</div>
+      </div>
+
+      <div class="wb-ai-process">
+        <div class="wb-ai-process-card">
+          <span>01</span>
+          <strong>Inquadramento attività e obiettivi</strong>
+        </div>
+        <div class="wb-ai-process-card">
+          <span>02</span>
+          <strong>Configurazione guidata delle funzioni</strong>
+        </div>
+        <div class="wb-ai-process-card">
+          <span>03</span>
+          <strong>Stima iniziale e passaggio ai contatti</strong>
+        </div>
+      </div>
+
+      <div class="wb-ai-field">
+        <label class="wb-ai-label" for="wbAiInitialDescription">Descrivi il tuo progetto</label>
+        <textarea
+          id="wbAiInitialDescription"
+          class="wb-ai-textarea"
+          data-role="initial-description"
+          placeholder="Esempio: ho un'impresa edile e voglio un sito che aumenti credibilità, richieste di sopralluogo e chiamate da clienti della mia zona."
+        ></textarea>
+      </div>
+
+      <div class="wb-ai-chip-row">
+        <button class="wb-ai-chip" type="button">Sito per ristorante con prenotazioni</button>
+        <button class="wb-ai-chip" type="button">Sito impresa edile con portfolio lavori</button>
+        <button class="wb-ai-chip" type="button">Sito hotel / B&amp;B con richiesta disponibilità</button>
+        <button class="wb-ai-chip" type="button">Sito studio professionale orientato ai contatti</button>
+      </div>
+
+      <div class="wb-ai-actions">
+        <button class="wb-ai-btn wb-ai-btn-primary" type="button" data-role="start-analysis">Avvia analisi progetto</button>
+        <button class="wb-ai-btn wb-ai-btn-secondary" type="button" data-role="generate-quote" disabled>Genera preventivo</button>
+        <button class="wb-ai-btn wb-ai-btn-secondary" type="button" data-role="reset-flow">Reset</button>
+      </div>
+
+      <div class="wb-ai-status" data-role="analysis-status">Pronto per una nuova analisi progetto.</div>
+
+      <div class="wb-ai-progress-track" aria-hidden="true">
+        <div class="wb-ai-progress-fill" data-role="progress"></div>
+      </div>
+
+      <div class="wb-ai-question-deck" data-role="question-deck"></div>
+    </div>
+
+    <aside class="wb-ai-summary-panel">
+      <span class="wb-ai-kicker">Output consulenziale</span>
+      <h3>Preventivo iniziale</h3>
+      <p>
+        Una volta raccolti i dati essenziali, il sistema produce un riepilogo premium pronto per essere inviato al team WebInbound.
+      </p>
+
+      <div class="wb-ai-insight-card">
+        <span>Lettura del progetto</span>
+        <p data-role="analysis-insight">
+          Il componente guiderà l'utente verso una configurazione iniziale chiara, leggibile e orientata alla conversione.
+        </p>
+      </div>
+
+      <div data-role="quote-summary" hidden></div>
+
+      <div class="wb-ai-actions">
+        <button class="wb-ai-btn wb-ai-btn-primary" type="button" data-role="contact-cta" hidden>Invia per essere ricontattato</button>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<script src="../js/preventivatore-ai.js"></script>

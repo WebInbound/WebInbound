@@ -1,0 +1,2646 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WebInbound — Inizia Ora</title>
+  <meta name="description" content="Pagina dedicata per creare il tuo progetto WebInbound con configuratore guidato, riepilogo live e generazione automatica con AI." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#f4f7f4;
+      --bg-soft:#f8fbf8;
+      --panel:#ffffff;
+      --panel-2:#fbfcfb;
+      --text:#0d1412;
+      --muted:#61706a;
+      --line:rgba(13,20,18,.08);
+      --line-strong:rgba(13,20,18,.14);
+      --green:#16b05b;
+      --green-2:#0d6b36;
+      --green-3:#1ace66;
+      --green-soft:#eaf9f0;
+      --green-deep:#083d21;
+      --dark:#0f1720;
+      --shadow:0 24px 70px rgba(11,25,18,.08);
+      --shadow-strong:0 30px 90px rgba(9,22,18,.14);
+      --shadow-soft:0 14px 40px rgba(10,20,18,.06);
+      --radius-xl:34px;
+      --radius-lg:26px;
+      --radius-md:18px;
+      --container:1240px;
+      --nav-h:84px;
+      --transition:.28s cubic-bezier(.2,.8,.2,1);
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:"Inter",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(22,176,91,.08), transparent 24%),
+        radial-gradient(circle at top right, rgba(13,107,54,.06), transparent 22%),
+        linear-gradient(180deg,#f8fbf8 0%,#f4f7f4 100%);
+      line-height:1.5;
+      overflow-x:hidden;
+    }
+
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      background:
+        radial-gradient(circle at 20% 0%, rgba(22,176,91,.06), transparent 20%),
+        radial-gradient(circle at 100% 30%, rgba(13,107,54,.05), transparent 18%);
+      z-index:-1;
+    }
+
+    a{text-decoration:none;color:inherit}
+    button, input, select, textarea{font:inherit}
+    .container{width:min(var(--container), calc(100% - 40px)); margin:0 auto}
+
+    .site-header{
+      position:sticky;
+      top:0;
+      z-index:100;
+      backdrop-filter:blur(14px);
+      background:rgba(248,251,248,.82);
+      border-bottom:1px solid rgba(13,20,18,.05);
+    }
+    .nav{
+      min-height:var(--nav-h);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:24px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      font-weight:800;
+      letter-spacing:-.03em;
+    }
+    .brand-mark{
+      width:46px;
+      height:46px;
+      display:grid;
+      place-items:center;
+      border-radius:15px;
+      color:#fff;
+      background:linear-gradient(135deg,var(--green-2),var(--green));
+      box-shadow:0 14px 30px rgba(22,176,91,.2);
+      position:relative;
+      overflow:hidden;
+    }
+    .brand-mark::after{
+      content:"";
+      position:absolute;
+      inset:auto -8px -16px auto;
+      width:30px;
+      height:30px;
+      background:rgba(255,255,255,.16);
+      border-radius:50%;
+    }
+    .brand-text{font-size:1.45rem}
+    .nav-links{
+      display:flex;
+      gap:28px;
+      font-weight:600;
+      color:#28342f;
+    }
+    .nav-links a{opacity:.9; transition:var(--transition)}
+    .nav-links a:hover{opacity:1; color:var(--green-2)}
+    .nav-actions{display:flex; gap:12px; align-items:center}
+
+    .btn{
+      appearance:none;
+      border:none;
+      cursor:pointer;
+      border-radius:16px;
+      padding:14px 20px;
+      font-weight:700;
+      font-size:15px;
+      transition:transform var(--transition), box-shadow var(--transition), background var(--transition), border-color var(--transition), opacity var(--transition);
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      white-space:nowrap;
+    }
+    .btn:hover{transform:translateY(-2px)}
+    .btn-primary{
+      color:#fff;
+      background:linear-gradient(135deg,var(--green),var(--green-3));
+      box-shadow:0 16px 34px rgba(22,176,91,.22);
+    }
+    .btn-primary:hover{box-shadow:0 20px 40px rgba(22,176,91,.26)}
+    .btn-secondary{
+      color:var(--text);
+      background:#fff;
+      border:1px solid var(--line);
+      box-shadow:var(--shadow-soft);
+    }
+    .btn-ghost{
+      color:var(--text);
+      background:rgba(255,255,255,.72);
+      border:1px solid rgba(13,20,18,.08);
+    }
+    .btn-dark{color:#fff; background:var(--dark)}
+    .btn-full{width:100%}
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      padding:8px 14px;
+      border-radius:999px;
+      background:var(--green-soft);
+      color:var(--green-2);
+      border:1px solid rgba(22,176,91,.16);
+      font-size:12px;
+      font-weight:800;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+    .eyebrow-dark{
+      background:rgba(255,255,255,.1);
+      color:#fff;
+      border-color:rgba(255,255,255,.12);
+    }
+
+    .section{padding:108px 0}
+    .section-tight{padding:80px 0}
+    .section-head{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-end;
+      gap:24px;
+      margin-bottom:42px;
+    }
+    .section-head h2{
+      margin:14px 0 10px;
+      font-size:clamp(2.15rem,4vw,3.7rem);
+      line-height:1.02;
+      letter-spacing:-.055em;
+      max-width:880px;
+    }
+    .section-head p{
+      margin:0;
+      max-width:560px;
+      color:var(--muted);
+      font-size:1.04rem;
+    }
+
+    .hero-section{padding:86px 0 54px; position:relative}
+    .hero-section::before{
+      content:"";
+      position:absolute;
+      right:8%;
+      top:8%;
+      width:420px;
+      height:420px;
+      background:radial-gradient(circle, rgba(22,176,91,.12), transparent 68%);
+      filter:blur(18px);
+      pointer-events:none;
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:34px;
+      align-items:stretch;
+    }
+    .hero-copy h1{
+      margin:18px 0 18px;
+      font-size:clamp(3.35rem,6vw,6rem);
+      line-height:.93;
+      letter-spacing:-.075em;
+      max-width:940px;
+    }
+    .hero-copy h1 span{
+      display:block;
+      color:var(--green);
+    }
+    .hero-sub{
+      max-width:760px;
+      font-size:1.16rem;
+      color:var(--muted);
+      margin:0 0 30px;
+    }
+    .hero-actions{display:flex; gap:14px; flex-wrap:wrap; margin-bottom:26px}
+    .hero-badges{display:flex; gap:12px; flex-wrap:wrap}
+    .feature-pill{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:12px 15px;
+      border-radius:999px;
+      background:rgba(255,255,255,.78);
+      border:1px solid rgba(13,20,18,.08);
+      box-shadow:var(--shadow-soft);
+      font-weight:600;
+      color:#23302b;
+      transition:var(--transition);
+    }
+    .feature-pill:hover{transform:translateY(-2px)}
+    .feature-pill span{
+      width:8px;
+      height:8px;
+      border-radius:50%;
+      background:var(--green);
+      box-shadow:0 0 0 6px rgba(22,176,91,.12);
+    }
+
+    .hero-panel{
+      position:relative;
+      padding:30px;
+      border-radius:var(--radius-xl);
+      background:linear-gradient(180deg,rgba(255,255,255,.95),rgba(255,255,255,.84));
+      border:1px solid rgba(13,20,18,.07);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      isolation:isolate;
+    }
+    .hero-panel::before{
+      content:"";
+      position:absolute;
+      right:-60px;
+      top:-60px;
+      width:220px;
+      height:220px;
+      border-radius:50%;
+      background:radial-gradient(circle, rgba(22,176,91,.18), transparent 70%);
+      z-index:-1;
+    }
+    .hero-panel::after{
+      content:"";
+      position:absolute;
+      left:20px;
+      bottom:-80px;
+      width:200px;
+      height:200px;
+      border-radius:50%;
+      background:radial-gradient(circle, rgba(13,107,54,.08), transparent 70%);
+      z-index:-1;
+    }
+    .panel-kicker{
+      font-size:12px;
+      font-weight:800;
+      letter-spacing:.08em;
+      color:var(--green-2);
+    }
+    .hero-panel-price{
+      margin:12px 0 10px;
+      font-size:3.35rem;
+      line-height:1;
+      letter-spacing:-.065em;
+      font-weight:900;
+    }
+    .hero-panel p{margin:0 0 20px; color:var(--muted)}
+    .insight-stack{display:grid; gap:12px}
+    .insight-card{
+      display:flex;
+      justify-content:space-between;
+      gap:16px;
+      align-items:center;
+      padding:16px;
+      border-radius:20px;
+      background:#fff;
+      border:1px solid rgba(13,20,18,.06);
+      transition:var(--transition);
+    }
+    .insight-card:hover{transform:translateY(-2px); box-shadow:var(--shadow-soft)}
+    .insight-card strong{display:block; margin-bottom:4px}
+    .insight-card small{display:block; color:var(--muted)}
+    .insight-card span{white-space:nowrap; font-weight:800; color:var(--green-2)}
+
+    .trust-strip{padding:0 0 14px}
+    .trust-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:16px}
+    .trust-item{
+      padding:24px;
+      border-radius:24px;
+      background:rgba(255,255,255,.8);
+      border:1px solid rgba(13,20,18,.07);
+      box-shadow:var(--shadow-soft);
+      transition:var(--transition);
+    }
+    .trust-item:hover{transform:translateY(-3px)}
+    .trust-item strong{display:block; margin-bottom:7px; font-size:1rem}
+    .trust-item span{color:var(--muted); font-size:.95rem}
+
+    .pricing-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:22px; align-items:stretch}
+    .pricing-card{
+      position:relative;
+      padding:28px;
+      border-radius:30px;
+      background:rgba(255,255,255,.86);
+      border:1px solid rgba(13,20,18,.08);
+      box-shadow:var(--shadow);
+      display:flex;
+      flex-direction:column;
+      transition:var(--transition);
+    }
+    .pricing-card:hover{transform:translateY(-6px)}
+    .pricing-card-featured{
+      border-color:rgba(22,176,91,.36);
+      box-shadow:0 28px 80px rgba(22,176,91,.14);
+      transform:translateY(-8px);
+    }
+    .pricing-card-featured:hover{transform:translateY(-12px)}
+    .featured-badge{
+      position:absolute;
+      left:28px;
+      right:28px;
+      top:-14px;
+      text-align:center;
+      padding:10px 14px;
+      border-radius:999px;
+      background:linear-gradient(135deg,var(--green),var(--green-3));
+      color:#fff;
+      font-size:12px;
+      font-weight:800;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+    .pricing-top{padding-bottom:22px; border-bottom:1px solid rgba(13,20,18,.07); margin-bottom:22px}
+    .pricing-top h3{margin:0 0 8px; font-size:2rem; letter-spacing:-.04em}
+    .pricing-top p{margin:0 0 18px; color:var(--muted)}
+    .pricing-meta{color:var(--muted); font-size:.95rem; margin-bottom:4px}
+    .pricing-value{font-size:3rem; line-height:1; font-weight:900; letter-spacing:-.06em; margin-bottom:12px}
+    .pricing-target{
+      padding:10px 12px;
+      border-radius:14px;
+      background:#f2f5f3;
+      color:#23302b;
+      font-size:.9rem;
+      font-weight:600;
+    }
+    .feature-list{list-style:none; padding:0; margin:0 0 22px; display:grid; gap:14px}
+    .feature-list li{position:relative; padding-left:28px; color:#21302c}
+    .feature-list li::before{
+      content:"✓";
+      position:absolute;
+      left:0;
+      top:0;
+      width:20px;
+      height:20px;
+      display:grid;
+      place-items:center;
+      border-radius:50%;
+      background:var(--green-soft);
+      color:var(--green-2);
+      font-size:12px;
+      font-weight:900;
+    }
+
+    .comparison-shell{
+      padding:36px;
+      border-radius:36px;
+      background:linear-gradient(180deg,rgba(10,68,36,.98),rgba(7,45,25,.98));
+      color:#fff;
+      box-shadow:var(--shadow-strong);
+      position:relative;
+      overflow:hidden;
+    }
+    .comparison-shell::before{
+      content:"";
+      position:absolute;
+      right:-90px;
+      top:-90px;
+      width:280px;
+      height:280px;
+      border-radius:50%;
+      background:radial-gradient(circle, rgba(255,255,255,.11), transparent 68%);
+    }
+    .comparison-head{display:flex; justify-content:space-between; gap:24px; align-items:flex-end; margin-bottom:28px}
+    .comparison-head h2{margin:14px 0 10px; font-size:clamp(2rem,4vw,3.3rem); line-height:1.02; letter-spacing:-.055em; max-width:760px}
+    .comparison-head p{margin:0; max-width:500px; color:rgba(255,255,255,.8)}
+    .comparison-grid{display:grid; grid-template-columns:1.15fr .85fr; gap:22px}
+    .comparison-table-card{
+      border-radius:26px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.08);
+      background:rgba(255,255,255,.06);
+      backdrop-filter:blur(10px);
+    }
+    .comparison-table{width:100%; border-collapse:collapse}
+    .comparison-table th,
+    .comparison-table td{padding:19px 18px; text-align:left; border-bottom:1px solid rgba(255,255,255,.09)}
+    .comparison-table th{font-size:.92rem; color:#dff7e8; text-transform:uppercase; letter-spacing:.06em}
+    .comparison-table tr:last-child td{border-bottom:none}
+    .comparison-table tbody tr{transition:var(--transition)}
+    .comparison-table tbody tr:hover{background:rgba(255,255,255,.04)}
+    .good{color:#97f1bb; font-weight:800}
+    .bad{color:#f2d3d3; font-weight:700}
+    .comparison-insights{display:grid; gap:14px}
+    .insight-panel{
+      padding:22px;
+      border-radius:22px;
+      background:rgba(255,255,255,.07);
+      border:1px solid rgba(255,255,255,.1);
+      transition:var(--transition);
+    }
+    .insight-panel:hover{transform:translateY(-3px); background:rgba(255,255,255,.09)}
+    .insight-title{display:block; margin-bottom:8px; font-size:1rem; font-weight:800; color:#fff}
+    .insight-panel p{margin:0; color:rgba(255,255,255,.8)}
+
+    .builder-tabs{
+      display:inline-flex;
+      gap:8px;
+      padding:6px;
+      border-radius:18px;
+      background:#edf3ef;
+      border:1px solid rgba(13,20,18,.06);
+      margin-bottom:22px;
+    }
+    .builder-tab{
+      border:none;
+      background:transparent;
+      padding:12px 16px;
+      border-radius:14px;
+      font-weight:700;
+      color:#53615b;
+      cursor:pointer;
+      transition:var(--transition);
+    }
+    .builder-tab.active{
+      background:#fff;
+      color:var(--text);
+      box-shadow:var(--shadow-soft);
+    }
+
+    .builder-shell{display:grid; grid-template-columns:minmax(0,1.08fr) 390px; gap:24px; align-items:start}
+    .builder-main,
+    .builder-summary,
+    .ai-input-panel,
+    .ai-conversation-panel,
+    .process-card,
+    .final-cta{
+      border-radius:30px;
+      background:rgba(255,255,255,.86);
+      border:1px solid rgba(13,20,18,.08);
+      box-shadow:var(--shadow);
+    }
+    .builder-main{padding:28px}
+    .builder-summary{padding:24px; position:sticky; top:104px}
+    .builder-header{display:flex; justify-content:space-between; align-items:flex-start; gap:18px; margin-bottom:24px}
+    .builder-header h3{margin:0 0 8px; font-size:1.7rem; letter-spacing:-.04em}
+    .builder-header p{margin:0; color:var(--muted); max-width:620px}
+    .progress-block{min-width:180px}
+    .progress-top{display:flex; justify-content:space-between; gap:12px; margin-bottom:8px; font-size:.92rem; color:var(--muted)}
+    .progress-top strong{color:var(--green-2)}
+    .progress-bar{width:100%; height:10px; border-radius:999px; background:#edf1ee; overflow:hidden}
+    .progress-fill{height:100%; width:24%; border-radius:999px; background:linear-gradient(90deg,var(--green),#34d777); transition:width .25s ease}
+    .builder-pane{display:none}
+    .builder-pane.active{display:block}
+
+    .form-grid{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px}
+    .form-card{padding:18px; border-radius:22px; background:#fff; border:1px solid rgba(13,20,18,.08)}
+    .form-card-full{grid-column:1 / -1}
+    .form-card label{display:block; margin-bottom:12px; font-weight:700}
+    select, textarea{
+      width:100%;
+      border:1px solid rgba(13,20,18,.1);
+      border-radius:16px;
+      padding:14px 14px;
+      background:#fbfcfb;
+      color:var(--text);
+      outline:none;
+      resize:vertical;
+      transition:border-color .2s ease, box-shadow .2s ease;
+    }
+    select:focus, textarea:focus{border-color:rgba(22,176,91,.5); box-shadow:0 0 0 4px rgba(22,176,91,.1)}
+    .option-grid{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px}
+    .option-card{position:relative; display:block; cursor:pointer}
+    .option-card input{position:absolute; inset:0; opacity:0}
+    .option-card span{
+      min-height:96px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      gap:10px;
+      padding:16px;
+      border-radius:18px;
+      background:#fff;
+      border:1px solid rgba(13,20,18,.08);
+      transition:var(--transition);
+    }
+    .option-card:hover span{transform:translateY(-2px); box-shadow:var(--shadow-soft)}
+    .option-card strong{font-size:.98rem; letter-spacing:-.02em}
+    .option-card small{color:var(--muted)}
+    .option-card input:checked + span{
+      border-color:rgba(22,176,91,.42);
+      background:linear-gradient(180deg,#fff,#f3fbf6);
+      box-shadow:0 14px 28px rgba(22,176,91,.1);
+    }
+
+    .summary-kicker{font-size:12px; font-weight:800; letter-spacing:.08em; color:var(--green-2)}
+    .summary-top h3{margin:8px 0 10px; font-size:1.6rem; letter-spacing:-.04em}
+    .summary-price{font-size:3rem; line-height:1; font-weight:900; letter-spacing:-.06em; margin-bottom:10px}
+    .summary-top p{color:var(--muted); margin:0 0 18px}
+    .summary-list{list-style:none; padding:0; margin:0 0 18px; display:grid; gap:10px}
+    .summary-list li{display:flex; justify-content:space-between; gap:14px; align-items:flex-start; padding-bottom:10px; border-bottom:1px dashed rgba(13,20,18,.08); color:#24312d}
+    .summary-list strong{white-space:nowrap}
+    .summary-list li.summary-package-item{display:block}
+    .summary-package-details{width:100%}
+    .summary-package-details summary{
+      list-style:none;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:14px;
+      cursor:pointer;
+    }
+    .summary-package-details summary::-webkit-details-marker{display:none}
+    .summary-package-label{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      font-weight:700;
+    }
+    .summary-package-label::before{
+      content:"▸";
+      font-size:.85rem;
+      color:var(--green-2);
+      transition:transform .2s ease;
+    }
+    .summary-package-details[open] .summary-package-label::before{transform:rotate(90deg)}
+    .summary-package-includes{
+      list-style:none;
+      padding:10px 0 0 22px;
+      margin:0;
+      display:grid;
+      gap:6px;
+      color:var(--muted);
+      font-size:.94rem;
+    }
+    .summary-package-includes li{
+      padding:0;
+      border:0;
+      display:block;
+      color:inherit;
+    }
+    .summary-footer{display:grid; grid-template-columns:1fr 1fr; gap:12px; padding:18px 0; border-top:1px solid rgba(13,20,18,.08); border-bottom:1px solid rgba(13,20,18,.08); margin-bottom:18px}
+    .summary-meta span{display:block; color:var(--muted); font-size:.9rem; margin-bottom:4px}
+    .summary-meta strong{font-size:1.12rem; letter-spacing:-.03em}
+    .summary-actions{display:grid; gap:10px}
+    .request-inline-status{
+      display:none;
+      padding:12px 14px;
+      border-radius:16px;
+      font-size:.94rem;
+      line-height:1.5;
+      border:1px solid transparent;
+    }
+    .request-inline-status.is-visible{display:block}
+    .request-inline-status.is-success{
+      background:#f3fbf6;
+      border-color:rgba(88,190,126,.3);
+      color:#155b39;
+    }
+    .request-inline-status.is-error{
+      background:#fff4f4;
+      border-color:rgba(217,61,61,.16);
+      color:#b42318;
+    }
+
+    body.modal-open{overflow:hidden}
+    .request-modal{
+      position:fixed;
+      inset:0;
+      z-index:1200;
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding:24px;
+    }
+    .request-modal.is-open{display:flex}
+    .request-modal-backdrop{
+      position:absolute;
+      inset:0;
+      background:rgba(7,13,11,.62);
+      backdrop-filter:blur(8px);
+    }
+    .request-modal-dialog{
+      position:relative;
+      z-index:1;
+      width:min(920px, 100%);
+      max-height:min(90vh, 1000px);
+      overflow:auto;
+      border-radius:28px;
+      background:linear-gradient(180deg,#ffffff 0%, #f8fcf9 100%);
+      border:1px solid rgba(13,20,18,.08);
+      box-shadow:0 28px 90px rgba(11,25,18,.22);
+    }
+    .request-modal-head{
+      display:flex;
+      justify-content:space-between;
+      gap:18px;
+      align-items:flex-start;
+      padding:28px 28px 22px;
+      background:linear-gradient(180deg,#f1fbf5 0%, #ffffff 100%);
+      border-bottom:1px solid rgba(88,190,126,.18);
+    }
+    .request-modal-head h3{margin:10px 0 10px; font-size:2rem; letter-spacing:-.05em}
+    .request-modal-head p{margin:0; color:#4f6159; max-width:640px}
+    .request-modal-close{
+      border:none;
+      background:#ffffff;
+      color:#24312d;
+      width:44px;
+      height:44px;
+      border-radius:999px;
+      cursor:pointer;
+      font-size:1.45rem;
+      line-height:1;
+      box-shadow:0 10px 24px rgba(17,47,31,.08);
+    }
+    .request-modal-body{padding:24px 28px 28px}
+    .request-form-grid{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0,1fr));
+      gap:16px;
+    }
+    .request-form-field{
+      display:grid;
+      gap:8px;
+    }
+    .request-form-field-full{grid-column:1 / -1}
+    .request-form-field label{
+      font-size:.95rem;
+      font-weight:700;
+      color:#1d2b25;
+    }
+    .request-form-field input,
+    .request-form-field select,
+    .request-form-field textarea{
+      width:100%;
+      border:1px solid rgba(13,20,18,.12);
+      border-radius:16px;
+      padding:14px 16px;
+      font:inherit;
+      color:#18251f;
+      background:#fcfdfc;
+      transition:var(--transition);
+    }
+    .request-form-field textarea{
+      min-height:128px;
+      resize:vertical;
+    }
+    .request-form-field input:focus,
+    .request-form-field select:focus,
+    .request-form-field textarea:focus{
+      outline:none;
+      border-color:rgba(88,190,126,.52);
+      box-shadow:0 0 0 4px rgba(88,190,126,.12);
+      background:#fff;
+    }
+    .request-helper{
+      font-size:.84rem;
+      color:#62746c;
+      line-height:1.5;
+    }
+    .request-consent{
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+      padding:14px 16px;
+      border-radius:20px;
+      background:linear-gradient(180deg,#fbfdfb,#f3f8f5);
+      border:1px solid rgba(18,40,31,.08);
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.85);
+    }
+    .request-consent input{
+      margin-top:2px;
+      width:16px;
+      height:16px;
+      flex:0 0 16px;
+      accent-color:var(--green);
+    }
+    .request-consent label{
+      font-size:.82rem;
+      line-height:1.45;
+      color:#51615a;
+      letter-spacing:-.01em;
+    }
+    .request-consent a{
+      color:var(--green-2);
+      font-weight:700;
+      text-decoration:none;
+    }
+    .request-consent a:hover{
+      text-decoration:underline;
+    }
+    .request-form-summary{
+      margin:0 0 20px;
+      padding:18px 20px;
+      border-radius:20px;
+      background:linear-gradient(180deg,#f4fcf7,#eef8f1);
+      border:1px solid rgba(88,190,126,.22);
+    }
+    .request-form-summary strong{
+      display:block;
+      font-size:1.12rem;
+      margin-bottom:6px;
+      color:#174d34;
+    }
+    .request-form-summary p{
+      margin:0;
+      color:#4f625a;
+      line-height:1.6;
+      white-space:pre-line;
+    }
+    .request-form-actions{
+      display:flex;
+      justify-content:flex-end;
+      gap:12px;
+      margin-top:22px;
+      flex-wrap:wrap;
+    }
+    .request-form-status{
+      display:none;
+      margin-top:16px;
+      padding:14px 16px;
+      border-radius:16px;
+      border:1px solid transparent;
+      line-height:1.5;
+    }
+    .request-form-status.is-visible{display:block}
+    .request-form-status.is-success{
+      background:#f3fbf6;
+      border-color:rgba(88,190,126,.3);
+      color:#155b39;
+    }
+    .request-form-status.is-error{
+      background:#fff4f4;
+      border-color:rgba(217,61,61,.16);
+      color:#b42318;
+    }
+    .request-honeypot{
+      position:absolute !important;
+      left:-9999px !important;
+      width:1px !important;
+      height:1px !important;
+      overflow:hidden !important;
+    }
+
+    .ai-inline-head{display:flex; justify-content:space-between; align-items:flex-start; gap:16px; margin-bottom:18px}
+    .ai-inline-head h4{margin:0 0 6px; font-size:1.45rem; letter-spacing:-.04em}
+    .advisor-caption{margin:0; color:#587068; line-height:1.6; max-width:680px}
+    .ai-mini-badge{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 14px;
+      border-radius:999px;
+      background:linear-gradient(180deg,#ffffff,#f4f8f6);
+      border:1px solid rgba(18,40,31,.08);
+      box-shadow:0 14px 32px rgba(16,33,26,.06);
+      color:#153327;
+      font-size:.8rem;
+      font-weight:800;
+      letter-spacing:.06em;
+      text-transform:uppercase;
+    }
+    .ai-mini-icon{
+      width:30px;
+      height:30px;
+      display:grid;
+      place-items:center;
+      border-radius:12px;
+      background:linear-gradient(180deg,#effaf3,#dff2e8);
+      color:#1d6a46;
+      box-shadow:inset 0 0 0 1px rgba(88,190,126,.15);
+      font-size:1rem;
+    }
+    .ai-inline-state,
+    .ai-status{display:inline-flex; align-items:center; gap:8px; padding:9px 14px; border-radius:999px; background:linear-gradient(180deg,#f2fbf5,#e8f6ee); color:#1b5b3c; font-size:.82rem; font-weight:800; letter-spacing:.03em; text-transform:uppercase; border:1px solid rgba(88,190,126,.18)}
+    .ai-inline-state::before,
+    .ai-status::before{
+      content:"";
+      width:8px;
+      height:8px;
+      border-radius:999px;
+      background:#39bf75;
+      box-shadow:0 0 0 6px rgba(57,191,117,.12);
+    }
+    .quick-prompts{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:10px;
+      margin:18px 0 18px;
+    }
+    .quick-prompt{
+      cursor:pointer;
+      border:1px solid rgba(18,40,31,.08);
+      background:linear-gradient(180deg,#ffffff,#f7faf8);
+      color:#21312b;
+      border-radius:18px;
+      padding:14px 15px;
+      font-weight:700;
+      line-height:1.35;
+      transition:var(--transition);
+      text-align:left;
+    }
+    .quick-prompt:hover{border-color:rgba(88,190,126,.34); color:#174d34; box-shadow:0 12px 26px rgba(16,33,26,.08); transform:translateY(-2px)}
+    .builder-ai-actions{display:flex; gap:12px; flex-wrap:wrap}
+
+    .ai-shell{display:grid; grid-template-columns:1fr 1fr; gap:24px}
+    .ai-input-panel,
+    .ai-conversation-panel{padding:28px}
+    .ai-input-panel{
+      background:
+        radial-gradient(circle at top right, rgba(88,190,126,.12), transparent 35%),
+        linear-gradient(180deg,#ffffff,#f7faf8);
+    }
+    .ai-panel-head{display:flex; justify-content:space-between; align-items:flex-start; gap:16px; margin-bottom:12px}
+    .ai-panel-head h3{margin:0; font-size:1.55rem; letter-spacing:-.04em}
+    .input-label{display:block; margin-bottom:12px; font-weight:700}
+    .ai-input-wrap{
+      position:relative;
+    }
+    .ai-input-wrap textarea{
+      padding:18px 72px 18px 18px;
+      min-height:188px;
+      resize:vertical;
+    }
+    .ai-send-btn{
+      position:absolute;
+      right:14px;
+      bottom:14px;
+      width:48px;
+      height:48px;
+      border:none;
+      border-radius:16px;
+      display:grid;
+      place-items:center;
+      background:linear-gradient(180deg,#3cbb71,#219653);
+      color:#fff;
+      box-shadow:0 16px 28px rgba(33,150,83,.24);
+      cursor:pointer;
+      transition:var(--transition);
+    }
+    .ai-send-btn:hover{
+      transform:translateY(-1px);
+      box-shadow:0 18px 32px rgba(33,150,83,.28);
+    }
+    .ai-send-btn:focus-visible{
+      outline:3px solid rgba(88,190,126,.28);
+      outline-offset:3px;
+    }
+    .ai-send-btn svg{
+      width:18px;
+      height:18px;
+    }
+    .ai-actions{display:flex; gap:12px; flex-wrap:wrap}
+    .ai-conversation-panel{
+      display:flex;
+      flex-direction:column;
+      gap:18px;
+      background:
+        radial-gradient(circle at top left, rgba(88,190,126,.12), transparent 30%),
+        linear-gradient(180deg,#ffffff,#f8fbf9);
+      min-height:100%;
+    }
+    .analysis-stream{
+      display:grid;
+      gap:14px;
+    }
+    .analysis-state-value{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      font-size:.82rem;
+      font-weight:800;
+      color:#1b5b3c;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+    }
+    .analysis-spinner{
+      width:12px;
+      height:12px;
+      border-radius:999px;
+      background:#52bc7b;
+      box-shadow:0 0 0 0 rgba(82,188,123,.32);
+      animation:pulseDot 1.6s ease infinite;
+    }
+    .analysis-message{
+      padding:18px;
+      border-radius:20px;
+      border:1px solid rgba(18,40,31,.08);
+      background:#fff;
+      color:#22322b;
+      line-height:1.65;
+      box-shadow:var(--shadow-soft);
+      animation:fadeUp .35s ease;
+    }
+    .analysis-message.user{
+      background:linear-gradient(180deg,#f5faf7,#eef6f1);
+      border-color:rgba(88,190,126,.18);
+    }
+    .analysis-message.system{
+      background:linear-gradient(180deg,#ffffff,#f8fbf9);
+    }
+    .analysis-message-label{
+      display:block;
+      margin-bottom:8px;
+      font-size:.72rem;
+      text-transform:uppercase;
+      letter-spacing:.1em;
+      font-weight:800;
+      color:#739183;
+    }
+    .ai-estimate-card-wrap{
+      margin-top:auto;
+      display:grid;
+      gap:14px;
+    }
+    .ai-estimate-card{
+      padding:22px;
+      border-radius:24px;
+      background:linear-gradient(180deg,#effaf3,#e6f5ec);
+      border:1px solid rgba(88,190,126,.2);
+    }
+    .ai-estimate-card span{display:block; color:#2d7750; font-size:.82rem; text-transform:uppercase; letter-spacing:.11em; font-weight:800; margin-bottom:8px}
+    .ai-estimate-card strong{display:block; font-size:2.1rem; letter-spacing:-.05em; color:#173f2d}
+    .ai-estimate-card p{margin:8px 0 0; color:#587068; line-height:1.55}
+    .ai-cta-stack{display:grid; grid-template-columns:1fr 1fr; gap:12px}
+
+    @keyframes pulseDot{
+      0%{transform:scale(1); box-shadow:0 0 0 0 rgba(82,188,123,.32)}
+      70%{transform:scale(1.08); box-shadow:0 0 0 10px rgba(82,188,123,0)}
+      100%{transform:scale(1); box-shadow:0 0 0 0 rgba(82,188,123,0)}
+    }
+
+    .process-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:18px}
+    .process-card{padding:24px; transition:var(--transition)}
+    .process-card:hover{transform:translateY(-4px)}
+    .step-index{width:42px; height:42px; display:grid; place-items:center; border-radius:14px; background:var(--green-soft); color:var(--green-2); font-weight:800; margin-bottom:14px}
+    .process-card h3{margin:0 0 8px; font-size:1.06rem; letter-spacing:-.02em}
+    .process-card p{margin:0; color:var(--muted)}
+
+    .final-cta{
+      padding:40px;
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:24px;
+      align-items:center;
+      background:
+        radial-gradient(circle at right top, rgba(22,176,91,.12), transparent 28%),
+        linear-gradient(180deg,rgba(255,255,255,.92),rgba(247,251,248,.9));
+    }
+    .final-cta h2{margin:14px 0 10px; font-size:clamp(2.15rem,4vw,3.6rem); line-height:1.02; letter-spacing:-.055em; max-width:760px}
+    .final-cta p{margin:0; color:var(--muted); max-width:640px}
+    .final-cta-actions{display:flex; flex-wrap:wrap; justify-content:flex-end; gap:12px}
+
+    .site-footer{padding:0 0 34px; color:var(--muted); font-size:.94rem}
+    .site-footer .container{display:block}
+    .footer-shell{padding:28px; border-radius:30px; background:rgba(255,255,255,.86); border:1px solid rgba(13,20,18,.08); box-shadow:0 24px 70px rgba(11,25,18,.08)}
+    .footer-grid{display:grid; grid-template-columns:1.3fr .8fr .9fr; gap:24px; align-items:start; padding-bottom:22px; border-bottom:1px solid rgba(13,20,18,.08)}
+    .footer-brand p{max-width:380px; line-height:1.55}
+    .footer-col{display:grid; gap:10px; align-content:start}
+    .footer-col h4{font-size:1rem; margin:0 0 4px; color:#0f172a}
+    .footer-col a{display:block; color:var(--muted); margin-bottom:0}
+    .footer-col a:hover{color:#0f172a}
+    .footer-logo{height:52px; width:auto; margin-bottom:14px}
+    .footer-meta{display:block; margin-top:0}
+    .footer-bottom{display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap; padding-top:18px}
+    .footer-legal-links{display:flex; gap:18px; flex-wrap:wrap}
+    .footer-bottom a{color:var(--muted)}
+    .footer-bottom a:hover{color:#0f172a}
+
+    @keyframes fadeUp{
+      from{opacity:0; transform:translateY(10px)}
+      to{opacity:1; transform:translateY(0)}
+    }
+
+    @media (max-width: 1180px){
+      .hero-grid,
+      .builder-shell,
+      .ai-shell,
+      .comparison-grid,
+      .final-cta{grid-template-columns:1fr}
+      .site-footer .footer-grid{grid-template-columns:1fr}
+      .site-footer .footer-col{justify-self:start}
+      .site-footer .footer-bottom{flex-direction:column; align-items:flex-start}
+      .builder-summary{position:relative; top:0}
+      .trust-grid,
+      .process-grid{grid-template-columns:repeat(2,1fr)}
+      .final-cta-actions{justify-content:flex-start}
+    }
+
+    @media (max-width: 920px){
+      .nav-links{display:none}
+      .pricing-grid,
+      .trust-grid,
+      .process-grid,
+      .form-grid,
+      .option-grid,
+      .request-form-grid{grid-template-columns:1fr}
+      .section-head,
+      .comparison-head,
+      .builder-header{flex-direction:column; align-items:flex-start}
+      .summary-footer{grid-template-columns:1fr}
+      .ai-cta-stack{grid-template-columns:1fr}
+      .quick-prompts{grid-template-columns:1fr}
+    }
+
+    @media (max-width: 640px){
+      .container{width:min(var(--container), calc(100% - 24px))}
+      .hero-section{padding-top:42px}
+      .section{padding:76px 0}
+      .section-tight{padding:60px 0}
+      .hero-panel,
+      .pricing-card,
+      .builder-main,
+      .builder-summary,
+      .ai-input-panel,
+      .ai-conversation-panel,
+      .process-card,
+      .final-cta,
+      .comparison-shell{padding:20px; border-radius:22px}
+      .hero-actions,
+      .ai-actions,
+      .builder-ai-actions{display:grid}
+      .btn{width:100%}
+      .nav-actions .btn-ghost{display:none}
+      .hero-copy h1{font-size:clamp(2.7rem, 12vw, 4.2rem)}
+      .pricing-value,
+      .summary-price,
+      .hero-panel-price{font-size:2.5rem}
+      .builder-tabs{width:100%; display:grid; grid-template-columns:1fr 1fr}
+      .ai-inline-head,
+      .ai-panel-head,
+      .analysis-state-value{align-items:flex-start}
+      .analysis-message,
+      .ai-estimate-card{padding:16px}
+      .advisor-caption{font-size:.94rem}
+      .ai-estimate-card strong{font-size:1.8rem}
+      .request-modal{padding:12px}
+      .request-modal-dialog{
+        width:100%;
+        max-height:100dvh;
+        border-radius:24px;
+      }
+      .request-modal-head{
+        padding:20px 18px 16px;
+        gap:14px;
+      }
+      .request-modal-head h3{
+        font-size:1.5rem;
+        line-height:1.05;
+        margin:8px 0;
+      }
+      .request-modal-head p{
+        font-size:.92rem;
+        line-height:1.55;
+      }
+      .request-modal-body{
+        padding:16px 18px 22px;
+      }
+      .request-form-summary{
+        padding:16px;
+        margin-bottom:16px;
+      }
+      .request-form-summary strong{
+        font-size:1rem;
+      }
+      .request-form-summary p{
+        font-size:.9rem;
+        line-height:1.55;
+      }
+      .request-form-grid{
+        gap:12px;
+      }
+      .request-form-field{
+        gap:6px;
+      }
+      .request-form-field label{
+        font-size:.88rem;
+      }
+      .request-form-field input,
+      .request-form-field select,
+      .request-form-field textarea{
+        padding:13px 14px;
+        font-size:16px;
+        border-radius:14px;
+      }
+      .request-form-field textarea{
+        min-height:120px;
+      }
+      .request-helper{
+        font-size:.78rem;
+        line-height:1.45;
+      }
+      .request-consent{
+        padding:12px 13px;
+        border-radius:16px;
+        gap:10px;
+        background:linear-gradient(180deg,#f5fcf7,#eef8f1);
+      }
+      .request-consent input{
+        width:15px;
+        height:15px;
+        flex-basis:15px;
+      }
+      .request-consent label{
+        font-size:.76rem;
+        line-height:1.4;
+      }
+      .request-inline-status,
+      .request-form-status{
+        font-size:.86rem;
+        padding:12px 13px;
+      }
+      .request-form-actions{display:grid}
+    }
+    .site-header{
+      position:sticky;
+      top:0;
+      z-index:1000;
+      background:rgba(248,251,248,0.92);
+      backdrop-filter:blur(16px);
+      border-bottom:1px solid rgba(15,23,42,0.08);
+    }
+    .site-header.scrolled{
+      background:rgba(255,255,255,0.97);
+      border-bottom-color:rgba(15,23,42,0.10);
+      box-shadow:0 10px 30px rgba(15,23,42,0.08);
+    }
+    .site-header .nav-wrap{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      min-height:84px;
+      gap:16px;
+    }
+    .site-header .brand img{
+      height:48px;
+      width:auto;
+      display:block;
+    }
+    .site-nav{
+      display:flex;
+      align-items:center;
+      gap:22px;
+    }
+    .site-nav a{
+      color:#183226;
+      font-weight:600;
+      opacity:.92;
+    }
+    .site-nav a:hover,
+    .site-nav a.active{
+      color:#0b1410;
+    }
+    .site-nav .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .site-nav .btn-sm{
+      padding:.9rem 1.2rem;
+      font-size:.95rem;
+    }
+    .site-nav .btn-primary{
+      color:#08110d;
+      background:linear-gradient(135deg, #2ed573 0%, #23c766 100%);
+      box-shadow:0 12px 28px rgba(46,213,115,0.18);
+    }
+    .nav-toggle{
+      display:none;
+      background:transparent;
+      border:1px solid rgba(15,23,42,0.10);
+      color:#0b1410;
+      padding:.7rem .9rem;
+      border-radius:12px;
+      cursor:pointer;
+    }
+    @media (max-width:820px){
+      .site-header .nav-wrap{
+        position:relative;
+      }
+      .nav-toggle{
+        display:inline-flex;
+      }
+      .site-nav{
+        position:absolute;
+        top:calc(100% + .75rem);
+        right:0;
+        left:0;
+        display:none;
+        flex-direction:column;
+        align-items:flex-start;
+        padding:1rem;
+        border-radius:20px;
+        background:rgba(255,255,255,0.98);
+        border:1px solid rgba(15,23,42,0.08);
+        box-shadow:0 24px 70px rgba(15,23,42,0.12);
+      }
+      .site-nav.open{
+        display:flex;
+      }
+      .site-nav .btn{
+        width:100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a href="../index.html" class="brand" aria-label="WebInbound home">
+        <img src="../images/logo.png" alt="Logo WebInbound" />
+      </a>
+
+      <button class="nav-toggle" aria-label="Apri menu" aria-expanded="false">☰</button>
+
+      <nav class="site-nav">
+        <a href="../index.html">Home</a>
+        <a href="servizi.html">Servizi</a>
+        <a href="progetti.html">Progetti</a>
+        <a href="prezzi.html">Prezzi</a>
+        <a href="contatti.html">Contatti</a>
+        <a href="iniziaora.html" class="btn btn-sm btn-primary active">Inizia Ora</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="section" id="builder">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">CREA IL TUO PROGETTO</span>
+            <h2>Una pricing page che si comporta come un consulente</h2>
+          </div>
+          <p>
+            Puoi usare la stima guidata per configurare ogni dettaglio oppure passare alla modalità AI
+            per descrivere il progetto in modo naturale e ottenere una prima proposta intelligente.
+          </p>
+        </div>
+
+        <div class="builder-tabs" aria-label="Modalità configurazione">
+          <button class="builder-tab active" data-tab="guided" type="button">Stima guidata</button>
+          <button class="builder-tab" data-tab="ai" type="button">Modalità AI</button>
+        </div>
+
+        <div class="builder-shell">
+          <div class="builder-main">
+            <div class="builder-pane active" id="pane-guided">
+              <div class="builder-header">
+                <div>
+                  <h3>Configura manualmente il tuo progetto</h3>
+                  <p>Seleziona base, struttura e funzionalità. Il riepilogo laterale si aggiorna in tempo reale.</p>
+                </div>
+
+                <div class="progress-block">
+                  <div class="progress-top">
+                    <span>Avanzamento</span>
+                    <strong id="builderProgressText">24%</strong>
+                  </div>
+                  <div class="progress-bar">
+                    <div class="progress-fill" id="builderProgressFill"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-grid">
+                <div class="form-card">
+                  <label for="basePackage">Pacchetto base</label>
+                  <select id="basePackage">
+                    <option value="starter">Starter — €169</option>
+                    <option value="professional" selected>Professional — €429</option>
+                    <option value="business">Business — €899</option>
+                  </select>
+                </div>
+
+                <div class="form-card">
+                  <label for="pageCount">Numero pagine</label>
+                  <select id="pageCount">
+                    <option value="1">1 pagina</option>
+                    <option value="3">3 pagine</option>
+                    <option value="5" selected>5 pagine</option>
+                    <option value="8">8 pagine</option>
+                    <option value="10">10 pagine</option>
+                  </select>
+                </div>
+
+                <div class="form-card form-card-full">
+                  <label>Funzionalità</label>
+                  <div class="option-grid" id="optionGrid"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="builder-pane" id="pane-ai">
+              <div class="ai-inline-head">
+                <div>
+                  <h4>Onboarding guidato con analisi intelligente</h4>
+                  <p class="advisor-caption">Racconta il contesto del tuo business e ricevi una proposta iniziale strutturata, pensata come farebbe un consulente senior.</p>
+                </div>
+                <span class="ai-inline-state">AI pronta</span>
+              </div>
+
+              <div class="form-card form-card-full">
+                <label for="aiPromptInline">Descrivi il tuo progetto</label>
+                <textarea id="aiPromptInline" rows="9" placeholder="Esempio: Ho un'impresa edile e voglio un sito che mi faccia sembrare più serio dei competitor, con lavori svolti, richiesta preventivo, servizi, contatti rapidi e una struttura pensata per generare più chiamate e più richieste."></textarea>
+              </div>
+
+              <div class="quick-prompts">
+                <button class="quick-prompt" type="button">Sito per ristorante con menu e prenotazioni</button>
+                <button class="quick-prompt" type="button">Sito per impresa edile con portfolio lavori</button>
+                <button class="quick-prompt" type="button">Sito hotel o B&amp;B con camere e richieste</button>
+                <button class="quick-prompt" type="button">Sito studio professionale con lead form</button>
+              </div>
+
+              <div class="builder-ai-actions">
+                <button class="btn btn-primary" id="runAiInline" type="button">Avvia analisi</button>
+                <button class="btn btn-secondary" id="clearAiInline" type="button">Pulisci</button>
+              </div>
+            </div>
+          </div>
+
+          <aside class="builder-summary">
+            <div class="summary-top">
+              <span class="summary-kicker">RIEPILOGO LIVE</span>
+              <h3>La tua stima attuale</h3>
+              <div class="summary-price" id="summaryPrice">€799</div>
+              <p>Stima indicativa, IVA esclusa. Il progetto finale viene definito in consulenza.</p>
+            </div>
+
+            <ul class="summary-list" id="summaryList"></ul>
+
+            <div class="summary-footer">
+              <div class="summary-meta">
+                <span>Tempi stimati</span>
+                <strong id="summaryTime">5–8 giorni</strong>
+              </div>
+              <div class="summary-meta">
+                <span>Investimento indicativo</span>
+                <strong id="summaryTotal">€799</strong>
+              </div>
+            </div>
+
+            <div class="summary-actions">
+              <a href="#ai-assistant" class="btn btn-ghost btn-full">Oppure usa l’assistente AI completo</a>
+              <button class="btn btn-primary btn-full" id="requestQuoteButton" type="button">Invia per essere ricontattato</button>
+              <div class="request-inline-status" id="requestInlineStatus" aria-live="polite"></div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <div class="request-modal" id="requestModal" aria-hidden="true">
+      <div class="request-modal-backdrop" data-close-modal="true"></div>
+      <div class="request-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="requestModalTitle">
+        <div class="request-modal-head">
+          <div>
+            <span class="eyebrow">RICHIESTA CONTATTO / PREVENTIVO</span>
+            <h3 id="requestModalTitle">Invia i tuoi dati e ti ricontattiamo</h3>
+            <p>
+              Il riepilogo del configuratore viene incluso automaticamente nella mail inviata a WebInbound.
+              Tu devi solo completare i dati essenziali del progetto.
+            </p>
+          </div>
+          <button class="request-modal-close" type="button" aria-label="Chiudi finestra" data-close-modal="true">×</button>
+        </div>
+
+        <div class="request-modal-body">
+          <div class="request-form-summary">
+            <strong id="requestFormSummaryPrice">Stima attuale: €799</strong>
+            <p id="requestFormSummaryText">Pacchetto Professional, 5 pagine, tempi stimati 5–8 giorni.</p>
+          </div>
+
+          <form id="requestForm" action="../send-request.php" method="post" novalidate autocomplete="on">
+            <div class="request-form-grid">
+              <div class="request-form-field">
+                <label for="firstName">Nome *</label>
+                <input id="firstName" name="first_name" type="text" autocomplete="section-request given-name" autocapitalize="words" required>
+              </div>
+
+              <div class="request-form-field">
+                <label for="lastName">Cognome</label>
+                <input id="lastName" name="last_name" type="text" autocomplete="section-request family-name" autocapitalize="words">
+              </div>
+
+              <div class="request-form-field">
+                <label for="emailAddress">Email</label>
+                <input id="emailAddress" name="email" type="email" autocomplete="section-request email" inputmode="email" autocapitalize="off" spellcheck="false">
+              </div>
+
+              <div class="request-form-field">
+                <label for="phoneNumber">Telefono</label>
+                <input id="phoneNumber" name="phone" type="tel" autocomplete="section-request tel" inputmode="tel" autocapitalize="off" spellcheck="false">
+              </div>
+
+              <div class="request-form-field">
+                <label for="companyName">Azienda / attività</label>
+                <input id="companyName" name="company" type="text" autocomplete="section-request organization" autocapitalize="words">
+              </div>
+
+              <div class="request-form-field">
+                <label for="industryField">Settore</label>
+                <input id="industryField" name="industry" type="text" placeholder="Es. edilizia, ristorazione, studio professionale">
+              </div>
+
+              <div class="request-form-field">
+                <label for="cityField">Città</label>
+                <input id="cityField" name="city" type="text" autocomplete="section-request address-level2" autocapitalize="words">
+              </div>
+
+              <div class="request-form-field">
+                <label for="projectTypeField">Tipo progetto</label>
+                <input id="projectTypeField" name="project_type" type="text" placeholder="Es. sito vetrina, lead generation, e-commerce">
+              </div>
+
+              <div class="request-form-field request-form-field-full">
+                <label for="finalMessage">Messaggio finale</label>
+                <textarea id="finalMessage" name="final_message" rows="5" placeholder="Aggiungi note, obiettivi, urgenze, riferimenti o richieste particolari."></textarea>
+                <div class="request-helper">Inserisci almeno un recapito tra email e telefono. Se hai usato la modalità AI, il prompt e la stima vengono inclusi automaticamente nella mail.</div>
+              </div>
+
+              <div class="request-form-field request-form-field-full request-honeypot" aria-hidden="true">
+                <label for="websiteField">Lascia vuoto questo campo</label>
+                <input id="websiteField" name="website" type="text" tabindex="-1" autocomplete="off">
+              </div>
+
+              <div class="request-form-field request-form-field-full">
+                <div class="request-consent">
+                  <input id="privacyConsent" name="privacy_consent" type="checkbox" value="1" required>
+                  <label for="privacyConsent">
+                    Dichiaro di aver letto la <a href="privacy.html">Privacy Policy</a> e acconsento al trattamento dei dati per essere ricontattato.
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <input type="hidden" name="selected_mode" id="selectedModeField">
+            <input type="hidden" name="selected_package" id="selectedPackageField">
+            <input type="hidden" name="page_count" id="pageCountField">
+            <input type="hidden" name="estimated_price" id="estimatedPriceField">
+            <input type="hidden" name="estimated_timeline" id="estimatedTimelineField">
+            <input type="hidden" name="quote_summary" id="quoteSummaryField">
+            <input type="hidden" name="ai_prompt" id="aiPromptField">
+            <input type="hidden" name="ai_estimate" id="aiEstimateField">
+            <input type="hidden" name="redirect_url" id="redirectUrlField" value="">
+            <div id="selectedFeaturesFields"></div>
+
+            <div class="request-form-actions">
+              <button class="btn btn-secondary" type="button" data-close-modal="true">Annulla</button>
+              <button class="btn btn-primary" id="requestSubmitButton" type="submit">Invia richiesta</button>
+            </div>
+
+            <div class="request-form-status" id="requestFormStatus" aria-live="polite"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <section class="section" id="ai-assistant">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">GENERAZIONE AUTOMATICA CON AI</span>
+            <h2>Descrivi il tuo progetto</h2>
+          </div>
+          <p>Scrivi due righe. Il sistema fa solo le domande utili e poi puoi generare il preventivo.</p>
+        </div>
+
+        <div class="ai-shell">
+          <div class="ai-input-panel">
+            <div class="ai-panel-head">
+              <div>
+                <div class="ai-mini-badge">
+                  <span class="ai-mini-icon" aria-hidden="true">✦</span>
+                  AI Preventivatore intelligente
+                </div>
+                <h3>Dimmi cosa vuoi realizzare</h3>
+                <p class="advisor-caption">Ti guideremo solo sulle informazioni che servono davvero.</p>
+              </div>
+              <span class="ai-status">Guidato</span>
+            </div>
+
+            <label for="aiPrompt" class="input-label">Descrivi il tuo progetto</label>
+            <div class="ai-input-wrap">
+              <textarea id="aiPrompt" rows="8" placeholder="Ho un ristorante e voglio un sito con menu digitale, prenotazioni tavoli e gallery."></textarea>
+              <button class="ai-send-btn" id="runAiAnalysis" type="button" aria-label="Avvia analisi">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </button>
+            </div>
+
+            <div class="quick-prompts">
+              <button class="quick-prompt" type="button">Ristorante con menu e prenotazioni</button>
+              <button class="quick-prompt" type="button">Impresa edile con portfolio lavori</button>
+              <button class="quick-prompt" type="button">Hotel / B&amp;B con camere e richieste</button>
+              <button class="quick-prompt" type="button">Studio professionale con lead form</button>
+              <button class="quick-prompt" type="button">Palestra con corsi e prenotazioni</button>
+            </div>
+
+            <div class="ai-actions">
+              <button class="btn btn-secondary" id="resetAiAnalysis" type="button">Pulisci</button>
+            </div>
+          </div>
+
+          <div class="ai-conversation-panel" id="aiConversation">
+            <div class="analysis-stream" id="analysisStream">
+              <div class="analysis-state-value" id="analysisStateValue">
+                <span class="analysis-spinner" aria-hidden="true"></span>
+                In attesa di descrizione
+              </div>
+              <div class="analysis-message system" id="aiPrimaryMessage">
+                <span class="analysis-message-label">Sistema</span>
+                <div id="aiPrimaryMessageText">Scrivi una breve descrizione del progetto. Poi ti farò solo le domande necessarie per arrivare al preventivo.</div>
+              </div>
+              <div class="analysis-message system" id="aiFollowupMessage">
+                <span class="analysis-message-label">Prossimo step</span>
+                <div id="aiFollowupMessageText">Quando ci sono abbastanza dati, puoi cliccare Genera preventivo.</div>
+              </div>
+            </div>
+
+            <div class="ai-estimate-card-wrap">
+              <div class="ai-estimate-card">
+                <span>Stima iniziale</span>
+                <strong id="aiEstimateValue">In attesa di analisi</strong>
+                <p>Il preventivo si attiva quando il sistema ha raccolto le informazioni importanti.</p>
+              </div>
+
+              <div class="ai-cta-stack">
+                <button class="btn btn-primary" id="aiRequestCta" type="button" disabled>Genera preventivo</button>
+                <a href="#builder" class="btn btn-secondary">Rifinisci la configurazione manualmente</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-shell">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <img src="../images/logo.png" alt="WebInbound" class="footer-logo" />
+            <p>Agenzia digitale specializzata in siti web orientati ai risultati.</p>
+          </div>
+          <div class="footer-col">
+            <h4>Link</h4>
+            <a href="servizi.html">Servizi</a>
+            <a href="progetti.html">Portfolio</a>
+            <a href="prezzi.html">Prezzi</a>
+            <a href="contatti.html">Contatti</a>
+          </div>
+          <div class="footer-col">
+            <h4>Contatti</h4>
+            <a href="mailto:info@webinbound.it">info@webinbound.it</a>
+            <a href="mailto:support@webinbound.it">support@webinbound.it</a>
+            <a href="tel:+393791465762">+39 379 146 5762</a>
+            <span class="footer-meta">P.IVA: 02841450022</span>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span>© 2026 Web Inbound. Tutti i diritti riservati. P.IVA: 02841450022</span>
+          <div class="footer-legal-links">
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="cookie.html">Cookie Policy</a>
+            <a href="termini.html">Termini</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/cookie-banner.js"></script>
+  <script>
+    const basePackage = document.getElementById("basePackage");
+    const pageCount = document.getElementById("pageCount");
+    const optionGrid = document.getElementById("optionGrid");
+    let featureInputs = [];
+
+    const summaryPrice = document.getElementById("summaryPrice");
+    const summaryTotal = document.getElementById("summaryTotal");
+    const summaryTime = document.getElementById("summaryTime");
+    const summaryList = document.getElementById("summaryList");
+    const heroQuickPrice = document.getElementById("heroQuickPrice");
+    const builderProgressFill = document.getElementById("builderProgressFill");
+    const builderProgressText = document.getElementById("builderProgressText");
+
+    const aiPrompt = document.getElementById("aiPrompt");
+    const aiPromptInline = document.getElementById("aiPromptInline");
+    const runAiAnalysis = document.getElementById("runAiAnalysis");
+    const resetAiAnalysis = document.getElementById("resetAiAnalysis");
+    const runAiInline = document.getElementById("runAiInline");
+    const clearAiInline = document.getElementById("clearAiInline");
+    const quickPrompts = Array.from(document.querySelectorAll(".quick-prompt"));
+    const aiConversation = document.getElementById("aiConversation");
+    const analysisStream = document.getElementById("analysisStream");
+    const analysisStateValue = document.getElementById("analysisStateValue");
+    const aiPrimaryMessageText = document.getElementById("aiPrimaryMessageText");
+    const aiFollowupMessageText = document.getElementById("aiFollowupMessageText");
+    const aiEstimateValue = document.getElementById("aiEstimateValue");
+    const aiRequestCta = document.getElementById("aiRequestCta");
+    const aiEndpoint = "../api/preventivatore-ai.php";
+
+    const tabs = Array.from(document.querySelectorAll(".builder-tab"));
+    const paneGuided = document.getElementById("pane-guided");
+    const paneAi = document.getElementById("pane-ai");
+    const requestQuoteButton = document.getElementById("requestQuoteButton");
+    const requestInlineStatus = document.getElementById("requestInlineStatus");
+    const requestModal = document.getElementById("requestModal");
+    const requestForm = document.getElementById("requestForm");
+    const requestFormStatus = document.getElementById("requestFormStatus");
+    const requestFormSummaryPrice = document.getElementById("requestFormSummaryPrice");
+    const requestFormSummaryText = document.getElementById("requestFormSummaryText");
+    const selectedModeField = document.getElementById("selectedModeField");
+    const selectedPackageField = document.getElementById("selectedPackageField");
+    const pageCountField = document.getElementById("pageCountField");
+    const estimatedPriceField = document.getElementById("estimatedPriceField");
+    const estimatedTimelineField = document.getElementById("estimatedTimelineField");
+    const quoteSummaryField = document.getElementById("quoteSummaryField");
+    const aiPromptField = document.getElementById("aiPromptField");
+    const aiEstimateField = document.getElementById("aiEstimateField");
+    const selectedFeaturesFields = document.getElementById("selectedFeaturesFields");
+    const projectTypeField = document.getElementById("projectTypeField");
+    const requestSubmitButton = document.getElementById("requestSubmitButton");
+
+    let currentEstimateData = {
+      packageName: "Professional",
+      pagesLabel: "5 pagine",
+      includedFeatures: [],
+      selectedFeatures: [],
+      total: 799,
+      totalFormatted: "€799",
+      timeline: "5–8 giorni",
+      summaryText: ""
+    };
+
+    let currentAiAnalysis = {
+      businessType: "",
+      siteType: "",
+      objective: "",
+      recommendedPackage: "",
+      estimateRange: "",
+      features: [],
+      featureIds: [],
+      questions: [],
+      summary: "",
+      hasEnoughData: false,
+      prompt: "",
+      pagesEstimate: 0,
+      history: []
+    };
+
+    const packagePrices = {
+      starter: 169,
+      professional: 429,
+      business: 899
+    };
+
+    const packageLabels = {
+      starter: "Starter",
+      professional: "Professional",
+      business: "Business"
+    };
+
+    const pagePrices = {
+      1: 0,
+      2: 150,
+      3: 300,
+      4: 450,
+      5: 600,
+      6: 750,
+      7: 900,
+      8: 1050,
+      10: 1350,
+      12: 1650,
+      14: 1950
+    };
+
+    const packagePageOptions = {
+      starter: [
+        { value: "1", label: "1 pagina" },
+        { value: "2", label: "2 pagine" },
+        { value: "3", label: "3 pagine" },
+        { value: "4", label: "4 pagine" }
+      ],
+      professional: [
+        { value: "4", label: "4 pagine" },
+        { value: "5", label: "5 pagine" },
+        { value: "6", label: "6 pagine" },
+        { value: "7", label: "7 pagine" },
+        { value: "8", label: "8 pagine" }
+      ],
+      business: [
+        { value: "8", label: "8 pagine" },
+        { value: "10", label: "10 pagine" },
+        { value: "12", label: "12 pagine" },
+        { value: "14", label: "14+ pagine" }
+      ]
+    };
+
+    const featureCatalog = {
+      seoAdvanced: {
+        id: "seoAdvanced",
+        label: "SEO avanzata",
+        title: "SEO avanzata",
+        description: "Ottimizzazione extra per spingere meglio visibilita e conversione",
+        price: 80
+      },
+      aiIntegration: {
+        id: "aiIntegration",
+        label: "Integrazione AI",
+        title: "Assistente AI",
+        description: "Chatbot intelligente per richieste, supporto e prequalifica contatti",
+        price: 250
+      },
+      analyticsSetup: {
+        id: "analyticsSetup",
+        label: "Setup Tracciamento e Analytics",
+        title: "Tracking & Analytics",
+        description: "Configurazione strumenti di analisi per monitorare visite, conversioni e richieste contatto.",
+        price: 150
+      },
+      blog: {
+        id: "blog",
+        label: "Blog integrato",
+        title: "Blog",
+        description: "Area contenuti per autorevolezza e crescita organica",
+        price: 70
+      },
+      ecommerce: {
+        id: "ecommerce",
+        label: "E-commerce",
+        title: "E-commerce",
+        description: "Catalogo, prodotto, checkout e logica commerciale",
+        price: 250
+      },
+      bookings: {
+        id: "bookings",
+        label: "Prenotazioni online",
+        title: "Prenotazioni",
+        description: "Per hotel, B&B, studi, appuntamenti e booking",
+        price: 120
+      },
+      maps: {
+        id: "maps",
+        label: "Integrazione mappe",
+        title: "Mappe",
+        description: "Sede, local SEO e punti di riferimento",
+        price: 35
+      },
+      social: {
+        id: "social",
+        label: "Social integration",
+        title: "Social",
+        description: "Connessione con i tuoi canali e CTA coordinate",
+        price: 25
+      },
+      contactForm: {
+        id: "contactForm",
+        label: "Form contatto avanzato",
+        title: "Form contatto",
+        description: "Lead form piu efficace e piu chiaro",
+        price: 60
+      },
+      whatsapp: {
+        id: "whatsapp",
+        label: "WhatsApp CTA",
+        title: "WhatsApp",
+        description: "Contatto rapido ad alto tasso di utilizzo",
+        price: 25
+      },
+      gallery: {
+        id: "gallery",
+        label: "Gallery fotografica",
+        title: "Gallery",
+        description: "Per ambienti, prodotti, lavori e showcase",
+        price: 55
+      },
+      portfolio: {
+        id: "portfolio",
+        label: "Portfolio lavori",
+        title: "Portfolio",
+        description: "Case study e lavori fatti per aumentare fiducia",
+        price: 85
+      },
+      multilingual: {
+        id: "multilingual",
+        label: "Multilingua",
+        title: "Multilingua",
+        description: "Per clienti turistici o business internazionali",
+        price: 140
+      },
+      commercePolicy: {
+        id: "commercePolicy",
+        label: "Commerce Policy",
+        title: "Commerce Policy",
+        description: "Termini di vendita, resi, spedizioni e policy e-commerce.",
+        price: 250
+      },
+      hosting: {
+        id: "hosting",
+        label: "Hosting premium",
+        title: "Hosting",
+        description: "Prestazioni, uptime e gestione iniziale",
+        price: 90
+      },
+      domain: {
+        id: "domain",
+        label: "Dominio gestito",
+        title: "Dominio",
+        description: "Gestione tecnica del dominio",
+        price: 20
+      },
+      quoteSystem: {
+        id: "quoteSystem",
+        label: "Sistema preventivazione automatica",
+        title: "Preventivazione automatica",
+        description: "Richieste guidate con stima iniziale automatizzata",
+        price: 400
+      }
+    };
+
+    const packageIncludedFeatures = {
+      starter: [
+        "Setup iniziale del sito",
+        "Design responsive essenziale",
+        "SEO base gia inclusa",
+        "Pubblicazione e configurazione iniziale",
+        "Compliance legale (policy, cookie, trattamenti dati)"
+      ],
+      professional: [
+        "Design piu strutturato e personalizzato",
+        "SEO avanzata gia inclusa",
+        "Lead form ottimizzato",
+        "Set up tecnico completo",
+        "Compliance legale (policy, cookie, trattamenti dati)"
+      ],
+      business: [
+        "Struttura avanzata per crescita e conversioni",
+        "SEO avanzata gia inclusa",
+        "Architettura estesa per piu sezioni",
+        "Compliance legale avanzata",
+        "Base pronta per automazioni e funnel"
+      ]
+    };
+
+    const packageFeatureOptions = {
+      starter: ["seoAdvanced", "aiIntegration", "analyticsSetup", "blog", "ecommerce", "bookings", "maps", "social", "contactForm", "whatsapp", "gallery", "portfolio", "multilingual", "hosting", "domain"],
+      professional: ["aiIntegration", "analyticsSetup", "blog", "ecommerce", "bookings", "maps", "social", "contactForm", "whatsapp", "gallery", "portfolio", "multilingual", "hosting", "domain"],
+      business: ["aiIntegration", "analyticsSetup", "blog", "ecommerce", "bookings", "maps", "social", "contactForm", "whatsapp", "gallery", "portfolio", "multilingual", "commercePolicy", "hosting", "domain", "quoteSystem"]
+    };
+
+    const packageDefaultFeatures = {
+      starter: ["maps", "social", "whatsapp", "hosting", "domain"],
+      professional: ["blog", "maps", "social", "contactForm", "whatsapp", "hosting", "domain"],
+      business: ["blog", "maps", "social", "contactForm", "whatsapp", "hosting", "domain", "quoteSystem"]
+    };
+
+    const aiSystemPrompt = `
+Preventivatore intelligente WebInbound.
+Ruolo: consulente digitale premium, analista progetto, guida professionale.
+Obiettivo: chiarire il progetto, raccogliere solo le informazioni essenziali e arrivare a una stima iniziale con il minor numero di domande possibile.
+Settori da riconoscere: ristorante, hotel o B&B, impresa edile, palestra, studio professionale, negozio locale, startup, azienda tech.
+Se il settore non è chiaro usa: azienda / attività locale.
+Quando hai abbastanza dati, smetti di approfondire e accompagna verso il preventivo.
+`;
+
+    function euro(value) {
+      return new Intl.NumberFormat("it-IT", {
+        style: "currency",
+        currency: "EUR",
+        maximumFractionDigits: 0
+      }).format(value);
+    }
+
+    function getTimeline(total) {
+      if (total < 350) return "3–5 giorni";
+      if (total < 700) return "4–7 giorni";
+      if (total < 1100) return "5–8 giorni";
+      if (total < 1500) return "7–10 giorni";
+      return "10–14 giorni";
+    }
+
+    function setStatusMessage(element, type, message) {
+      if (!element) return;
+      element.className = element.id === "requestInlineStatus"
+        ? "request-inline-status"
+        : "request-form-status";
+      element.textContent = message || "";
+
+      if (!message) return;
+
+      element.classList.add("is-visible", type === "success" ? "is-success" : "is-error");
+    }
+
+    function clearStatusMessage(element) {
+      if (!element) return;
+      if (element.id === "requestInlineStatus") {
+        element.className = "request-inline-status";
+      } else {
+        element.className = "request-form-status";
+      }
+      element.textContent = "";
+    }
+
+    function syncRequestSummaryBox() {
+      if (!requestFormSummaryPrice || !requestFormSummaryText) return;
+      requestFormSummaryPrice.textContent = `Stima attuale: ${currentEstimateData.totalFormatted}`;
+      requestFormSummaryText.textContent = currentEstimateData.summaryText || `${currentEstimateData.packageName}, ${currentEstimateData.pagesLabel}, tempi stimati ${currentEstimateData.timeline}.`;
+    }
+
+    function getActiveModeLabel() {
+      return paneAi.classList.contains("active") ? "Modalità AI" : "Stima guidata";
+    }
+
+    function populateSelectedFeaturesFields(selectedFeatures) {
+      selectedFeaturesFields.innerHTML = "";
+
+      selectedFeatures.forEach(feature => {
+        const input = document.createElement("input");
+        input.type = "hidden";
+        input.name = "selected_features[]";
+        input.value = feature;
+        selectedFeaturesFields.appendChild(input);
+      });
+    }
+
+    function populateRequestHiddenFields() {
+      const isAiMode = paneAi.classList.contains("active");
+      const activeMode = getActiveModeLabel();
+      const selectedPackage = isAiMode && currentAiAnalysis.recommendedPackage
+        ? currentAiAnalysis.recommendedPackage
+        : currentEstimateData.packageName;
+      const estimatedPrice = isAiMode && currentAiAnalysis.estimateRange
+        ? currentAiAnalysis.estimateRange
+        : currentEstimateData.totalFormatted;
+      const projectType = isAiMode && currentAiAnalysis.businessType
+        ? currentAiAnalysis.businessType
+        : "Sito web professionale";
+      const features = isAiMode && currentAiAnalysis.features.length
+        ? currentAiAnalysis.features
+        : currentEstimateData.selectedFeatures.length
+        ? currentEstimateData.selectedFeatures
+        : currentEstimateData.includedFeatures;
+      const pageLabel = isAiMode && currentAiAnalysis.pagesEstimate
+        ? `${currentAiAnalysis.pagesEstimate} pagine`
+        : currentEstimateData.pagesLabel;
+      const timeline = isAiMode && currentAiAnalysis.estimateRange
+        ? getTimeline(Number(String(currentAiAnalysis.estimateRange).replace(/[^\d]/g, "")) || currentEstimateData.total)
+        : currentEstimateData.timeline;
+      const aiSummary = isAiMode && currentAiAnalysis.summary
+        ? currentAiAnalysis.summary
+        : currentEstimateData.summaryText;
+
+      selectedModeField.value = activeMode;
+      selectedPackageField.value = selectedPackage;
+      pageCountField.value = pageLabel;
+      estimatedPriceField.value = estimatedPrice;
+      estimatedTimelineField.value = timeline;
+      aiPromptField.value = currentAiAnalysis.prompt || aiPrompt.value.trim() || aiPromptInline.value.trim();
+      aiEstimateField.value = currentAiAnalysis.estimateRange;
+      quoteSummaryField.value = aiSummary;
+      populateSelectedFeaturesFields(features);
+
+      if (!projectTypeField.value.trim()) {
+        projectTypeField.value = projectType;
+      }
+    }
+
+    function openRequestModal() {
+      populateRequestHiddenFields();
+      syncRequestSummaryBox();
+      clearStatusMessage(requestFormStatus);
+      requestModal.classList.add("is-open");
+      requestModal.setAttribute("aria-hidden", "false");
+      document.body.classList.add("modal-open");
+    }
+
+    function closeRequestModal() {
+      requestModal.classList.remove("is-open");
+      requestModal.setAttribute("aria-hidden", "true");
+      document.body.classList.remove("modal-open");
+    }
+
+    function syncPageOptions() {
+      const options = packagePageOptions[basePackage.value] || [];
+      const previousValue = pageCount.value;
+
+      pageCount.innerHTML = "";
+
+      options.forEach(option => {
+        const element = document.createElement("option");
+        element.value = option.value;
+        element.textContent = option.label;
+        if (option.value === previousValue) {
+          element.selected = true;
+        }
+        pageCount.appendChild(element);
+      });
+
+      const hasMatchingValue = options.some(option => option.value === previousValue);
+      if (!hasMatchingValue && options.length > 0) {
+        pageCount.value = options[0].value;
+      }
+    }
+
+    function renderFeatureOptions() {
+      const selectedIds = new Set(
+        featureInputs.filter(input => input.checked).map(input => input.dataset.featureId)
+      );
+      const packageKey = basePackage.value;
+      const allowedFeatures = packageFeatureOptions[packageKey] || [];
+      const defaultFeatures = packageDefaultFeatures[packageKey] || [];
+
+      optionGrid.innerHTML = allowedFeatures.map(featureId => {
+        const feature = featureCatalog[featureId];
+        const isChecked = selectedIds.has(featureId) || defaultFeatures.includes(featureId);
+
+        return `
+          <label class="option-card">
+            <input type="checkbox" data-feature-id="${feature.id}" data-label="${feature.label}" data-price="${feature.price}"${isChecked ? " checked" : ""}>
+            <span><strong>${feature.title}</strong><small>${feature.description}</small></span>
+          </label>
+        `;
+      }).join("");
+
+      featureInputs = Array.from(optionGrid.querySelectorAll(".option-card input"));
+      featureInputs.forEach(input => input.addEventListener("change", updateConfigurator));
+    }
+
+    function updateConfigurator() {
+      const baseValue = packagePrices[basePackage.value];
+      const pagesValue = pagePrices[pageCount.value] || 0;
+
+      let selectedFeatures = [];
+      let featuresTotal = 0;
+
+      featureInputs.forEach(input => {
+        if (input.checked) {
+          const price = Number(input.dataset.price || 0);
+          selectedFeatures.push({
+            label: input.dataset.label,
+            price
+          });
+          featuresTotal += price;
+        }
+      });
+
+      const total = baseValue + pagesValue + featuresTotal;
+      summaryPrice.textContent = euro(total);
+      summaryTotal.textContent = euro(total);
+      if (heroQuickPrice) {
+        heroQuickPrice.textContent = euro(total);
+      }
+      summaryTime.textContent = getTimeline(total);
+
+      const packageName = packageLabels[basePackage.value];
+      const pagesLabel = pageCount.options[pageCount.selectedIndex]?.textContent || `${pageCount.value} pagine`;
+      const includedFeatures = packageIncludedFeatures[basePackage.value] || [];
+      const includedFeaturesHtml = includedFeatures.map(item => `<li>${item}</li>`).join("");
+
+      let html = `
+        <li class="summary-package-item">
+          <details class="summary-package-details">
+            <summary>
+              <span class="summary-package-label">Pacchetto base</span>
+              <strong>${packageName}</strong>
+            </summary>
+            <ul class="summary-package-includes">${includedFeaturesHtml}</ul>
+          </details>
+        </li>
+        <li><span>Numero pagine</span><strong>${pagesLabel}</strong></li>
+      `;
+
+      selectedFeatures.forEach(item => {
+        html += `<li><span>${item.label}</span><strong>${euro(item.price)}</strong></li>`;
+      });
+
+      summaryList.innerHTML = html;
+
+      const totalSelectable = featureInputs.length + 2;
+      const selectedCount = selectedFeatures.length + 2;
+      const progress = Math.round((selectedCount / totalSelectable) * 100);
+
+      builderProgressFill.style.width = `${progress}%`;
+      builderProgressText.textContent = `${progress}%`;
+
+      const summaryLines = [
+        `Pacchetto: ${packageName}`,
+        `Numero pagine: ${pagesLabel}`,
+        selectedFeatures.length ? `Funzionalità selezionate: ${selectedFeatures.map(item => item.label).join(", ")}` : `Elementi inclusi: ${includedFeatures.join(", ")}`,
+        `Investimento indicativo: ${euro(total)}`,
+        `Tempi stimati: ${getTimeline(total)}`
+      ];
+
+      currentEstimateData = {
+        packageName,
+        pagesLabel,
+        includedFeatures,
+        selectedFeatures: selectedFeatures.map(item => item.label),
+        total,
+        totalFormatted: euro(total),
+        timeline: getTimeline(total),
+        summaryText: summaryLines.join("\n")
+      };
+
+      syncRequestSummaryBox();
+    }
+
+    function setActiveTab(tabName) {
+      tabs.forEach(tab => tab.classList.toggle("active", tab.dataset.tab === tabName));
+      paneGuided.classList.toggle("active", tabName === "guided");
+      paneAi.classList.toggle("active", tabName === "ai");
+    }
+
+    tabs.forEach(tab => {
+      tab.addEventListener("click", () => setActiveTab(tab.dataset.tab));
+    });
+
+    basePackage.addEventListener("change", () => {
+      syncPageOptions();
+      renderFeatureOptions();
+      updateConfigurator();
+    });
+    pageCount.addEventListener("change", updateConfigurator);
+    syncPageOptions();
+    renderFeatureOptions();
+    updateConfigurator();
+
+    function setAnalysisLoading(isLoading, label) {
+      if (!analysisStateValue) return;
+      analysisStateValue.innerHTML = "";
+
+      if (isLoading) {
+        const spinner = document.createElement("span");
+        spinner.className = "analysis-spinner";
+        spinner.setAttribute("aria-hidden", "true");
+        analysisStateValue.appendChild(spinner);
+      }
+
+      analysisStateValue.appendChild(document.createTextNode(label));
+    }
+
+    function renderAnalysisMessages({ primary, followup }) {
+      aiPrimaryMessageText.textContent = primary;
+      aiFollowupMessageText.textContent = followup;
+    }
+
+    function getFeatureLabelsFromIds(featureIds) {
+      return featureIds
+        .map(featureId => featureCatalog[featureId]?.label)
+        .filter(Boolean);
+    }
+
+    function applyAiAnalysisResult(analysis, prompt) {
+      const featureIds = Array.isArray(analysis.featureIds) ? analysis.featureIds : [];
+      const featureLabels = getFeatureLabelsFromIds(featureIds);
+      const hasEnoughData = Boolean(analysis.hasEnoughData);
+      const questions = Array.isArray(analysis.missingQuestions) ? analysis.missingQuestions : [];
+
+      renderAnalysisMessages({
+        primary: analysis.replyPrimary || "Ho analizzato il progetto e impostato una prima lettura.",
+        followup: analysis.replyFollowup || (hasEnoughData
+          ? "Hai abbastanza dati per procedere con il preventivo."
+          : "Aggiungi qualche dettaglio in piu per completare l'analisi.")
+      });
+
+      setAnalysisLoading(false, hasEnoughData ? "Pronto per il preventivo" : "Analisi aggiornata");
+      aiEstimateValue.textContent = analysis.estimateRange || "In attesa di analisi";
+      aiRequestCta.disabled = !hasEnoughData;
+
+      currentAiAnalysis = {
+        ...currentAiAnalysis,
+        businessType: analysis.businessType || "",
+        siteType: analysis.siteType || "",
+        objective: analysis.objective || "",
+        recommendedPackage: analysis.recommendedPackage || "",
+        estimateRange: analysis.estimateRange || "",
+        features: featureLabels,
+        featureIds,
+        questions,
+        summary: analysis.summary || "",
+        hasEnoughData,
+        prompt,
+        pagesEstimate: Number(analysis.pagesEstimate || 0)
+      };
+    }
+
+    function clearConversation() {
+      setAnalysisLoading(true, "In attesa di descrizione");
+      renderAnalysisMessages({
+        primary: "Scrivi una breve descrizione del progetto. Poi ti farò solo le domande necessarie per arrivare al preventivo.",
+        followup: "Quando ci sono abbastanza dati, puoi cliccare Genera preventivo."
+      });
+      aiEstimateValue.textContent = "In attesa di analisi";
+      aiRequestCta.disabled = true;
+      currentAiAnalysis = {
+        ...currentAiAnalysis,
+        businessType: "",
+        siteType: "",
+        objective: "",
+        recommendedPackage: "",
+        estimateRange: "",
+        features: [],
+        featureIds: [],
+        questions: [],
+        summary: "",
+        hasEnoughData: false,
+        prompt: "",
+        pagesEstimate: 0,
+        history: []
+      };
+    }
+
+    function runAnalysisFromPrompt(text) {
+      const prompt = text.toLowerCase();
+      const promptWords = text.trim().split(/\s+/).filter(Boolean).length;
+
+      let businessType = "attività locale";
+      let siteType = "sito web professionale";
+      let objective = "migliorare credibilità online e generare contatti";
+      let recommendedPackage = "Professional";
+      let estimateMin = 429;
+      let estimateMax = 690;
+      let questions = [
+        "L'obiettivo principale è generare richieste, chiamate o aumentare credibilità online?",
+        "Hai già materiali pronti oppure va definita anche l'impostazione dei contenuti?"
+      ];
+      let features = [
+        "SEO avanzata",
+        "Form contatto avanzato",
+        "WhatsApp",
+        "Pagine servizi"
+      ];
+      let sizeLabel = "4–7 pagine";
+
+      if (prompt.includes("landing")) {
+        siteType = "landing page";
+        recommendedPackage = "Starter";
+        estimateMin = 169;
+        estimateMax = 320;
+        sizeLabel = "1–3 pagine";
+      }
+
+      if (prompt.includes("lead") || prompt.includes("contatti") || prompt.includes("preventiv")) {
+        objective = "generare richieste e contatti qualificati";
+      }
+
+      if (prompt.includes("ristor") || prompt.includes("menu")) {
+        businessType = "ristorante";
+        siteType = "sito per ristorante";
+        objective = "ricevere prenotazioni e aumentare la presenza online";
+        recommendedPackage = "Professional";
+        estimateMin = 429;
+        estimateMax = 790;
+        features = ["Menu digitale", "Prenotazioni", "Gallery", "SEO locale", "WhatsApp"];
+        questions = ["Serve prenotazione tavoli o basta una richiesta rapida?", "Vuoi inserire menu digitale, recensioni o gallery piatti?"];
+      }
+
+      if (prompt.includes("edile") || prompt.includes("impresa") || prompt.includes("cantiere")) {
+        businessType = "impresa edile";
+        siteType = "sito vetrina lead generation";
+        objective = "acquisire richieste e aumentare credibilità percepita";
+        recommendedPackage = "Professional";
+        estimateMin = 499;
+        estimateMax = 890;
+        features = ["Portfolio lavori", "Gallery", "Richiesta preventivo", "SEO locale", "Pagine servizi"];
+        questions = ["Ti serve una richiesta sopralluogo o un preventivatore iniziale?", "L'area geografica da presidiare è locale o multi-provincia?"];
+      }
+
+      if (prompt.includes("hotel") || prompt.includes("b&b") || prompt.includes("bnb") || prompt.includes("camere")) {
+        businessType = "hotel / B&B";
+        siteType = "sito hospitality";
+        objective = "ricevere richieste disponibilità o prenotazioni";
+        recommendedPackage = "Business";
+        estimateMin = 799;
+        estimateMax = 1290;
+        features = ["Prenotazioni", "Gallery camere", "Multilingua", "Mappa", "Esperienze / servizi"];
+        sizeLabel = "8–12 pagine";
+        questions = ["Ti serve booking diretto o solo richiesta disponibilità?", "Vuoi una struttura multilingua sin da subito?"];
+      }
+
+      if (prompt.includes("palestra") || prompt.includes("fitness") || prompt.includes("trainer")) {
+        businessType = "palestra";
+        siteType = "sito palestra / centro fitness";
+        objective = "aumentare iscrizioni e richieste prova";
+        recommendedPackage = "Professional";
+        estimateMin = 459;
+        estimateMax = 920;
+        features = ["Corsi", "Pagina trainer", "Prenotazione prova", "WhatsApp", "SEO locale"];
+        questions = ["Ti serve prenotazione lezioni o solo richiesta prova?", "Vuoi una sezione trainer e corsi aggiornata facilmente?"];
+      }
+
+      if (prompt.includes("studio") || prompt.includes("consulen") || prompt.includes("avvocat") || prompt.includes("commercial")) {
+        businessType = "studio professionale";
+        siteType = "sito professionale";
+        objective = "generare consulenze e rafforzare autorevolezza";
+        recommendedPackage = "Professional";
+        estimateMin = 459;
+        estimateMax = 820;
+        features = ["Lead form", "Blog", "Pagine servizi", "SEO", "CTA consulenza"];
+        questions = ["Ti serve prenotazione consulenze o solo raccolta contatti?", "Vuoi una struttura orientata anche a SEO locale?"];
+      }
+
+      if (prompt.includes("negozio") || prompt.includes("retail")) {
+        businessType = "negozio locale";
+        siteType = "sito locale";
+        objective = "portare traffico in sede e generare contatti";
+        recommendedPackage = "Professional";
+        estimateMin = 429;
+        estimateMax = 790;
+        features = ["SEO locale", "Mappa", "Schede servizi", "WhatsApp"];
+        questions = ["Vuoi spingere soprattutto visite in negozio o richieste online?", "Serve un catalogo vetrina o un sito più essenziale?"];
+      }
+
+      if (prompt.includes("startup")) {
+        businessType = "startup";
+        siteType = "sito corporate / presentazione startup";
+        objective = "presentare il progetto con credibilità e generare lead";
+        recommendedPackage = "Business";
+        estimateMin = 799;
+        estimateMax = 1390;
+        sizeLabel = "8–12 pagine";
+        features = ["Pagine prodotto", "Case study", "CTA demo", "SEO", "Analytics"];
+        questions = ["Ti serve una landing di validazione o un sito completo?", "Vuoi una CTA demo, call booking o raccolta lead?"];
+      }
+
+      if (prompt.includes("saas") || prompt.includes("software") || prompt.includes("tech")) {
+        businessType = "azienda tech";
+        siteType = "sito corporate / tech";
+        objective = "spiegare il valore dell'offerta e generare richieste demo";
+        recommendedPackage = "Business";
+        estimateMin = 899;
+        estimateMax = 1490;
+        sizeLabel = "8–12 pagine";
+        features = ["Pagine prodotto", "CTA demo", "Blog", "Analytics", "SEO"];
+        questions = ["Ti serve struttura corporate o focus landing prodotto?", "Vuoi integrare booking demo o raccolta lead standard?"];
+      }
+
+      if (prompt.includes("ecommerce") || prompt.includes("shop") || prompt.includes("vendere online")) {
+        businessType = "progetto e-commerce";
+        siteType = "sito e-commerce";
+        objective = "vendere online e aumentare conversioni";
+        recommendedPackage = "Business";
+        estimateMin = 899;
+        estimateMax = 1690;
+        sizeLabel = "8–12 pagine";
+        features = ["Catalogo prodotti", "Schede prodotto", "Checkout", "Analytics", "SEO"];
+        questions = ["Quanti prodotti o categorie pensi di gestire all'inizio?", "Ti serve solo catalogo o vendita completa con checkout?"];
+      }
+
+      const hasEnoughData = Boolean(businessType && siteType && features.length >= 2 && promptWords >= 6);
+      const summary = [
+        `Settore: ${businessType}.`,
+        `Tipologia consigliata: ${siteType}.`,
+        `Obiettivo: ${objective}.`,
+        `Configurazione iniziale: pacchetto ${recommendedPackage}, struttura ${sizeLabel}, funzionalità chiave ${features.slice(0, 3).join(", ")}.`
+      ].join(" ");
+
+      const primary = hasEnoughData
+        ? `Ho inquadrato il progetto come ${businessType}. La struttura più adatta è ${siteType}, con focus su ${objective}.`
+        : `Ho capito che si tratta di un progetto ${businessType}. Per stimarlo bene devo chiarire ancora pochi punti essenziali.`;
+
+      const followup = hasEnoughData
+        ? `Dati sufficienti: pacchetto ${recommendedPackage}, ${sizeLabel}, funzionalità principali ${features.slice(0, 4).join(", ")}. Puoi generare il preventivo.`
+        : questions.join(" ");
+
+      renderAnalysisMessages({
+        primary,
+        followup
+      });
+      setAnalysisLoading(false, hasEnoughData ? "Report iniziale pronto" : "Analisi iniziale completata");
+
+      aiEstimateValue.textContent = `${euro(estimateMin)} – ${euro(estimateMax)}`;
+      aiRequestCta.disabled = !hasEnoughData;
+      currentAiAnalysis = {
+        businessType,
+        siteType,
+        objective,
+        recommendedPackage,
+        estimateRange: `${euro(estimateMin)} – ${euro(estimateMax)}`,
+        features,
+        featureIds: [],
+        questions,
+        summary,
+        hasEnoughData,
+        prompt: currentAiAnalysis.prompt,
+        pagesEstimate: Number(sizeLabel.split("–")[0]) || 0,
+        history: currentAiAnalysis.history || []
+      };
+    }
+
+    async function runOpenAiAnalysis(text) {
+      const history = Array.isArray(currentAiAnalysis.history) ? [...currentAiAnalysis.history] : [];
+      history.push({ role: "user", content: text });
+
+      const response = await fetch(aiEndpoint, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify({
+          initialDescription: currentAiAnalysis.prompt || text,
+          conversation: history
+        })
+      });
+
+      const result = await response.json();
+
+      if (!response.ok || !result.success || !result.analysis) {
+        throw new Error(result.message || "Analisi AI non disponibile.");
+      }
+
+      applyAiAnalysisResult(result.analysis, currentAiAnalysis.prompt || text);
+      currentAiAnalysis.history = [
+        ...history,
+        {
+          role: "assistant",
+          content: `${result.analysis.replyPrimary || ""}\n${result.analysis.replyFollowup || ""}`.trim()
+        }
+      ];
+    }
+
+    async function runAi(text) {
+      if (!text) return;
+      if (!currentAiAnalysis.history.length) {
+        clearConversation();
+      }
+      setAnalysisLoading(true, "Analisi AI in corso");
+      currentAiAnalysis.prompt = currentAiAnalysis.prompt || text;
+
+      try {
+        await runOpenAiAnalysis(text);
+      } catch (error) {
+        console.error("OpenAI analysis fallback:", error);
+        window.setTimeout(() => runAnalysisFromPrompt(text), 320);
+      }
+    }
+
+    aiRequestCta.addEventListener("click", () => {
+      setActiveTab("ai");
+      openRequestModal();
+    });
+
+    requestQuoteButton.addEventListener("click", openRequestModal);
+
+    requestModal.querySelectorAll("[data-close-modal='true']").forEach(element => {
+      element.addEventListener("click", closeRequestModal);
+    });
+
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape" && requestModal.classList.contains("is-open")) {
+        closeRequestModal();
+      }
+    });
+
+    requestForm.addEventListener("submit", async event => {
+      event.preventDefault();
+      populateRequestHiddenFields();
+      clearStatusMessage(requestFormStatus);
+
+      const firstName = requestForm.querySelector("#firstName").value.trim();
+      const emailAddress = requestForm.querySelector("#emailAddress").value.trim();
+      const phoneNumber = requestForm.querySelector("#phoneNumber").value.trim();
+      const privacyAccepted = requestForm.querySelector("#privacyConsent").checked;
+
+      if (!firstName) {
+        setStatusMessage(requestFormStatus, "error", "Inserisci il nome prima di inviare la richiesta.");
+        return;
+      }
+
+      if (!emailAddress && !phoneNumber) {
+        setStatusMessage(requestFormStatus, "error", "Inserisci almeno un recapito: email oppure telefono.");
+        return;
+      }
+
+      if (emailAddress && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailAddress)) {
+        setStatusMessage(requestFormStatus, "error", "Inserisci un indirizzo email valido.");
+        return;
+      }
+
+      if (!privacyAccepted) {
+        setStatusMessage(requestFormStatus, "error", "Devi accettare la privacy policy per essere ricontattato.");
+        return;
+      }
+
+      const originalText = requestSubmitButton.textContent;
+      requestSubmitButton.disabled = true;
+      requestSubmitButton.textContent = "Invio in corso...";
+
+      try {
+        if (window.location.protocol === "file:") {
+          throw new Error("Per inviare il form devi aprire il sito da un server web con PHP attivo, non con doppio clic sul file.");
+        }
+
+        const response = await fetch(requestForm.action, {
+          method: "POST",
+          headers: {
+            "Accept": "application/json",
+            "X-Requested-With": "XMLHttpRequest"
+          },
+          body: new FormData(requestForm)
+        });
+
+        const result = await response.json();
+
+        if (!response.ok || !result.success) {
+          throw new Error(result.message || "Invio non riuscito.");
+        }
+
+        setStatusMessage(requestFormStatus, "success", result.message);
+        setStatusMessage(requestInlineStatus, "success", "Richiesta inviata correttamente. Controlla anche la tua email: ti abbiamo inviato una conferma automatica.");
+
+        requestForm.reset();
+        projectTypeField.value = "";
+
+        window.setTimeout(() => {
+          closeRequestModal();
+          clearStatusMessage(requestFormStatus);
+        }, 1200);
+      } catch (error) {
+        const message = error instanceof Error && error.message
+          ? error.message
+          : "Si è verificato un problema durante l'invio. Riprova tra poco.";
+        setStatusMessage(requestFormStatus, "error", message);
+        setStatusMessage(requestInlineStatus, "error", message);
+      } finally {
+        requestSubmitButton.disabled = false;
+        requestSubmitButton.textContent = originalText;
+      }
+    });
+
+    runAiAnalysis.addEventListener("click", () => {
+      const text = aiPrompt.value.trim();
+      runAi(text);
+    });
+
+    aiPrompt.addEventListener("keydown", event => {
+      if ((event.metaKey || event.ctrlKey) && event.key === "Enter") {
+        event.preventDefault();
+        runAi(aiPrompt.value.trim());
+      }
+    });
+
+    resetAiAnalysis.addEventListener("click", () => {
+      aiPrompt.value = "";
+      clearConversation();
+    });
+
+    runAiInline.addEventListener("click", () => {
+      const text = aiPromptInline.value.trim();
+      if (!text) return;
+      aiPrompt.value = text;
+      setActiveTab("guided");
+      document.getElementById("ai-assistant").scrollIntoView({ behavior: "smooth", block: "start" });
+      setTimeout(() => runAi(text), 300);
+    });
+
+    clearAiInline.addEventListener("click", () => {
+      aiPromptInline.value = "";
+    });
+
+    quickPrompts.forEach(button => {
+      button.addEventListener("click", () => {
+        const text = button.textContent.trim();
+        if (document.activeElement !== aiPromptInline) {
+          aiPrompt.value = text;
+        }
+        aiPromptInline.value = text;
+      });
+    });
+  </script>
+  <script>
+    const navToggle = document.querySelector('.nav-toggle');
+    const siteNav = document.querySelector('.site-nav');
+    const siteHeader = document.querySelector('.site-header');
+
+    if (navToggle && siteNav) {
+      navToggle.addEventListener('click', () => {
+        const isOpen = siteNav.classList.toggle('open');
+        navToggle.setAttribute('aria-expanded', String(isOpen));
+      });
+
+      siteNav.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          siteNav.classList.remove('open');
+          navToggle.setAttribute('aria-expanded', 'false');
+        });
+      });
+    }
+
+    window.addEventListener('scroll', () => {
+      if (!siteHeader) return;
+      siteHeader.classList.toggle('scrolled', window.scrollY > 12);
+    }, { passive: true });
+  </script>
+</body>
+</html>

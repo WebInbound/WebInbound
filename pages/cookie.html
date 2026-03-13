@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cookie Policy | WebInbound</title>
+  <meta name="description" content="Cookie Policy WebInbound: informazioni su cookie tecnici, analitici, di terze parti e gestione delle preferenze." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#f4f7f4;
+      --bg-soft:#f8fbf8;
+      --panel:#ffffff;
+      --panel-2:#fbfcfb;
+      --text:#0d1412;
+      --muted:#61706a;
+      --line:rgba(13,20,18,.08);
+      --green:#16b05b;
+      --green-2:#0d6b36;
+      --green-3:#1ace66;
+      --green-soft:#eaf9f0;
+      --shadow:0 24px 70px rgba(11,25,18,.08);
+      --shadow-soft:0 14px 40px rgba(10,20,18,.06);
+      --radius-xl:34px;
+      --radius-lg:26px;
+      --container:1240px;
+      --nav-h:84px;
+      --transition:.28s cubic-bezier(.2,.8,.2,1);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:"Inter",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(22,176,91,.08), transparent 24%),
+        radial-gradient(circle at top right, rgba(13,107,54,.06), transparent 22%),
+        linear-gradient(180deg,#f8fbf8 0%,#f4f7f4 100%);
+      line-height:1.6;
+      overflow-x:hidden;
+    }
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      background:
+        radial-gradient(circle at 20% 0%, rgba(22,176,91,.06), transparent 20%),
+        radial-gradient(circle at 100% 30%, rgba(13,107,54,.05), transparent 18%);
+      z-index:-1;
+    }
+    a{text-decoration:none;color:inherit}
+    button{font:inherit}
+    .container{width:min(var(--container), calc(100% - 40px)); margin:0 auto}
+    .site-header{
+      position:sticky;
+      top:0;
+      z-index:100;
+      backdrop-filter:blur(14px);
+      background:rgba(248,251,248,.82);
+      border-bottom:1px solid rgba(13,20,18,.05);
+    }
+    .nav-wrap{
+      min-height:var(--nav-h);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:24px;
+    }
+    .brand img{height:48px; width:auto; display:block}
+    .site-nav{
+      display:flex;
+      align-items:center;
+      gap:28px;
+      font-weight:600;
+      color:#28342f;
+    }
+    .site-nav a{opacity:.92; transition:var(--transition)}
+    .site-nav a:hover{opacity:1; color:var(--green-2)}
+    .nav-toggle{
+      display:none;
+      border:none;
+      background:#fff;
+      border-radius:14px;
+      padding:10px 12px;
+      box-shadow:var(--shadow-soft);
+      cursor:pointer;
+    }
+    .btn{
+      appearance:none;
+      border:none;
+      cursor:pointer;
+      border-radius:16px;
+      padding:14px 20px;
+      font-weight:700;
+      font-size:15px;
+      transition:transform var(--transition), box-shadow var(--transition), opacity var(--transition);
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      white-space:nowrap;
+    }
+    .btn:hover{transform:translateY(-2px)}
+    .btn-primary{
+      color:#fff;
+      background:linear-gradient(135deg,var(--green),var(--green-3));
+      box-shadow:0 16px 34px rgba(22,176,91,.22);
+    }
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      padding:8px 14px;
+      border-radius:999px;
+      background:var(--green-soft);
+      color:var(--green-2);
+      border:1px solid rgba(22,176,91,.16);
+      font-size:12px;
+      font-weight:800;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+    .hero{
+      padding:92px 0 44px;
+    }
+    .hero-grid,
+    .legal-grid,
+    .footer-grid{
+      display:grid;
+      gap:24px;
+    }
+    .hero-grid{grid-template-columns:minmax(0,1.2fr) 340px; align-items:stretch}
+    .legal-grid{grid-template-columns:290px minmax(0,1fr); align-items:start}
+    .hero-card,.hero-meta,.toc-card,.legal-card,.info-card,.footer-shell{
+      background:rgba(255,255,255,.82);
+      border:1px solid rgba(13,20,18,.08);
+      box-shadow:var(--shadow);
+      backdrop-filter:blur(12px);
+    }
+    .hero-card{border-radius:var(--radius-xl); padding:34px}
+    .hero-card h1{margin:18px 0 12px; font-size:clamp(2.9rem,5vw,4.8rem); line-height:.95; letter-spacing:-.06em}
+    .hero-card p{margin:0; color:var(--muted); font-size:1.08rem}
+    .hero-meta,.toc-card,.legal-card{border-radius:var(--radius-lg); padding:24px}
+    .hero-meta{display:grid; gap:14px; align-content:start}
+    .meta-kicker{font-size:12px; font-weight:800; letter-spacing:.08em; color:var(--green-2); text-transform:uppercase}
+    .meta-row{padding-top:14px; border-top:1px solid var(--line)}
+    .meta-row strong{display:block; margin-bottom:4px; font-size:.95rem}
+    .meta-row span{color:var(--muted); font-size:.95rem}
+    .legal-layout{padding:0 0 96px}
+    .toc-card{position:sticky; top:108px}
+    .toc-card h2{margin:0 0 10px; font-size:1.05rem; letter-spacing:-.03em}
+    .toc-card p{margin:0 0 18px; color:var(--muted); font-size:.95rem}
+    .toc-list{list-style:none; padding:0; margin:0; display:grid; gap:10px}
+    .toc-list a{display:block; padding:12px 14px; border-radius:14px; background:var(--panel-2); border:1px solid rgba(13,20,18,.06); transition:var(--transition); font-size:.96rem}
+    .toc-list a:hover{border-color:rgba(22,176,91,.22); background:#fff; transform:translateY(-1px)}
+    .content-stack{display:grid; gap:18px}
+    .legal-card h2{margin:0 0 14px; font-size:1.45rem; letter-spacing:-.04em}
+    .legal-card p{margin:0 0 14px; color:#32413b}
+    .legal-card p:last-child{margin-bottom:0}
+    .legal-card ul{margin:0; padding-left:20px; color:#32413b}
+    .legal-card li + li{margin-top:10px}
+    .highlight-grid{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; margin-top:18px}
+    .info-card{border-radius:20px; padding:18px}
+    .info-card strong{display:block; margin-bottom:8px; letter-spacing:-.03em}
+    .info-card span{color:var(--muted); font-size:.95rem}
+    .site-footer{padding:0 0 34px}
+    .footer-shell{border-radius:30px; padding:28px}
+    .footer-grid{grid-template-columns:1.3fr .8fr .9fr; padding-bottom:22px; border-bottom:1px solid var(--line)}
+    .footer-brand img{height:52px; width:auto; display:block; margin-bottom:14px}
+    .footer-brand p,.footer-col a,.footer-meta{color:var(--muted)}
+    .footer-col{display:grid; gap:10px; align-content:start}
+    .footer-col h4{margin:0 0 4px; font-size:1rem}
+    .footer-bottom{padding-top:18px; display:flex; justify-content:space-between; gap:16px; color:var(--muted); font-size:.94rem}
+    .footer-legal-links{display:flex; gap:18px; flex-wrap:wrap}
+    @media (max-width:1080px){
+      .hero-grid,.legal-grid,.footer-grid{grid-template-columns:1fr}
+      .toc-card{position:relative; top:0}
+      .highlight-grid{grid-template-columns:1fr}
+    }
+    @media (max-width:760px){
+      .nav-toggle{display:inline-flex}
+      .site-nav{
+        position:absolute;
+        top:calc(100% + 10px);
+        left:20px;
+        right:20px;
+        display:none;
+        flex-direction:column;
+        align-items:stretch;
+        gap:14px;
+        padding:18px;
+        border-radius:20px;
+        background:rgba(255,255,255,.96);
+        border:1px solid var(--line);
+        box-shadow:var(--shadow);
+      }
+      .site-nav.open{display:flex}
+      .site-nav .btn{width:100%}
+      .hero{padding-top:72px}
+      .hero-card,.hero-meta,.toc-card,.legal-card,.footer-shell{padding:22px}
+      .hero-card h1{font-size:2.55rem}
+      .footer-bottom{flex-direction:column}
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a href="../index.html" class="brand" aria-label="WebInbound home">
+        <img src="../images/logo.png" alt="Logo WebInbound" />
+      </a>
+      <button class="nav-toggle" aria-label="Apri menu" aria-expanded="false">☰</button>
+      <nav class="site-nav">
+        <a href="../index.html">Home</a>
+        <a href="servizi.html">Servizi</a>
+        <a href="progetti.html">Progetti</a>
+        <a href="prezzi.html#process">Come Funziona</a>
+        <a href="prezzi.html">Prezzi</a>
+        <a href="contatti.html">Contatti</a>
+        <a href="iniziaora.html" class="btn btn-primary">Inizia Ora</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-card">
+          <span class="eyebrow">Cookie Policy</span>
+          <h1>Cookie Policy</h1>
+          <p>
+            Questa policy descrive l’uso di cookie e tecnologie analoghe da parte di WebInbound,
+            le categorie utilizzate sul sito, le finalità del trattamento e le modalità con cui l’utente può gestire le proprie preferenze.
+          </p>
+        </div>
+        <aside class="hero-meta">
+          <span class="meta-kicker">Panoramica rapida</span>
+          <div class="meta-row">
+            <strong>Cookie sempre attivi</strong>
+            <span>Cookie tecnici necessari al funzionamento del sito e alla memorizzazione delle preferenze</span>
+          </div>
+          <div class="meta-row">
+            <strong>Categorie gestibili</strong>
+            <span>Analitici e cookie di terze parti, ove attivati dall’utente tramite banner</span>
+          </div>
+          <div class="meta-row">
+            <strong>Contatti</strong>
+            <span>info@webinbound.it · support@webinbound.it · +39 379 146 5762</span>
+          </div>
+          <div class="meta-row">
+            <strong>Aggiornamento</strong>
+            <span>Versione cookie policy aggiornata al 12 marzo 2026</span>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="legal-layout">
+      <div class="container legal-grid">
+        <aside class="toc-card">
+          <h2>Indice della policy</h2>
+          <p>Una guida leggibile per capire quali cookie può utilizzare il sito e come gestire il consenso.</p>
+          <ul class="toc-list">
+            <li><a href="#cosa-sono">1. Cosa sono i cookie</a></li>
+            <li><a href="#tipologie">2. Tipologie di cookie utilizzate</a></li>
+            <li><a href="#finalita">3. Finalità di utilizzo</a></li>
+            <li><a href="#consenso">4. Gestione del consenso e preferenze</a></li>
+            <li><a href="#durata">5. Durata e conservazione</a></li>
+            <li><a href="#terze-parti">6. Cookie di terze parti</a></li>
+            <li><a href="#come-disattivare">7. Come disattivare i cookie</a></li>
+            <li><a href="#contatti-cookie">8. Contatti</a></li>
+          </ul>
+        </aside>
+
+        <div class="content-stack">
+          <section class="legal-card" id="cosa-sono">
+            <h2>1. Cosa sono i cookie</h2>
+            <p>
+              I cookie sono piccoli file di testo che un sito o un servizio collegato può memorizzare sul dispositivo dell’utente
+              durante la navigazione. Servono, a seconda dei casi, a far funzionare correttamente il sito,
+              ricordare preferenze, analizzare l’utilizzo delle pagine o attivare funzionalità di terze parti.
+            </p>
+          </section>
+
+          <section class="legal-card" id="tipologie">
+            <h2>2. Tipologie di cookie utilizzate</h2>
+            <ul>
+              <li><strong>Cookie tecnici:</strong> necessari al funzionamento del sito, alla navigazione, alla sicurezza e alla memorizzazione delle scelte espresse tramite il banner.</li>
+              <li><strong>Cookie analitici:</strong> utilizzati, previo consenso ove richiesto, per comprendere traffico, pagine visitate, interazioni e prestazioni del sito.</li>
+              <li><strong>Cookie di terze parti:</strong> possono derivare da servizi esterni, plugin, strumenti embedded, piattaforme analytics o altre integrazioni funzionali.</li>
+            </ul>
+          </section>
+
+          <section class="legal-card" id="finalita">
+            <h2>3. Finalità di utilizzo</h2>
+            <p>WebInbound utilizza cookie e strumenti analoghi per:</p>
+            <ul>
+              <li>garantire il corretto funzionamento tecnico del sito;</li>
+              <li>ricordare la scelta effettuata dall’utente in materia di consenso cookie;</li>
+              <li>analizzare in forma aggregata o configurata l’uso del sito, per migliorarne struttura, contenuti e conversioni;</li>
+              <li>abilitare eventuali funzionalità esterne strettamente collegate all’esperienza utente o ai servizi digitali presentati.</li>
+            </ul>
+          </section>
+
+          <section class="legal-card" id="consenso">
+            <h2>4. Gestione del consenso e preferenze</h2>
+            <p>
+              Al primo accesso, il sito mostra un banner che consente di accettare tutti i cookie,
+              rifiutare quelli non necessari oppure gestire in modo granulare le preferenze disponibili.
+            </p>
+            <p>
+              La scelta viene memorizzata per evitare la riproposizione del banner a ogni visita
+              e può essere aggiornata successivamente tramite il collegamento o il pulsante di gestione preferenze reso disponibile dal sito.
+            </p>
+          </section>
+
+          <section class="legal-card" id="durata">
+            <h2>5. Durata e conservazione</h2>
+            <p>
+              Alcuni cookie possono essere limitati alla sessione di navigazione, mentre altri possono restare memorizzati per un periodo successivo,
+              in funzione della loro finalità tecnica o analitica e della configurazione concreta adottata sul sito.
+            </p>
+            <p>
+              Le preferenze espresse tramite il banner possono essere conservate localmente per il tempo necessario a ricordare la scelta dell’utente,
+              salvo cancellazione manuale da parte dell’utente stesso.
+            </p>
+          </section>
+
+          <section class="legal-card" id="terze-parti">
+            <h2>6. Cookie di terze parti</h2>
+            <p>
+              Il sito può integrare o attivare, in funzione della configurazione adottata, servizi di terze parti quali hosting,
+              strumenti analytics, plugin, sistemi di supporto, componenti multimediali o funzionalità aggiuntive.
+            </p>
+            <p>
+              Tali soggetti possono impostare cookie o tecnologie equivalenti secondo le proprie politiche.
+              WebInbound invita pertanto l’utente a consultare anche le informative dei rispettivi fornitori, ove applicabili.
+            </p>
+          </section>
+
+          <section class="legal-card" id="come-disattivare">
+            <h2>7. Come disattivare i cookie</h2>
+            <p>
+              L’utente può gestire o limitare i cookie attraverso il banner di consenso presente sul sito,
+              nonché tramite le impostazioni del proprio browser o dispositivo.
+            </p>
+            <p>
+              La disattivazione dei cookie tecnici o di alcune tecnologie strettamente necessarie può influire negativamente
+              sul corretto funzionamento del sito o di alcune sue funzioni.
+            </p>
+          </section>
+
+          <section class="legal-card" id="contatti-cookie">
+            <h2>8. Contatti</h2>
+            <p>
+              Per richieste relative all’uso dei cookie, alla gestione del consenso o al trattamento dei dati connesso alle tecnologie di tracciamento,
+              è possibile contattare WebInbound ai recapiti indicati di seguito.
+            </p>
+            <div class="highlight-grid">
+              <div class="info-card">
+                <strong>Email</strong>
+                <span>info@webinbound.it<br>support@webinbound.it</span>
+              </div>
+              <div class="info-card">
+                <strong>Telefono e orari</strong>
+                <span>+39 379 146 5762<br>Lun-Ven 9:00 – 18:00</span>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-shell">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <img src="../images/logo.png" alt="WebInbound" class="footer-logo" />
+            <p>Agenzia digitale specializzata in siti web orientati ai risultati.</p>
+          </div>
+          <div class="footer-col">
+            <h4>Link</h4>
+            <a href="../index.html">Home</a>
+            <a href="servizi.html">Servizi</a>
+            <a href="progetti.html">Progetti</a>
+            <a href="prezzi.html">Prezzi</a>
+            <a href="contatti.html">Contatti</a>
+          </div>
+          <div class="footer-col">
+            <h4>Contatti</h4>
+            <a href="mailto:info@webinbound.it">info@webinbound.it</a>
+            <a href="mailto:support@webinbound.it">support@webinbound.it</a>
+            <a href="tel:+393791465762">+39 379 146 5762</a>
+            <span class="footer-meta">P.IVA: 02841450022</span>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span>© 2026 Web Inbound. Tutti i diritti riservati. P.IVA: 02841450022</span>
+          <div class="footer-legal-links">
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="cookie.html">Cookie Policy</a>
+            <a href="termini.html">Termini</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/cookie-banner.js"></script>
+  <script>
+    const navToggle = document.querySelector('.nav-toggle');
+    const siteNav = document.querySelector('.site-nav');
+
+    if (navToggle && siteNav) {
+      navToggle.addEventListener('click', () => {
+        const isOpen = siteNav.classList.toggle('open');
+        navToggle.setAttribute('aria-expanded', String(isOpen));
+      });
+    }
+  </script>
+</body>
+</html>

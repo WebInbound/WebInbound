@@ -1,0 +1,1876 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WebInbound — Prezzi chiari, preventivi intelligenti</title>
+  <meta name="description" content="Pagina prezzi premium WebInbound con pacchetti, confronto mercato, configuratore guidato e assistente AI in un unico file HTML." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#f4f7f4;
+      --bg-soft:#f8fbf8;
+      --panel:#ffffff;
+      --panel-2:#fbfcfb;
+      --text:#0d1412;
+      --muted:#61706a;
+      --line:rgba(13,20,18,.08);
+      --line-strong:rgba(13,20,18,.14);
+      --green:#16b05b;
+      --green-2:#0d6b36;
+      --green-3:#1ace66;
+      --green-soft:#eaf9f0;
+      --green-deep:#083d21;
+      --dark:#0f1720;
+      --shadow:0 24px 70px rgba(11,25,18,.08);
+      --shadow-strong:0 30px 90px rgba(9,22,18,.14);
+      --shadow-soft:0 14px 40px rgba(10,20,18,.06);
+      --radius-xl:34px;
+      --radius-lg:26px;
+      --radius-md:18px;
+      --container:1240px;
+      --nav-h:84px;
+      --transition:.28s cubic-bezier(.2,.8,.2,1);
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:"Inter",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(22,176,91,.08), transparent 24%),
+        radial-gradient(circle at top right, rgba(13,107,54,.06), transparent 22%),
+        linear-gradient(180deg,#f8fbf8 0%,#f4f7f4 100%);
+      line-height:1.5;
+      overflow-x:hidden;
+    }
+
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      background:
+        radial-gradient(circle at 20% 0%, rgba(22,176,91,.06), transparent 20%),
+        radial-gradient(circle at 100% 30%, rgba(13,107,54,.05), transparent 18%);
+      z-index:-1;
+    }
+
+    a{text-decoration:none;color:inherit}
+    button, input, select, textarea{font:inherit}
+    .container{width:min(var(--container), calc(100% - 40px)); margin:0 auto}
+
+    .site-header{
+      position:sticky;
+      top:0;
+      z-index:100;
+      backdrop-filter:blur(14px);
+      background:rgba(248,251,248,.82);
+      border-bottom:1px solid rgba(13,20,18,.05);
+    }
+    .nav{
+      min-height:var(--nav-h);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:24px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      font-weight:800;
+      letter-spacing:-.03em;
+    }
+    .brand-mark{
+      width:46px;
+      height:46px;
+      display:grid;
+      place-items:center;
+      border-radius:15px;
+      color:#fff;
+      background:linear-gradient(135deg,var(--green-2),var(--green));
+      box-shadow:0 14px 30px rgba(22,176,91,.2);
+      position:relative;
+      overflow:hidden;
+    }
+    .brand-mark::after{
+      content:"";
+      position:absolute;
+      inset:auto -8px -16px auto;
+      width:30px;
+      height:30px;
+      background:rgba(255,255,255,.16);
+      border-radius:50%;
+    }
+    .brand-text{font-size:1.45rem}
+    .nav-links{
+      display:flex;
+      gap:28px;
+      font-weight:600;
+      color:#28342f;
+    }
+    .nav-links a{opacity:.9; transition:var(--transition)}
+    .nav-links a:hover{opacity:1; color:var(--green-2)}
+    .nav-actions{display:flex; gap:12px; align-items:center}
+
+    .btn{
+      appearance:none;
+      border:none;
+      cursor:pointer;
+      border-radius:16px;
+      padding:14px 20px;
+      font-weight:700;
+      font-size:15px;
+      transition:transform var(--transition), box-shadow var(--transition), background var(--transition), border-color var(--transition), opacity var(--transition);
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      white-space:nowrap;
+    }
+    .btn:hover{transform:translateY(-2px)}
+    .btn-primary{
+      color:#fff;
+      background:linear-gradient(135deg,var(--green),var(--green-3));
+      box-shadow:0 16px 34px rgba(22,176,91,.22);
+    }
+    .btn-primary:hover{box-shadow:0 20px 40px rgba(22,176,91,.26)}
+    .btn-secondary{
+      color:var(--text);
+      background:#fff;
+      border:1px solid var(--line);
+      box-shadow:var(--shadow-soft);
+    }
+    .btn-ghost{
+      color:var(--text);
+      background:rgba(255,255,255,.72);
+      border:1px solid rgba(13,20,18,.08);
+    }
+    .btn-dark{color:#fff; background:var(--dark)}
+    .btn-full{width:100%}
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      padding:8px 14px;
+      border-radius:999px;
+      background:var(--green-soft);
+      color:var(--green-2);
+      border:1px solid rgba(22,176,91,.16);
+      font-size:12px;
+      font-weight:800;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+    .eyebrow-dark{
+      background:rgba(255,255,255,.1);
+      color:#fff;
+      border-color:rgba(255,255,255,.12);
+    }
+
+    .section{padding:108px 0}
+    .section-tight{padding:80px 0}
+    .section-head{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-end;
+      gap:24px;
+      margin-bottom:42px;
+    }
+    .section-head h2{
+      margin:14px 0 10px;
+      font-size:clamp(2.15rem,4vw,3.7rem);
+      line-height:1.02;
+      letter-spacing:-.055em;
+      max-width:880px;
+    }
+    .section-head p{
+      margin:0;
+      max-width:560px;
+      color:var(--muted);
+      font-size:1.04rem;
+    }
+
+    .hero-section{padding:86px 0 54px; position:relative}
+    .hero-section::before{
+      content:"";
+      position:absolute;
+      right:8%;
+      top:8%;
+      width:420px;
+      height:420px;
+      background:radial-gradient(circle, rgba(22,176,91,.12), transparent 68%);
+      filter:blur(18px);
+      pointer-events:none;
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:34px;
+      align-items:stretch;
+    }
+    .hero-copy h1{
+      margin:18px 0 18px;
+      font-size:clamp(3.35rem,6vw,6rem);
+      line-height:.93;
+      letter-spacing:-.075em;
+      max-width:940px;
+    }
+    .hero-copy h1 span{
+      display:block;
+      color:var(--green);
+    }
+    .hero-sub{
+      max-width:760px;
+      font-size:1.16rem;
+      color:var(--muted);
+      margin:0 0 30px;
+    }
+    .hero-actions{display:flex; gap:14px; flex-wrap:wrap; margin-bottom:26px}
+    .hero-badges{display:flex; gap:12px; flex-wrap:wrap}
+    .feature-pill{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:12px 15px;
+      border-radius:999px;
+      background:rgba(255,255,255,.78);
+      border:1px solid rgba(13,20,18,.08);
+      box-shadow:var(--shadow-soft);
+      font-weight:600;
+      color:#23302b;
+      transition:var(--transition);
+    }
+    .feature-pill:hover{transform:translateY(-2px)}
+    .feature-pill span{
+      width:8px;
+      height:8px;
+      border-radius:50%;
+      background:var(--green);
+      box-shadow:0 0 0 6px rgba(22,176,91,.12);
+    }
+
+    .hero-panel{
+      position:relative;
+      padding:30px;
+      border-radius:var(--radius-xl);
+      background:linear-gradient(180deg,rgba(255,255,255,.95),rgba(255,255,255,.84));
+      border:1px solid rgba(13,20,18,.07);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      isolation:isolate;
+    }
+    .hero-panel::before{
+      content:"";
+      position:absolute;
+      right:-60px;
+      top:-60px;
+      width:220px;
+      height:220px;
+      border-radius:50%;
+      background:radial-gradient(circle, rgba(22,176,91,.18), transparent 70%);
+      z-index:-1;
+    }
+    .hero-panel::after{
+      content:"";
+      position:absolute;
+      left:20px;
+      bottom:-80px;
+      width:200px;
+      height:200px;
+      border-radius:50%;
+      background:radial-gradient(circle, rgba(13,107,54,.08), transparent 70%);
+      z-index:-1;
+    }
+    .panel-kicker{
+      font-size:12px;
+      font-weight:800;
+      letter-spacing:.08em;
+      color:var(--green-2);
+    }
+    .hero-panel-price{
+      margin:12px 0 10px;
+      font-size:3.35rem;
+      line-height:1;
+      letter-spacing:-.065em;
+      font-weight:900;
+    }
+    .hero-panel p{margin:0 0 20px; color:var(--muted)}
+    .insight-stack{display:grid; gap:12px}
+    .insight-card{
+      display:flex;
+      justify-content:space-between;
+      gap:16px;
+      align-items:center;
+      padding:16px;
+      border-radius:20px;
+      background:#fff;
+      border:1px solid rgba(13,20,18,.06);
+      transition:var(--transition);
+    }
+    .insight-card:hover{transform:translateY(-2px); box-shadow:var(--shadow-soft)}
+    .insight-card strong{display:block; margin-bottom:4px}
+    .insight-card small{display:block; color:var(--muted)}
+    .insight-card span{white-space:nowrap; font-weight:800; color:var(--green-2)}
+
+    .trust-strip{padding:0 0 14px}
+    .trust-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:16px}
+    .trust-item{
+      padding:24px;
+      border-radius:24px;
+      background:rgba(255,255,255,.8);
+      border:1px solid rgba(13,20,18,.07);
+      box-shadow:var(--shadow-soft);
+      transition:var(--transition);
+    }
+    .trust-item:hover{transform:translateY(-3px)}
+    .trust-item strong{display:block; margin-bottom:7px; font-size:1rem}
+    .trust-item span{color:var(--muted); font-size:.95rem}
+
+    .pricing-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:22px; align-items:stretch}
+    .pricing-card{
+      position:relative;
+      padding:28px;
+      border-radius:30px;
+      background:rgba(255,255,255,.86);
+      border:1px solid rgba(13,20,18,.08);
+      box-shadow:var(--shadow);
+      display:flex;
+      flex-direction:column;
+      transition:var(--transition);
+    }
+    .pricing-card:hover{transform:translateY(-6px)}
+    .pricing-card-featured{
+      border-color:rgba(22,176,91,.36);
+      box-shadow:0 28px 80px rgba(22,176,91,.14);
+      transform:translateY(-8px);
+    }
+    .pricing-card-featured:hover{transform:translateY(-12px)}
+    .featured-badge{
+      position:absolute;
+      left:28px;
+      right:28px;
+      top:-14px;
+      text-align:center;
+      padding:10px 14px;
+      border-radius:999px;
+      background:linear-gradient(135deg,var(--green),var(--green-3));
+      color:#fff;
+      font-size:12px;
+      font-weight:800;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+    .pricing-top{padding-bottom:22px; border-bottom:1px solid rgba(13,20,18,.07); margin-bottom:22px}
+    .pricing-top h3{margin:0 0 8px; font-size:2rem; letter-spacing:-.04em}
+    .pricing-top p{margin:0 0 18px; color:var(--muted)}
+    .pricing-meta{color:var(--muted); font-size:.95rem; margin-bottom:4px}
+    .pricing-value{font-size:3rem; line-height:1; font-weight:900; letter-spacing:-.06em; margin-bottom:12px}
+    .pricing-target{
+      padding:10px 12px;
+      border-radius:14px;
+      background:#f2f5f3;
+      color:#23302b;
+      font-size:.9rem;
+      font-weight:600;
+    }
+    .feature-list{list-style:none; padding:0; margin:0 0 22px; display:grid; gap:14px}
+    .feature-list li{position:relative; padding-left:28px; color:#21302c}
+    .feature-list li::before{
+      content:"✓";
+      position:absolute;
+      left:0;
+      top:0;
+      width:20px;
+      height:20px;
+      display:grid;
+      place-items:center;
+      border-radius:50%;
+      background:var(--green-soft);
+      color:var(--green-2);
+      font-size:12px;
+      font-weight:900;
+    }
+
+    .maintenance-followup{
+      padding-top:12px;
+    }
+    .maintenance-followup-shell{
+      display:grid;
+      grid-template-columns:1.08fr .92fr;
+      gap:24px;
+      padding:30px;
+      border-radius:34px;
+      background:rgba(255,255,255,.88);
+      border:1px solid rgba(13,20,18,.08);
+      box-shadow:var(--shadow);
+    }
+    .maintenance-followup-copy h2{
+      margin:16px 0 14px;
+      font-size:clamp(2rem,4vw,3.4rem);
+      line-height:1.03;
+      letter-spacing:-.05em;
+    }
+    .maintenance-followup-copy p{
+      margin:0 0 12px;
+      color:var(--muted);
+      font-size:1.03rem;
+      max-width:700px;
+    }
+    .maintenance-followup-note{
+      display:inline-flex;
+      align-items:center;
+      margin-top:10px;
+      padding:10px 14px;
+      border-radius:999px;
+      background:var(--green-soft);
+      color:var(--green-2);
+      font-size:.92rem;
+      font-weight:700;
+    }
+    .maintenance-followup-list{
+      list-style:none;
+      padding:0;
+      margin:24px 0 0;
+      display:grid;
+      gap:12px;
+    }
+    .maintenance-followup-list li{
+      position:relative;
+      padding:16px 18px 16px 48px;
+      border-radius:20px;
+      background:#f7faf8;
+      border:1px solid rgba(13,20,18,.06);
+      color:#22302c;
+    }
+    .maintenance-followup-list li::before{
+      content:"✓";
+      position:absolute;
+      left:18px;
+      top:16px;
+      width:20px;
+      height:20px;
+      display:grid;
+      place-items:center;
+      border-radius:50%;
+      background:var(--green-soft);
+      color:var(--green-2);
+      font-size:12px;
+      font-weight:900;
+    }
+    .maintenance-followup-side{
+      display:grid;
+      gap:14px;
+      align-content:start;
+    }
+    .maintenance-followup-card{
+      padding:22px;
+      border-radius:24px;
+      background:linear-gradient(180deg,#fbfcfb,#f2f6f3);
+      border:1px solid rgba(13,20,18,.06);
+    }
+    .maintenance-followup-card strong{
+      display:block;
+      margin-bottom:8px;
+      font-size:1.05rem;
+      letter-spacing:-.03em;
+    }
+    .maintenance-followup-card p{
+      margin:0;
+      color:var(--muted);
+      font-size:.96rem;
+    }
+
+    .comparison-shell{
+      padding:36px;
+      border-radius:36px;
+      background:linear-gradient(180deg,rgba(10,68,36,.98),rgba(7,45,25,.98));
+      color:#fff;
+      box-shadow:var(--shadow-strong);
+      position:relative;
+      overflow:hidden;
+    }
+    .comparison-shell::before{
+      content:"";
+      position:absolute;
+      right:-90px;
+      top:-90px;
+      width:280px;
+      height:280px;
+      border-radius:50%;
+      background:radial-gradient(circle, rgba(255,255,255,.11), transparent 68%);
+    }
+    .comparison-head{display:flex; justify-content:space-between; gap:24px; align-items:flex-end; margin-bottom:28px}
+    .comparison-head h2{margin:14px 0 10px; font-size:clamp(2rem,4vw,3.3rem); line-height:1.02; letter-spacing:-.055em; max-width:760px}
+    .comparison-head p{margin:0; max-width:500px; color:rgba(255,255,255,.8)}
+    .comparison-grid{display:grid; grid-template-columns:1.15fr .85fr; gap:22px}
+    .comparison-table-card{
+      border-radius:26px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.08);
+      background:rgba(255,255,255,.06);
+      backdrop-filter:blur(10px);
+    }
+    .comparison-table{width:100%; border-collapse:collapse}
+    .comparison-table th,
+    .comparison-table td{padding:19px 18px; text-align:left; border-bottom:1px solid rgba(255,255,255,.09)}
+    .comparison-table th{font-size:.92rem; color:#dff7e8; text-transform:uppercase; letter-spacing:.06em}
+    .comparison-table tr:last-child td{border-bottom:none}
+    .comparison-table tbody tr{transition:var(--transition)}
+    .comparison-table tbody tr:hover{background:rgba(255,255,255,.04)}
+    .good{color:#97f1bb; font-weight:800}
+    .bad{color:#f2d3d3; font-weight:700}
+    .comparison-insights{display:grid; gap:14px}
+    .insight-panel{
+      padding:22px;
+      border-radius:22px;
+      background:rgba(255,255,255,.07);
+      border:1px solid rgba(255,255,255,.1);
+      transition:var(--transition);
+    }
+    .insight-panel:hover{transform:translateY(-3px); background:rgba(255,255,255,.09)}
+    .insight-title{display:block; margin-bottom:8px; font-size:1rem; font-weight:800; color:#fff}
+    .insight-panel p{margin:0; color:rgba(255,255,255,.8)}
+
+    .builder-tabs{
+      display:inline-flex;
+      gap:8px;
+      padding:6px;
+      border-radius:18px;
+      background:#edf3ef;
+      border:1px solid rgba(13,20,18,.06);
+      margin-bottom:22px;
+    }
+    .builder-tab{
+      border:none;
+      background:transparent;
+      padding:12px 16px;
+      border-radius:14px;
+      font-weight:700;
+      color:#53615b;
+      cursor:pointer;
+      transition:var(--transition);
+    }
+    .builder-tab.active{
+      background:#fff;
+      color:var(--text);
+      box-shadow:var(--shadow-soft);
+    }
+
+    .builder-shell{display:grid; grid-template-columns:minmax(0,1.08fr) 390px; gap:24px; align-items:start}
+    .builder-main,
+    .builder-summary,
+    .ai-input-panel,
+    .ai-conversation-panel,
+    .process-card,
+    .final-cta{
+      border-radius:30px;
+      background:rgba(255,255,255,.86);
+      border:1px solid rgba(13,20,18,.08);
+      box-shadow:var(--shadow);
+    }
+    .builder-main{padding:28px}
+    .builder-summary{padding:24px; position:sticky; top:104px}
+    .builder-header{display:flex; justify-content:space-between; align-items:flex-start; gap:18px; margin-bottom:24px}
+    .builder-header h3{margin:0 0 8px; font-size:1.7rem; letter-spacing:-.04em}
+    .builder-header p{margin:0; color:var(--muted); max-width:620px}
+    .progress-block{min-width:180px}
+    .progress-top{display:flex; justify-content:space-between; gap:12px; margin-bottom:8px; font-size:.92rem; color:var(--muted)}
+    .progress-top strong{color:var(--green-2)}
+    .progress-bar{width:100%; height:10px; border-radius:999px; background:#edf1ee; overflow:hidden}
+    .progress-fill{height:100%; width:24%; border-radius:999px; background:linear-gradient(90deg,var(--green),#34d777); transition:width .25s ease}
+    .builder-pane{display:none}
+    .builder-pane.active{display:block}
+
+    .form-grid{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px}
+    .form-card{padding:18px; border-radius:22px; background:#fff; border:1px solid rgba(13,20,18,.08)}
+    .form-card-full{grid-column:1 / -1}
+    .form-card label{display:block; margin-bottom:12px; font-weight:700}
+    select, textarea{
+      width:100%;
+      border:1px solid rgba(13,20,18,.1);
+      border-radius:16px;
+      padding:14px 14px;
+      background:#fbfcfb;
+      color:var(--text);
+      outline:none;
+      resize:vertical;
+      transition:border-color .2s ease, box-shadow .2s ease;
+    }
+    select:focus, textarea:focus{border-color:rgba(22,176,91,.5); box-shadow:0 0 0 4px rgba(22,176,91,.1)}
+    .option-grid{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px}
+    .option-card{position:relative; display:block; cursor:pointer}
+    .option-card input{position:absolute; inset:0; opacity:0}
+    .option-card span{
+      min-height:96px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      gap:10px;
+      padding:16px;
+      border-radius:18px;
+      background:#fff;
+      border:1px solid rgba(13,20,18,.08);
+      transition:var(--transition);
+    }
+    .option-card:hover span{transform:translateY(-2px); box-shadow:var(--shadow-soft)}
+    .option-card strong{font-size:.98rem; letter-spacing:-.02em}
+    .option-card small{color:var(--muted)}
+    .option-card input:checked + span{
+      border-color:rgba(22,176,91,.42);
+      background:linear-gradient(180deg,#fff,#f3fbf6);
+      box-shadow:0 14px 28px rgba(22,176,91,.1);
+    }
+
+    .summary-kicker{font-size:12px; font-weight:800; letter-spacing:.08em; color:var(--green-2)}
+    .summary-top h3{margin:8px 0 10px; font-size:1.6rem; letter-spacing:-.04em}
+    .summary-price{font-size:3rem; line-height:1; font-weight:900; letter-spacing:-.06em; margin-bottom:10px}
+    .summary-top p{color:var(--muted); margin:0 0 18px}
+    .summary-list{list-style:none; padding:0; margin:0 0 18px; display:grid; gap:10px}
+    .summary-list li{display:flex; justify-content:space-between; gap:14px; align-items:flex-start; padding-bottom:10px; border-bottom:1px dashed rgba(13,20,18,.08); color:#24312d}
+    .summary-list strong{white-space:nowrap}
+    .summary-list li.summary-package-item{display:block}
+    .summary-package-details{width:100%}
+    .summary-package-details summary{
+      list-style:none;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:14px;
+      cursor:pointer;
+    }
+    .summary-package-details summary::-webkit-details-marker{display:none}
+    .summary-package-label{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      font-weight:700;
+    }
+    .summary-package-label::before{
+      content:"▸";
+      font-size:.85rem;
+      color:var(--green-2);
+      transition:transform .2s ease;
+    }
+    .summary-package-details[open] .summary-package-label::before{transform:rotate(90deg)}
+    .summary-package-includes{
+      list-style:none;
+      padding:10px 0 0 22px;
+      margin:0;
+      display:grid;
+      gap:6px;
+      color:var(--muted);
+      font-size:.94rem;
+    }
+    .summary-package-includes li{
+      padding:0;
+      border:0;
+      display:block;
+      color:inherit;
+    }
+    .summary-footer{display:grid; grid-template-columns:1fr 1fr; gap:12px; padding:18px 0; border-top:1px solid rgba(13,20,18,.08); border-bottom:1px solid rgba(13,20,18,.08); margin-bottom:18px}
+    .summary-meta span{display:block; color:var(--muted); font-size:.9rem; margin-bottom:4px}
+    .summary-meta strong{font-size:1.12rem; letter-spacing:-.03em}
+    .summary-actions{display:grid; gap:10px}
+
+    .ai-inline-head{display:flex; justify-content:space-between; align-items:center; gap:12px; margin-bottom:18px}
+    .ai-inline-head h4{margin:0; font-size:1.4rem; letter-spacing:-.04em}
+    .ai-inline-state{display:inline-flex; align-items:center; padding:8px 12px; border-radius:999px; background:var(--green-soft); color:var(--green-2); font-size:.84rem; font-weight:700}
+    .quick-prompts{display:flex; flex-wrap:wrap; gap:10px; margin:16px 0 18px}
+    .quick-prompt{
+      cursor:pointer;
+      border:1px solid rgba(13,20,18,.08);
+      background:#fff;
+      color:#24312d;
+      border-radius:999px;
+      padding:10px 14px;
+      font-weight:600;
+      transition:var(--transition);
+    }
+    .quick-prompt:hover{border-color:rgba(22,176,91,.34); color:var(--green-2)}
+    .builder-ai-actions{display:flex; gap:12px; flex-wrap:wrap}
+
+    .ai-shell{display:grid; grid-template-columns:1fr 1fr; gap:24px}
+    .ai-input-panel,
+    .ai-conversation-panel{padding:28px}
+    .ai-panel-head{display:flex; justify-content:space-between; align-items:center; gap:12px; margin-bottom:18px}
+    .ai-panel-head h3{margin:0; font-size:1.7rem; letter-spacing:-.04em}
+    .ai-status{display:inline-flex; align-items:center; padding:8px 12px; border-radius:999px; background:var(--green-soft); color:var(--green-2); font-size:.84rem; font-weight:700}
+    .input-label{display:block; margin-bottom:12px; font-weight:700}
+    .ai-actions{display:flex; gap:12px; flex-wrap:wrap}
+    .ai-conversation-panel{
+      display:flex;
+      flex-direction:column;
+      gap:16px;
+      background:linear-gradient(180deg,#ffffff,#f8fbf9);
+      min-height:100%;
+    }
+    .chat-message{display:flex; animation:fadeUp .35s ease}
+    .chat-message.system{justify-content:flex-start}
+    .chat-message.user{justify-content:flex-end}
+    .chat-bubble{
+      max-width:88%;
+      padding:14px 16px;
+      border-radius:18px;
+      border:1px solid rgba(13,20,18,.08);
+      background:#fff;
+      color:#24312d;
+      box-shadow:var(--shadow-soft);
+    }
+    .chat-message.user .chat-bubble{background:linear-gradient(135deg,var(--green),#1acc65); color:#fff; border:none}
+    .ai-estimate-card{margin-top:auto; padding:18px; border-radius:20px; background:var(--green-soft); border:1px solid rgba(22,176,91,.14)}
+    .ai-estimate-card span{display:block; color:var(--green-2); font-size:.9rem; font-weight:700; margin-bottom:6px}
+    .ai-estimate-card strong{display:block; font-size:2rem; letter-spacing:-.05em; color:var(--green-2)}
+
+    .process-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:18px}
+    .process-card{padding:24px; transition:var(--transition)}
+    .process-card:hover{transform:translateY(-4px)}
+    .step-index{width:42px; height:42px; display:grid; place-items:center; border-radius:14px; background:var(--green-soft); color:var(--green-2); font-weight:800; margin-bottom:14px}
+    .process-card h3{margin:0 0 8px; font-size:1.06rem; letter-spacing:-.02em}
+    .process-card p{margin:0; color:var(--muted)}
+
+    .final-cta{
+      padding:40px;
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:24px;
+      align-items:center;
+      background:
+        radial-gradient(circle at right top, rgba(22,176,91,.12), transparent 28%),
+        linear-gradient(180deg,rgba(255,255,255,.92),rgba(247,251,248,.9));
+    }
+    .final-cta h2{margin:14px 0 10px; font-size:clamp(2.15rem,4vw,3.6rem); line-height:1.02; letter-spacing:-.055em; max-width:760px}
+    .final-cta p{margin:0; color:var(--muted); max-width:640px}
+    .final-cta-actions{display:flex; flex-wrap:wrap; justify-content:flex-end; gap:12px}
+
+    .site-footer{padding:0 0 34px}
+    .site-footer .container{display:block}
+    .footer-shell{padding:28px; border-radius:30px; background:rgba(255,255,255,.86); border:1px solid rgba(13,20,18,.08); box-shadow:0 24px 70px rgba(11,25,18,.08)}
+    .footer-grid{display:grid; grid-template-columns:1.3fr .8fr .9fr; gap:24px; align-items:start; padding-bottom:22px; border-bottom:1px solid rgba(13,20,18,.08)}
+    .footer-brand p{max-width:380px; line-height:1.55}
+    .footer-col{display:grid; gap:10px; align-content:start}
+    .footer-col h4{font-size:1rem; margin:0 0 4px; color:#0f172a}
+    .footer-col a{display:block; color:var(--muted); margin-bottom:0}
+    .footer-col a:hover{color:#0f172a}
+    .footer-logo{height:52px; width:auto; margin-bottom:14px}
+    .footer-meta{display:block; margin-top:0}
+    .footer-bottom{display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap; padding-top:18px}
+    .footer-legal-links{display:flex; gap:18px; flex-wrap:wrap}
+    .footer-bottom a{color:var(--muted)}
+    .footer-bottom a:hover{color:#0f172a}
+
+    @keyframes fadeUp{
+      from{opacity:0; transform:translateY(10px)}
+      to{opacity:1; transform:translateY(0)}
+    }
+
+    @media (max-width: 1180px){
+      .hero-grid,
+      .builder-shell,
+      .ai-shell,
+      .comparison-grid,
+      .maintenance-followup-shell,
+      .final-cta{grid-template-columns:1fr}
+      .site-footer .footer-grid{grid-template-columns:1fr}
+      .site-footer .footer-col{justify-self:start}
+      .site-footer .footer-bottom{flex-direction:column; align-items:flex-start}
+      .builder-summary{position:relative; top:0}
+      .trust-grid,
+      .process-grid{grid-template-columns:repeat(2,1fr)}
+      .final-cta-actions{justify-content:flex-start}
+    }
+
+    @media (max-width: 920px){
+      .nav-links{display:none}
+      .pricing-grid,
+      .trust-grid,
+      .process-grid,
+      .form-grid,
+      .option-grid{grid-template-columns:1fr}
+      .section-head,
+      .comparison-head,
+      .builder-header{flex-direction:column; align-items:flex-start}
+      .summary-footer{grid-template-columns:1fr}
+    }
+
+    @media (max-width: 640px){
+      .container{width:min(var(--container), calc(100% - 24px))}
+      .hero-section{padding-top:42px}
+      .section{padding:76px 0}
+      .section-tight{padding:60px 0}
+      .hero-panel,
+      .pricing-card,
+      .builder-main,
+      .builder-summary,
+      .ai-input-panel,
+      .ai-conversation-panel,
+      .process-card,
+      .maintenance-followup-shell,
+      .final-cta,
+      .comparison-shell{padding:20px; border-radius:22px}
+      .hero-actions,
+      .ai-actions,
+      .builder-ai-actions{display:grid}
+      .btn{width:100%}
+      .nav-actions .btn-ghost{display:none}
+      .hero-copy h1{font-size:clamp(2.7rem, 12vw, 4.2rem)}
+      .pricing-value,
+      .summary-price,
+      .hero-panel-price{font-size:2.5rem}
+      .builder-tabs{width:100%; display:grid; grid-template-columns:1fr 1fr}
+    }
+    .site-header{
+      position:sticky;
+      top:0;
+      z-index:1000;
+      background:rgba(248,251,248,0.92);
+      backdrop-filter:blur(16px);
+      border-bottom:1px solid rgba(15,23,42,0.08);
+    }
+    .site-header.scrolled{
+      background:rgba(255,255,255,0.97);
+      border-bottom-color:rgba(15,23,42,0.10);
+      box-shadow:0 10px 30px rgba(15,23,42,0.08);
+    }
+    .site-header .nav-wrap{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      min-height:84px;
+      gap:16px;
+    }
+    .site-header .brand img{
+      height:48px;
+      width:auto;
+      display:block;
+    }
+    .site-nav{
+      display:flex;
+      align-items:center;
+      gap:22px;
+    }
+    .site-nav a{
+      color:#183226;
+      font-weight:600;
+      opacity:.92;
+    }
+    .site-nav a:hover,
+    .site-nav a.active{
+      color:#0b1410;
+    }
+    .site-nav .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .site-nav .btn-sm{
+      padding:.9rem 1.2rem;
+      font-size:.95rem;
+    }
+    .site-nav .btn-primary{
+      color:#08110d;
+      background:linear-gradient(135deg, #2ed573 0%, #23c766 100%);
+      box-shadow:0 12px 28px rgba(46,213,115,0.18);
+    }
+    .nav-toggle{
+      display:none;
+      background:transparent;
+      border:1px solid rgba(15,23,42,0.10);
+      color:#0b1410;
+      padding:.7rem .9rem;
+      border-radius:12px;
+      cursor:pointer;
+    }
+    @media (max-width:820px){
+      .site-header .nav-wrap{
+        position:relative;
+      }
+      .nav-toggle{
+        display:inline-flex;
+      }
+      .site-nav{
+        position:absolute;
+        top:calc(100% + .75rem);
+        right:0;
+        left:0;
+        display:none;
+        flex-direction:column;
+        align-items:flex-start;
+        padding:1rem;
+        border-radius:20px;
+        background:rgba(255,255,255,0.98);
+        border:1px solid rgba(15,23,42,0.08);
+        box-shadow:0 24px 70px rgba(15,23,42,0.12);
+      }
+      .site-nav.open{
+        display:flex;
+      }
+      .site-nav .btn{
+        width:100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a href="../index.html" class="brand" aria-label="WebInbound home">
+        <img src="../images/logo.png" alt="Logo WebInbound" />
+      </a>
+
+      <button class="nav-toggle" aria-label="Apri menu" aria-expanded="false">☰</button>
+
+      <nav class="site-nav">
+        <a href="../index.html">Home</a>
+        <a href="servizi.html">Servizi</a>
+        <a href="progetti.html">Progetti</a>
+        <a href="prezzi.html" class="active">Prezzi</a>
+        <a href="contatti.html">Contatti</a>
+        <a href="iniziaora.html" class="btn btn-sm btn-primary">Inizia Ora</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero-section">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow">PREZZI TRASPARENTI · CONFIGURAZIONE GUIDATA · AI ASSISTANT</span>
+          <h1>
+            Prezzi chiari. 
+            <span>Preventivi </span>
+            intelligenti.
+          </h1>
+          <p class="hero-sub">
+            Non realizziamo semplici siti web. Costruiamo presenze digitali credibili,
+            performanti e pensate per trasformare visitatori in richieste reali.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#packages" class="btn btn-secondary">Scopri i pacchetti</a>
+            <a href="iniziaora.html" class="btn btn-primary">Crea il tuo preventivo</a>
+          </div>
+
+          <div class="hero-badges">
+            <div class="feature-pill"><span></span> Preventivo intelligente</div>
+            <div class="feature-pill"><span></span> Configurazione guidata</div>
+            <div class="feature-pill"><span></span> Assistente AI</div>
+          </div>
+        </div>
+
+        <aside class="hero-panel">
+          <div class="hero-panel-top">
+            <span class="panel-kicker">STIMA RAPIDA</span>
+            <div class="hero-panel-price" id="heroQuickPrice">€429</div>
+            <p>La fascia più scelta dalle PMI locali parte da una struttura professionale con SEO, lead generation e impostazione orientata alla conversione.</p>
+          </div>
+
+          <div class="insight-stack">
+            <div class="insight-card">
+              <div>
+                <strong>Professional</strong>
+                <small>La base più scelta per attività che vogliono sembrare più strutturate</small>
+              </div>
+              <span>da €429</span>
+            </div>
+
+            <div class="insight-card">
+              <div>
+                <strong>Setup crescita</strong>
+                <small>Blog, portfolio, lead form e presenza digitale più forte</small>
+              </div>
+              <span>da €579</span>
+            </div>
+
+            <div class="insight-card">
+              <div>
+                <strong>Business avanzato</strong>
+                <small>Per funnel, prenotazioni, e-commerce o processi più complessi</small>
+              </div>
+              <span>da €899</span>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="trust-strip">
+      <div class="container trust-grid">
+        <div class="trust-item">
+          <strong>Prezzi trasparenti</strong>
+          <span>Stime chiare, pacchetti leggibili, nessuna opacità inutile.</span>
+        </div>
+        <div class="trust-item">
+          <strong>Preventivo personalizzabile</strong>
+          <span>Puoi partire da una base o costruire il progetto funzione per funzione.</span>
+        </div>
+        <div class="trust-item">
+          <strong>Consulenza gratuita</strong>
+          <span>La stima iniziale apre il dialogo, non ti vincola.</span>
+        </div>
+        <div class="trust-item">
+          <strong>Nessun impegno iniziale</strong>
+          <span>Puoi capire il budget prima di decidere come muoverti.</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="packages">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">PACCHETTI BASE</span>
+            <h2>Una base chiara per iniziare. Una struttura flessibile per crescere.</h2>
+          </div>
+          <p>
+            Scegli un pacchetto come punto di partenza oppure usa il configuratore per costruire una soluzione più precisa.
+            Ogni piano è pensato per aumentare credibilità, performance e acquisizione clienti.
+          </p>
+        </div>
+
+        <div class="pricing-grid">
+          <article class="pricing-card">
+            <div class="pricing-top">
+              <h3>Starter</h3>
+              <p>Per attività che vogliono iniziare con una presenza online pulita e professionale.</p>
+              <div class="pricing-meta">a partire da</div>
+              <div class="pricing-value">€169</div>
+              <div class="pricing-target">Consigliato per negozi locali, piccole attività, landing essenziali</div>
+            </div>
+
+            <ul class="feature-list">
+              <li>Sito web monopagina</li>
+              <li>Design responsive</li>
+              <li>Form di contatto</li>
+              <li>SEO base</li>
+              <li>Certificato SSL</li>
+              <li>1 anno hosting incluso</li>
+              <li>Compliance legale</li>
+            </ul>
+
+            <a href="iniziaora.html" class="btn btn-dark">Usa come base</a>
+          </article>
+
+          <article class="pricing-card pricing-card-featured">
+            <div class="featured-badge">Più scelto</div>
+            <div class="pricing-top">
+              <h3>Professional</h3>
+              <p>La scelta migliore per PMI che vogliono più autorevolezza e più richieste.</p>
+              <div class="pricing-meta">a partire da</div>
+              <div class="pricing-value">€429</div>
+              <div class="pricing-target">Consigliato per imprese edili, studi, palestre, hotel, B&amp;B</div>
+            </div>
+
+            <ul class="feature-list">
+              <li>Sito fino a 5 pagine</li>
+              <li>Design premium responsive</li>
+              <li>Form di contatto avanzato</li>
+              <li>SEO avanzata</li>
+              <li>Blog integrato</li>
+              <li>2 anni hosting incluso</li>
+              <li>Compliance legale</li>
+            </ul>
+
+            <a href="iniziaora.html" class="btn btn-primary">Configura da Professional</a>
+          </article>
+
+          <article class="pricing-card">
+            <div class="pricing-top">
+              <h3>Business</h3>
+              <p>Per aziende che vogliono un asset digitale più completo, strutturato e scalabile.</p>
+              <div class="pricing-meta">a partire da</div>
+              <div class="pricing-value">€899</div>
+              <div class="pricing-target">Consigliato per e-commerce base, CRM, funnel e progetti più evoluti</div>
+            </div>
+
+            <ul class="feature-list">
+              <li>Sito fino a 10 pagine</li>
+              <li>Design personalizzato esclusivo</li>
+              <li>Funzionalità e-commerce base</li>
+              <li>SEO avanzata + content setup</li>
+              <li>Integrazione CRM</li>
+              <li>Form multi-step avanzati</li>
+              <li>3 anni hosting incluso</li>
+              <li>Compliance legale avanzata</li>
+            </ul>
+
+            <a href="iniziaora.html" class="btn btn-dark">Costruisci il tuo progetto</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="comparison">
+      <div class="container">
+        <div class="comparison-shell">
+          <div class="comparison-head">
+            <div>
+              <span class="eyebrow eyebrow-dark">CONFRONTO REALE CON IL MERCATO</span>
+              <h2>Il problema non è solo quanto spendi. È quanto valore ricevi.</h2>
+            </div>
+            <p>
+              Molte agenzie vendono processi più lenti, costi più opachi e meno orientamento al risultato.
+              WebInbound concentra il valore su ciò che conta davvero per una PMI locale.
+            </p>
+          </div>
+
+          <div class="comparison-grid">
+            <div class="comparison-table-card">
+              <table class="comparison-table">
+                <thead>
+                  <tr>
+                    <th>Servizio</th>
+                    <th>WebInbound</th>
+                    <th>Altre agenzie</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Sito monopagina</td>
+                    <td class="good">da €200</td>
+                    <td class="bad">da €1000+</td>
+                  </tr>
+                  <tr>
+                    <td>Sito aziendale 5 pagine</td>
+                    <td class="good">da €400</td>
+                    <td class="bad">da €2000+</td>
+                  </tr>
+                  <tr>
+                    <td>Sito e-commerce</td>
+                    <td class="good">da €900</td>
+                    <td class="bad">da €4000+</td>
+                  </tr>
+                  <tr>
+                    <td>SEO base</td>
+                    <td class="good">Inclusa</td>
+                    <td class="bad">€500+</td>
+                  </tr>
+                  <tr>
+                    <td>Tempistiche sviluppo</td>
+                    <td class="good">3–10 giorni</td>
+                    <td class="bad">30–60 giorni</td>
+                  </tr>
+                  <tr>
+                    <td>Assistenza iniziale</td>
+                    <td class="good">Inclusa</td>
+                    <td class="bad">Extra</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="comparison-insights">
+              <div class="insight-panel">
+                <span class="insight-title">Più efficienza</span>
+                <p>Meno dispersione tra call, revisioni infinite e processi poco leggibili.</p>
+              </div>
+              <div class="insight-panel">
+                <span class="insight-title">Più velocità</span>
+                <p>Tempi più rapidi significano entrare online prima e intercettare prima nuove richieste.</p>
+              </div>
+              <div class="insight-panel">
+                <span class="insight-title">Più valore reale</span>
+                <p>Non paghi struttura inutile: paghi un sito progettato per credibilità, contatti e crescita.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="inizia-ora">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">INIZIA ORA</span>
+            <h2>Il configuratore completo ora vive in una pagina dedicata</h2>
+          </div>
+          <p>
+            Per costruire il tuo progetto con stima guidata, riepilogo live e generazione automatica con AI,
+            entra nella nuova esperienza dedicata e lavora con tutti gli strumenti in un unico flusso.
+          </p>
+        </div>
+        <div class="final-cta">
+          <div>
+            <span class="eyebrow">NUOVA PAGINA DEDICATA</span>
+            <h2>Apri Inizia Ora e configura il progetto con stima live e AI</h2>
+            <p>
+              Abbiamo separato il configuratore avanzato dalla pagina prezzi per rendere il percorso più chiaro:
+              qui scopri i pacchetti, lì costruisci il progetto e ottieni una prima stima completa.
+            </p>
+          </div>
+
+          <div class="final-cta-actions">
+            <a href="iniziaora.html" class="btn btn-primary">Apri Inizia Ora</a>
+            <a href="contatti.html" class="btn btn-secondary">Vai ai contatti</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-tight" id="process">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">COME FUNZIONA</span>
+            <h2>Dal prezzo alla consulenza, con un flusso chiaro e senza attriti</h2>
+          </div>
+          <p>
+            La pagina è progettata per aiutarti a capire il valore, orientare il budget
+            e arrivare alla consulenza con idee già molto più precise.
+          </p>
+        </div>
+
+        <div class="process-grid">
+          <div class="process-card">
+            <span class="step-index">1</span>
+            <h3>Scegli una base o crea il tuo progetto</h3>
+            <p>Parti da un pacchetto oppure configura una soluzione più personalizzata.</p>
+          </div>
+          <div class="process-card">
+            <span class="step-index">2</span>
+            <h3>Ottieni una stima</h3>
+            <p>Visualizzi subito fascia di investimento, struttura e tempi indicativi.</p>
+          </div>
+          <div class="process-card">
+            <span class="step-index">3</span>
+            <h3>Ricevi consulenza dedicata</h3>
+            <p>Analizziamo insieme obiettivi, settore, priorità e livello di complessità.</p>
+          </div>
+          <div class="process-card">
+            <span class="step-index">4</span>
+            <h3>Definiamo il progetto finale</h3>
+            <p>Trasformiamo la stima in una proposta concreta, ordinata e realizzabile.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-tight">
+      <div class="container">
+        <div class="final-cta">
+          <div>
+            <span class="eyebrow">PRONTO A PARTIRE?</span>
+            <h2>Ogni progetto digitale è diverso. Scopri quanto può costare il tuo.</h2>
+            <p>
+              Puoi partire da una stima immediata, usare l’assistente AI oppure richiedere direttamente una consulenza.
+              In ogni caso, l’obiettivo è uno: costruire una presenza digitale che generi clienti.
+            </p>
+          </div>
+
+          <div class="final-cta-actions">
+            <a href="iniziaora.html" class="btn btn-primary">Crea il tuo preventivo</a>
+            <a href="contatti.html" class="btn btn-secondary">Prenota consulenza</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section maintenance-followup" id="maintenance-followup">
+      <div class="container">
+        <div class="maintenance-followup-shell">
+          <div class="maintenance-followup-copy">
+            <span class="eyebrow">Dopo il lancio</span>
+            <h2>E dopo la realizzazione del sito?</h2>
+            <p>
+              Un sito web deve essere mantenuto aggiornato e sicuro nel tempo.
+            </p>
+            <p>
+              Molti clienti scelgono di affiancare alla realizzazione del sito uno dei nostri piani di manutenzione.
+            </p>
+            <div class="maintenance-followup-note">Consigliato dopo la realizzazione del sito.</div>
+
+            <ul class="maintenance-followup-list">
+              <li><strong>Sicurezza del sito</strong><br>Controlli tecnici e aggiornamenti per ridurre vulnerabilità e imprevisti.</li>
+              <li><strong>Aggiornamenti regolari</strong><br>Interventi continuativi per mantenere il progetto efficiente e compatibile.</li>
+              <li><strong>Supporto tecnico</strong><br>Un riferimento operativo per assistenza, verifiche e piccole esigenze evolutive.</li>
+            </ul>
+          </div>
+
+          <div class="maintenance-followup-side">
+            <div class="maintenance-followup-card">
+              <strong>Un’estensione naturale del progetto</strong>
+              <p>La manutenzione è il modo più semplice per proteggere il lavoro fatto sul sito e mantenerlo affidabile nel tempo.</p>
+            </div>
+            <div class="maintenance-followup-card">
+              <strong>Più continuità, meno interruzioni</strong>
+              <p>Con un piano dedicato puoi gestire aggiornamenti, backup e supporto con maggiore serenità e ordine.</p>
+            </div>
+            <a href="manutenzione.html" class="btn btn-primary">Scopri i piani di manutenzione</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-shell">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <img src="../images/logo.png" alt="WebInbound" class="footer-logo" />
+            <p>Agenzia digitale specializzata in siti web orientati ai risultati.</p>
+          </div>
+          <div class="footer-col">
+            <h4>Link</h4>
+            <a href="servizi.html">Servizi</a>
+            <a href="progetti.html">Portfolio</a>
+            <a href="prezzi.html">Prezzi</a>
+            <a href="contatti.html">Contatti</a>
+          </div>
+          <div class="footer-col">
+            <h4>Contatti</h4>
+            <a href="mailto:info@webinbound.it">info@webinbound.it</a>
+            <a href="mailto:support@webinbound.it">support@webinbound.it</a>
+            <a href="tel:+393791465762">+39 379 146 5762</a>
+            <span class="footer-meta">P.IVA: 02841450022</span>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span>© 2026 Web Inbound. Tutti i diritti riservati. P.IVA: 02841450022</span>
+          <div class="footer-legal-links">
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="cookie.html">Cookie Policy</a>
+            <a href="termini.html">Termini</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/cookie-banner.js"></script>
+  <script>
+    const basePackage = document.getElementById("basePackage");
+    const pageCount = document.getElementById("pageCount");
+    const optionGrid = document.getElementById("optionGrid");
+    let featureInputs = [];
+
+    const summaryPrice = document.getElementById("summaryPrice");
+    const summaryTotal = document.getElementById("summaryTotal");
+    const summaryTime = document.getElementById("summaryTime");
+    const summaryList = document.getElementById("summaryList");
+    const heroQuickPrice = document.getElementById("heroQuickPrice");
+    const builderProgressFill = document.getElementById("builderProgressFill");
+    const builderProgressText = document.getElementById("builderProgressText");
+
+    const aiPrompt = document.getElementById("aiPrompt");
+    const aiPromptInline = document.getElementById("aiPromptInline");
+    const runAiAnalysis = document.getElementById("runAiAnalysis");
+    const resetAiAnalysis = document.getElementById("resetAiAnalysis");
+    const runAiInline = document.getElementById("runAiInline");
+    const clearAiInline = document.getElementById("clearAiInline");
+    const quickPrompts = Array.from(document.querySelectorAll(".quick-prompt"));
+    const aiConversation = document.getElementById("aiConversation");
+    const aiEstimateValue = document.getElementById("aiEstimateValue");
+
+    const tabs = Array.from(document.querySelectorAll(".builder-tab"));
+    const paneGuided = document.getElementById("pane-guided");
+    const paneAi = document.getElementById("pane-ai");
+
+    const hasConfigurator = basePackage && pageCount && optionGrid && summaryList && summaryPrice && summaryTotal && summaryTime && heroQuickPrice && builderProgressFill && builderProgressText;
+    const hasAiAssistant = aiPrompt && aiPromptInline && runAiAnalysis && resetAiAnalysis && runAiInline && clearAiInline && aiConversation && aiEstimateValue;
+
+    if (hasConfigurator && hasAiAssistant) {
+
+    const packagePrices = {
+      starter: 169,
+      professional: 429,
+      business: 899
+    };
+
+    const packageLabels = {
+      starter: "Starter",
+      professional: "Professional",
+      business: "Business"
+    };
+
+    const pagePrices = {
+      1: 0,
+      2: 150,
+      3: 300,
+      4: 450,
+      5: 600,
+      6: 750,
+      7: 900,
+      8: 1050,
+      10: 1350,
+      12: 1650,
+      14: 1950
+    };
+
+    const packagePageOptions = {
+      starter: [
+        { value: "1", label: "1 pagina" },
+        { value: "2", label: "2 pagine" },
+        { value: "3", label: "3 pagine" },
+        { value: "4", label: "4 pagine" }
+      ],
+      professional: [
+        { value: "4", label: "4 pagine" },
+        { value: "5", label: "5 pagine" },
+        { value: "6", label: "6 pagine" },
+        { value: "7", label: "7 pagine" },
+        { value: "8", label: "8 pagine" }
+      ],
+      business: [
+        { value: "8", label: "8 pagine" },
+        { value: "10", label: "10 pagine" },
+        { value: "12", label: "12 pagine" },
+        { value: "14", label: "14+ pagine" }
+      ]
+    };
+
+    const featureCatalog = {
+      seoAdvanced: {
+        id: "seoAdvanced",
+        label: "SEO avanzata",
+        title: "SEO avanzata",
+        description: "Ottimizzazione extra per spingere meglio visibilita e conversione",
+        price: 80
+      },
+      aiIntegration: {
+        id: "aiIntegration",
+        label: "Integrazione AI",
+        title: "Assistente AI",
+        description: "Chatbot intelligente per richieste, supporto e prequalifica contatti",
+        price: 250
+      },
+      analyticsSetup: {
+        id: "analyticsSetup",
+        label: "Setup Tracciamento e Analytics",
+        title: "Tracking & Analytics",
+        description: "Configurazione strumenti di analisi per monitorare visite, conversioni e richieste contatto.",
+        price: 150
+      },
+      blog: {
+        id: "blog",
+        label: "Blog integrato",
+        title: "Blog",
+        description: "Area contenuti per autorevolezza e crescita organica",
+        price: 70
+      },
+      ecommerce: {
+        id: "ecommerce",
+        label: "E-commerce",
+        title: "E-commerce",
+        description: "Catalogo, prodotto, checkout e logica commerciale",
+        price: 250
+      },
+      bookings: {
+        id: "bookings",
+        label: "Prenotazioni online",
+        title: "Prenotazioni",
+        description: "Per hotel, B&B, studi, appuntamenti e booking",
+        price: 120
+      },
+      maps: {
+        id: "maps",
+        label: "Integrazione mappe",
+        title: "Mappe",
+        description: "Sede, local SEO e punti di riferimento",
+        price: 35
+      },
+      social: {
+        id: "social",
+        label: "Social integration",
+        title: "Social",
+        description: "Connessione con i tuoi canali e CTA coordinate",
+        price: 25
+      },
+      contactForm: {
+        id: "contactForm",
+        label: "Form contatto avanzato",
+        title: "Form contatto",
+        description: "Lead form piu efficace e piu chiaro",
+        price: 60
+      },
+      whatsapp: {
+        id: "whatsapp",
+        label: "WhatsApp CTA",
+        title: "WhatsApp",
+        description: "Contatto rapido ad alto tasso di utilizzo",
+        price: 25
+      },
+      gallery: {
+        id: "gallery",
+        label: "Gallery fotografica",
+        title: "Gallery",
+        description: "Per ambienti, prodotti, lavori e showcase",
+        price: 55
+      },
+      portfolio: {
+        id: "portfolio",
+        label: "Portfolio lavori",
+        title: "Portfolio",
+        description: "Case study e lavori fatti per aumentare fiducia",
+        price: 85
+      },
+      multilingual: {
+        id: "multilingual",
+        label: "Multilingua",
+        title: "Multilingua",
+        description: "Per clienti turistici o business internazionali",
+        price: 140
+      },
+      commercePolicy: {
+        id: "commercePolicy",
+        label: "Commerce Policy",
+        title: "Commerce Policy",
+        description: "Termini di vendita, resi, spedizioni e policy e-commerce.",
+        price: 250
+      },
+      hosting: {
+        id: "hosting",
+        label: "Hosting premium",
+        title: "Hosting",
+        description: "Prestazioni, uptime e gestione iniziale",
+        price: 90
+      },
+      domain: {
+        id: "domain",
+        label: "Dominio gestito",
+        title: "Dominio",
+        description: "Gestione tecnica del dominio",
+        price: 20
+      },
+      quoteSystem: {
+        id: "quoteSystem",
+        label: "Sistema preventivazione automatica",
+        title: "Preventivazione automatica",
+        description: "Richieste guidate con stima iniziale automatizzata",
+        price: 400
+      }
+    };
+
+    const packageIncludedFeatures = {
+      starter: [
+        "Setup iniziale del sito",
+        "Design responsive essenziale",
+        "SEO base gia inclusa",
+        "Pubblicazione e configurazione iniziale",
+        "Compliance legale (policy, cookie, trattamenti dati)"
+      ],
+      professional: [
+        "Design piu strutturato e personalizzato",
+        "SEO avanzata gia inclusa",
+        "Lead form ottimizzato",
+        "Set up tecnico completo",
+        "Compliance legale (policy, cookie, trattamenti dati)"
+      ],
+      business: [
+        "Struttura avanzata per crescita e conversioni",
+        "SEO avanzata gia inclusa",
+        "Architettura estesa per piu sezioni",
+        "Compliance legale avanzata",
+        "Base pronta per automazioni e funnel"
+      ]
+    };
+
+    const packageFeatureOptions = {
+      starter: ["seoAdvanced", "aiIntegration", "analyticsSetup", "blog", "ecommerce", "bookings", "maps", "social", "contactForm", "whatsapp", "gallery", "portfolio", "multilingual", "hosting", "domain"],
+      professional: ["aiIntegration", "analyticsSetup", "blog", "ecommerce", "bookings", "maps", "social", "contactForm", "whatsapp", "gallery", "portfolio", "multilingual", "hosting", "domain"],
+      business: ["aiIntegration", "analyticsSetup", "blog", "ecommerce", "bookings", "maps", "social", "contactForm", "whatsapp", "gallery", "portfolio", "multilingual", "commercePolicy", "hosting", "domain", "quoteSystem"]
+    };
+
+    const packageDefaultFeatures = {
+      starter: ["maps", "social", "whatsapp", "hosting", "domain"],
+      professional: ["blog", "maps", "social", "contactForm", "whatsapp", "hosting", "domain"],
+      business: ["blog", "maps", "social", "contactForm", "whatsapp", "hosting", "domain", "quoteSystem"]
+    };
+
+    function euro(value) {
+      return new Intl.NumberFormat("it-IT", {
+        style: "currency",
+        currency: "EUR",
+        maximumFractionDigits: 0
+      }).format(value);
+    }
+
+    function getTimeline(total) {
+      if (total < 350) return "3–5 giorni";
+      if (total < 700) return "4–7 giorni";
+      if (total < 1100) return "5–8 giorni";
+      if (total < 1500) return "7–10 giorni";
+      return "10–14 giorni";
+    }
+
+    function syncPageOptions() {
+      const options = packagePageOptions[basePackage.value] || [];
+      const previousValue = pageCount.value;
+
+      pageCount.innerHTML = "";
+
+      options.forEach(option => {
+        const element = document.createElement("option");
+        element.value = option.value;
+        element.textContent = option.label;
+        if (option.value === previousValue) {
+          element.selected = true;
+        }
+        pageCount.appendChild(element);
+      });
+
+      const hasMatchingValue = options.some(option => option.value === previousValue);
+      if (!hasMatchingValue && options.length > 0) {
+        pageCount.value = options[0].value;
+      }
+    }
+
+    function renderFeatureOptions() {
+      const selectedIds = new Set(
+        featureInputs.filter(input => input.checked).map(input => input.dataset.featureId)
+      );
+      const packageKey = basePackage.value;
+      const allowedFeatures = packageFeatureOptions[packageKey] || [];
+      const defaultFeatures = packageDefaultFeatures[packageKey] || [];
+
+      optionGrid.innerHTML = allowedFeatures.map(featureId => {
+        const feature = featureCatalog[featureId];
+        const isChecked = selectedIds.has(featureId) || defaultFeatures.includes(featureId);
+
+        return `
+          <label class="option-card">
+            <input type="checkbox" data-feature-id="${feature.id}" data-label="${feature.label}" data-price="${feature.price}"${isChecked ? " checked" : ""}>
+            <span><strong>${feature.title}</strong><small>${feature.description}</small></span>
+          </label>
+        `;
+      }).join("");
+
+      featureInputs = Array.from(optionGrid.querySelectorAll(".option-card input"));
+      featureInputs.forEach(input => input.addEventListener("change", updateConfigurator));
+    }
+
+    function updateConfigurator() {
+      const baseValue = packagePrices[basePackage.value];
+      const pagesValue = pagePrices[pageCount.value] || 0;
+
+      let selectedFeatures = [];
+      let featuresTotal = 0;
+
+      featureInputs.forEach(input => {
+        if (input.checked) {
+          const price = Number(input.dataset.price || 0);
+          selectedFeatures.push({
+            label: input.dataset.label,
+            price
+          });
+          featuresTotal += price;
+        }
+      });
+
+      const total = baseValue + pagesValue + featuresTotal;
+      summaryPrice.textContent = euro(total);
+      summaryTotal.textContent = euro(total);
+      heroQuickPrice.textContent = euro(total);
+      summaryTime.textContent = getTimeline(total);
+
+      const packageName = packageLabels[basePackage.value];
+      const pagesLabel = pageCount.options[pageCount.selectedIndex]?.textContent || `${pageCount.value} pagine`;
+      const includedFeatures = packageIncludedFeatures[basePackage.value] || [];
+      const includedFeaturesHtml = includedFeatures.map(item => `<li>${item}</li>`).join("");
+
+      let html = `
+        <li class="summary-package-item">
+          <details class="summary-package-details">
+            <summary>
+              <span class="summary-package-label">Pacchetto base</span>
+              <strong>${packageName}</strong>
+            </summary>
+            <ul class="summary-package-includes">${includedFeaturesHtml}</ul>
+          </details>
+        </li>
+        <li><span>Numero pagine</span><strong>${pagesLabel}</strong></li>
+      `;
+
+      selectedFeatures.forEach(item => {
+        html += `<li><span>${item.label}</span><strong>${euro(item.price)}</strong></li>`;
+      });
+
+      summaryList.innerHTML = html;
+
+      const totalSelectable = featureInputs.length + 2;
+      const selectedCount = selectedFeatures.length + 2;
+      const progress = Math.round((selectedCount / totalSelectable) * 100);
+
+      builderProgressFill.style.width = `${progress}%`;
+      builderProgressText.textContent = `${progress}%`;
+    }
+
+    function setActiveTab(tabName) {
+      tabs.forEach(tab => tab.classList.toggle("active", tab.dataset.tab === tabName));
+      paneGuided.classList.toggle("active", tabName === "guided");
+      paneAi.classList.toggle("active", tabName === "ai");
+    }
+
+    tabs.forEach(tab => {
+      tab.addEventListener("click", () => setActiveTab(tab.dataset.tab));
+    });
+
+    basePackage.addEventListener("change", () => {
+      syncPageOptions();
+      renderFeatureOptions();
+      updateConfigurator();
+    });
+    pageCount.addEventListener("change", updateConfigurator);
+    syncPageOptions();
+    renderFeatureOptions();
+    updateConfigurator();
+
+    function appendChatMessage(type, text) {
+      const wrapper = document.createElement("div");
+      wrapper.className = `chat-message ${type}`;
+
+      const bubble = document.createElement("div");
+      bubble.className = "chat-bubble";
+      bubble.textContent = text;
+
+      wrapper.appendChild(bubble);
+      aiConversation.insertBefore(wrapper, aiConversation.querySelector(".ai-estimate-card"));
+    }
+
+    function clearConversation(initialText = "Inserisci una descrizione del progetto. L’assistente analizzerà il settore, gli obiettivi, le funzionalità consigliate e una prima fascia di investimento.") {
+      const previousMessages = Array.from(aiConversation.querySelectorAll(".chat-message"));
+      previousMessages.forEach(msg => msg.remove());
+      appendChatMessage("system", initialText);
+      aiEstimateValue.textContent = "In attesa di analisi";
+    }
+
+    function runAnalysisFromPrompt(text) {
+      const prompt = text.toLowerCase();
+
+      let businessType = "attività locale";
+      let recommendedPackage = "Professional";
+      let estimateMin = 429;
+      let estimateMax = 690;
+      let questions = [
+        "Vuoi aumentare soprattutto richieste, chiamate o credibilità percepita?",
+        "Hai già foto, logo e testi oppure va costruita anche l'impostazione del contenuto?"
+      ];
+      let features = [
+        "SEO avanzata",
+        "Form contatto avanzato",
+        "WhatsApp",
+        "Pagine servizi"
+      ];
+
+      if (prompt.includes("ristor") || prompt.includes("menu")) {
+        businessType = "ristorante";
+        recommendedPackage = "Professional";
+        estimateMin = 429;
+        estimateMax = 790;
+        features = ["Menu digitale", "Prenotazioni", "Gallery", "SEO locale", "WhatsApp"];
+      }
+
+      if (prompt.includes("edile") || prompt.includes("impresa") || prompt.includes("cantiere")) {
+        businessType = "impresa edile";
+        recommendedPackage = "Professional";
+        estimateMin = 499;
+        estimateMax = 890;
+        features = ["Portfolio lavori", "Gallery", "Richiesta preventivo", "SEO locale", "Pagine servizi"];
+      }
+
+      if (prompt.includes("hotel") || prompt.includes("b&b") || prompt.includes("bnb") || prompt.includes("camere")) {
+        businessType = "hotel / B&B";
+        recommendedPackage = "Business";
+        estimateMin = 799;
+        estimateMax = 1290;
+        features = ["Prenotazioni", "Gallery camere", "Multilingua", "Mappa", "Esperienze / servizi"];
+      }
+
+      if (prompt.includes("studio") || prompt.includes("consulen") || prompt.includes("avvocat") || prompt.includes("commercial")) {
+        businessType = "studio professionale";
+        recommendedPackage = "Professional";
+        estimateMin = 459;
+        estimateMax = 820;
+        features = ["Lead form", "Blog", "Pagine servizi", "SEO", "CTA consulenza"];
+      }
+
+      if (prompt.includes("ecommerce") || prompt.includes("shop") || prompt.includes("vendere online")) {
+        businessType = "progetto e-commerce";
+        recommendedPackage = "Business";
+        estimateMin = 899;
+        estimateMax = 1690;
+        features = ["Catalogo prodotti", "Schede prodotto", "Checkout", "Analytics", "SEO"];
+      }
+
+      appendChatMessage("system", `Analisi completata: il progetto sembra appartenere alla categoria \"${businessType}\".`);
+      appendChatMessage("system", `Configurazione suggerita: pacchetto ${recommendedPackage} con ${features.join(", ")}.`);
+      appendChatMessage("system", `Domande utili per la consulenza: ${questions.join(" ")}`);
+
+      aiEstimateValue.textContent = `${euro(estimateMin)} – ${euro(estimateMax)}`;
+    }
+
+    function runAi(text) {
+      if (!text) return;
+      clearConversation();
+      const previousMessages = Array.from(aiConversation.querySelectorAll(".chat-message"));
+      previousMessages.forEach(msg => msg.remove());
+      appendChatMessage("user", text);
+      runAnalysisFromPrompt(text);
+    }
+
+    runAiAnalysis.addEventListener("click", () => {
+      const text = aiPrompt.value.trim();
+      runAi(text);
+    });
+
+    resetAiAnalysis.addEventListener("click", () => {
+      aiPrompt.value = "";
+      clearConversation();
+    });
+
+    runAiInline.addEventListener("click", () => {
+      const text = aiPromptInline.value.trim();
+      if (!text) return;
+      aiPrompt.value = text;
+      setActiveTab("guided");
+      document.getElementById("ai-assistant").scrollIntoView({ behavior: "smooth", block: "start" });
+      setTimeout(() => runAi(text), 300);
+    });
+
+    clearAiInline.addEventListener("click", () => {
+      aiPromptInline.value = "";
+    });
+
+    quickPrompts.forEach(button => {
+      button.addEventListener("click", () => {
+        const text = button.textContent.trim();
+        if (document.activeElement !== aiPromptInline) {
+          aiPrompt.value = text;
+        }
+        aiPromptInline.value = text;
+      });
+    });
+    }
+  </script>
+  <script>
+    const navToggle = document.querySelector('.nav-toggle');
+    const siteNav = document.querySelector('.site-nav');
+    const siteHeader = document.querySelector('.site-header');
+
+    if (navToggle && siteNav) {
+      navToggle.addEventListener('click', () => {
+        const isOpen = siteNav.classList.toggle('open');
+        navToggle.setAttribute('aria-expanded', String(isOpen));
+      });
+
+      siteNav.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          siteNav.classList.remove('open');
+          navToggle.setAttribute('aria-expanded', 'false');
+        });
+      });
+    }
+
+    window.addEventListener('scroll', () => {
+      if (!siteHeader) return;
+      siteHeader.classList.toggle('scrolled', window.scrollY > 12);
+    }, { passive: true });
+  </script>
+</body>
+</html>

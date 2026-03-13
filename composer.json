@@ -1,0 +1,8 @@
+{
+  "name": "webinbound/site-contact-mailer",
+  "description": "Invio richieste contatto e preventivo del sito WebInbound tramite PHPMailer.",
+  "type": "project",
+  "require": {
+    "phpmailer/phpmailer": "^6.10"
+  }
+}

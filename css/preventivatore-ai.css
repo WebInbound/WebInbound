@@ -1,0 +1,472 @@
+:root {
+  --wb-ai-bg: #f4f7f4;
+  --wb-ai-panel: #ffffff;
+  --wb-ai-panel-soft: #f8fbf9;
+  --wb-ai-text: #0e1713;
+  --wb-ai-muted: #62746d;
+  --wb-ai-line: rgba(12, 24, 18, 0.08);
+  --wb-ai-green: #38b86e;
+  --wb-ai-green-deep: #144c32;
+  --wb-ai-green-soft: #eef9f1;
+  --wb-ai-shadow: 0 22px 70px rgba(12, 24, 18, 0.08);
+  --wb-ai-shadow-soft: 0 12px 30px rgba(12, 24, 18, 0.05);
+}
+
+[data-preventivatore-ai] {
+  color: var(--wb-ai-text);
+}
+
+.wb-ai-shell {
+  display: grid;
+  gap: 24px;
+  grid-template-columns: minmax(0, 1.08fr) minmax(360px, 0.92fr);
+  align-items: start;
+}
+
+.wb-ai-panel,
+.wb-ai-summary-panel {
+  background:
+    radial-gradient(circle at top right, rgba(56, 184, 110, 0.09), transparent 34%),
+    linear-gradient(180deg, #ffffff 0%, #f9fcfa 100%);
+  border: 1px solid var(--wb-ai-line);
+  border-radius: 30px;
+  box-shadow: var(--wb-ai-shadow);
+}
+
+.wb-ai-panel {
+  padding: 34px;
+}
+
+.wb-ai-summary-panel {
+  padding: 28px;
+  position: sticky;
+  top: 104px;
+}
+
+.wb-ai-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: var(--wb-ai-green-soft);
+  color: var(--wb-ai-green-deep);
+  border: 1px solid rgba(56, 184, 110, 0.16);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.wb-ai-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  align-items: flex-start;
+  margin-bottom: 22px;
+}
+
+.wb-ai-head h2 {
+  margin: 14px 0 10px;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  line-height: 1;
+  letter-spacing: -0.05em;
+}
+
+.wb-ai-head p {
+  margin: 0;
+  color: var(--wb-ai-muted);
+  line-height: 1.7;
+  max-width: 720px;
+}
+
+.wb-ai-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #f3fbf6, #e9f7ef);
+  border: 1px solid rgba(56, 184, 110, 0.16);
+  color: var(--wb-ai-green-deep);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.wb-ai-badge::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--wb-ai-green);
+  box-shadow: 0 0 0 6px rgba(56, 184, 110, 0.12);
+}
+
+.wb-ai-process {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-bottom: 22px;
+}
+
+.wb-ai-process-card {
+  padding: 16px;
+  border-radius: 20px;
+  background: #fff;
+  border: 1px solid var(--wb-ai-line);
+  box-shadow: var(--wb-ai-shadow-soft);
+}
+
+.wb-ai-process-card span {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #769183;
+}
+
+.wb-ai-process-card strong {
+  display: block;
+  font-size: 15px;
+  line-height: 1.45;
+}
+
+.wb-ai-field {
+  display: grid;
+  gap: 10px;
+}
+
+.wb-ai-label {
+  font-size: 14px;
+  font-weight: 700;
+  color: #21322b;
+}
+
+.wb-ai-textarea {
+  min-height: 184px;
+  width: 100%;
+  resize: vertical;
+  border: 1px solid rgba(12, 24, 18, 0.12);
+  border-radius: 24px;
+  padding: 18px 20px;
+  background: #fcfefc;
+  color: var(--wb-ai-text);
+  font: inherit;
+  line-height: 1.65;
+  transition: border-color 0.22s ease, box-shadow 0.22s ease;
+}
+
+.wb-ai-textarea:focus {
+  outline: none;
+  border-color: rgba(56, 184, 110, 0.45);
+  box-shadow: 0 0 0 4px rgba(56, 184, 110, 0.12);
+  background: #fff;
+}
+
+.wb-ai-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.wb-ai-chip {
+  border: 1px solid rgba(12, 24, 18, 0.08);
+  background: linear-gradient(180deg, #ffffff, #f8fbf9);
+  border-radius: 18px;
+  padding: 11px 14px;
+  font-weight: 700;
+  color: #21322b;
+  cursor: pointer;
+}
+
+.wb-ai-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.wb-ai-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 54px;
+  padding: 0 20px;
+  border-radius: 18px;
+  border: none;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+  transition: transform 0.22s ease, box-shadow 0.22s ease, opacity 0.22s ease;
+}
+
+.wb-ai-btn:hover {
+  transform: translateY(-1px);
+}
+
+.wb-ai-btn-primary {
+  background: linear-gradient(135deg, var(--wb-ai-green), #4bcc83);
+  color: #fff;
+  box-shadow: 0 18px 34px rgba(56, 184, 110, 0.22);
+}
+
+.wb-ai-btn-secondary {
+  background: #fff;
+  color: var(--wb-ai-text);
+  border: 1px solid var(--wb-ai-line);
+  box-shadow: var(--wb-ai-shadow-soft);
+}
+
+.wb-ai-btn[disabled] {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.wb-ai-status {
+  margin-top: 16px;
+  color: #355848;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.wb-ai-progress-track {
+  margin-top: 18px;
+  height: 8px;
+  border-radius: 999px;
+  background: #eaf0ec;
+  overflow: hidden;
+}
+
+.wb-ai-progress-fill {
+  height: 100%;
+  width: 0;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--wb-ai-green), #7adb9b);
+  transition: width 0.28s ease;
+}
+
+.wb-ai-question-deck {
+  display: grid;
+  gap: 14px;
+  margin-top: 24px;
+}
+
+.wb-ai-question-card {
+  padding: 18px;
+  border-radius: 24px;
+  background: #fff;
+  border: 1px solid var(--wb-ai-line);
+  box-shadow: var(--wb-ai-shadow-soft);
+}
+
+.wb-ai-question-top span {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #799284;
+}
+
+.wb-ai-question-top strong {
+  display: block;
+  font-size: 18px;
+  line-height: 1.45;
+  letter-spacing: -0.02em;
+}
+
+.wb-ai-option-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.wb-ai-option {
+  min-height: 52px;
+  padding: 12px 14px;
+  border-radius: 16px;
+  border: 1px solid rgba(12, 24, 18, 0.08);
+  background: linear-gradient(180deg, #ffffff, #f8fbf9);
+  color: var(--wb-ai-text);
+  text-align: left;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.wb-ai-empty {
+  padding: 18px;
+  border-radius: 22px;
+  background: linear-gradient(180deg, #f2fbf5, #ecf8f0);
+  border: 1px solid rgba(56, 184, 110, 0.16);
+}
+
+.wb-ai-empty strong {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--wb-ai-green-deep);
+}
+
+.wb-ai-empty p {
+  margin: 0;
+  color: var(--wb-ai-muted);
+  line-height: 1.6;
+}
+
+.wb-ai-summary-panel h3 {
+  margin: 12px 0 8px;
+  font-size: 32px;
+  line-height: 1;
+  letter-spacing: -0.05em;
+}
+
+.wb-ai-summary-panel p {
+  color: var(--wb-ai-muted);
+  line-height: 1.65;
+}
+
+.wb-ai-insight-card {
+  margin: 18px 0 20px;
+  padding: 18px;
+  border-radius: 22px;
+  background: linear-gradient(180deg, #f2fbf5, #ebf7f0);
+  border: 1px solid rgba(56, 184, 110, 0.18);
+}
+
+.wb-ai-insight-card span {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #618573;
+}
+
+.wb-quote-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: var(--wb-ai-green-soft);
+  color: var(--wb-ai-green-deep);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.wb-quote-intro {
+  margin: 14px 0 18px;
+}
+
+.wb-quote-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.wb-quote-block {
+  padding: 16px;
+  border-radius: 20px;
+  background: #fff;
+  border: 1px solid var(--wb-ai-line);
+}
+
+.wb-quote-block span {
+  display: block;
+  margin-bottom: 6px;
+  color: #6f8a7d;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.wb-quote-block strong {
+  display: block;
+  font-size: 16px;
+  line-height: 1.45;
+}
+
+.wb-quote-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 14px;
+  display: grid;
+  gap: 10px;
+}
+
+.wb-quote-list li {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 12px 0;
+  border-bottom: 1px dashed rgba(12, 24, 18, 0.08);
+}
+
+.wb-quote-list strong {
+  white-space: nowrap;
+}
+
+.wb-quote-disclaimer {
+  font-size: 13px;
+  color: #74867f;
+}
+
+@media (max-width: 1180px) {
+  .wb-ai-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .wb-ai-summary-panel {
+    position: relative;
+    top: 0;
+  }
+}
+
+@media (max-width: 900px) {
+  .wb-ai-process,
+  .wb-ai-option-grid,
+  .wb-quote-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .wb-ai-panel,
+  .wb-ai-summary-panel {
+    padding: 20px;
+    border-radius: 24px;
+  }
+
+  .wb-ai-head {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .wb-ai-head h2 {
+    font-size: 34px;
+  }
+
+  .wb-ai-textarea {
+    min-height: 160px;
+    padding: 16px;
+    font-size: 16px;
+  }
+
+  .wb-ai-actions {
+    display: grid;
+  }
+}

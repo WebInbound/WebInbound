@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Termini e Condizioni | WebInbound</title>
+  <meta name="description" content="Termini e Condizioni WebInbound: condizioni generali di utilizzo del sito, limitazioni di responsabilità e richieste di preventivo." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#f4f7f4;
+      --bg-soft:#f8fbf8;
+      --panel:#ffffff;
+      --panel-2:#fbfcfb;
+      --text:#0d1412;
+      --muted:#61706a;
+      --line:rgba(13,20,18,.08);
+      --green:#16b05b;
+      --green-2:#0d6b36;
+      --green-3:#1ace66;
+      --green-soft:#eaf9f0;
+      --shadow:0 24px 70px rgba(11,25,18,.08);
+      --shadow-soft:0 14px 40px rgba(10,20,18,.06);
+      --radius-xl:34px;
+      --radius-lg:26px;
+      --container:1240px;
+      --nav-h:84px;
+      --transition:.28s cubic-bezier(.2,.8,.2,1);
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:"Inter",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(22,176,91,.08), transparent 24%),
+        radial-gradient(circle at top right, rgba(13,107,54,.06), transparent 22%),
+        linear-gradient(180deg,#f8fbf8 0%,#f4f7f4 100%);
+      line-height:1.6;
+      overflow-x:hidden;
+    }
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      background:
+        radial-gradient(circle at 20% 0%, rgba(22,176,91,.06), transparent 20%),
+        radial-gradient(circle at 100% 30%, rgba(13,107,54,.05), transparent 18%);
+      z-index:-1;
+    }
+    a{text-decoration:none;color:inherit}
+    button{font:inherit}
+    .container{width:min(var(--container), calc(100% - 40px)); margin:0 auto}
+
+    .site-header{
+      position:sticky;
+      top:0;
+      z-index:100;
+      backdrop-filter:blur(14px);
+      background:rgba(248,251,248,.82);
+      border-bottom:1px solid rgba(13,20,18,.05);
+    }
+    .nav-wrap{
+      min-height:var(--nav-h);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:24px;
+    }
+    .brand img{height:48px; width:auto; display:block}
+    .site-nav{
+      display:flex;
+      align-items:center;
+      gap:28px;
+      font-weight:600;
+      color:#28342f;
+    }
+    .site-nav a{opacity:.92; transition:var(--transition)}
+    .site-nav a:hover{opacity:1; color:var(--green-2)}
+    .site-nav a.active{color:var(--green-2)}
+    .nav-toggle{
+      display:none;
+      border:none;
+      background:#fff;
+      border-radius:14px;
+      padding:10px 12px;
+      box-shadow:var(--shadow-soft);
+      cursor:pointer;
+    }
+    .btn{
+      appearance:none;
+      border:none;
+      cursor:pointer;
+      border-radius:16px;
+      padding:14px 20px;
+      font-weight:700;
+      font-size:15px;
+      transition:transform var(--transition), box-shadow var(--transition), opacity var(--transition);
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      white-space:nowrap;
+    }
+    .btn:hover{transform:translateY(-2px)}
+    .btn-primary{
+      color:#fff;
+      background:linear-gradient(135deg,var(--green),var(--green-3));
+      box-shadow:0 16px 34px rgba(22,176,91,.22);
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      padding:8px 14px;
+      border-radius:999px;
+      background:var(--green-soft);
+      color:var(--green-2);
+      border:1px solid rgba(22,176,91,.16);
+      font-size:12px;
+      font-weight:800;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+
+    .hero{
+      padding:92px 0 44px;
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns:minmax(0,1.2fr) 340px;
+      gap:24px;
+      align-items:stretch;
+    }
+    .hero-card,
+    .hero-meta,
+    .toc-card,
+    .legal-card,
+    .info-card,
+    .footer-shell{
+      background:rgba(255,255,255,.82);
+      border:1px solid rgba(13,20,18,.08);
+      box-shadow:var(--shadow);
+      backdrop-filter:blur(12px);
+    }
+    .hero-card{
+      border-radius:var(--radius-xl);
+      padding:34px;
+    }
+    .hero-card h1{
+      margin:18px 0 12px;
+      font-size:clamp(2.9rem,5vw,4.8rem);
+      line-height:.95;
+      letter-spacing:-.06em;
+    }
+    .hero-card p{
+      margin:0;
+      color:var(--muted);
+      font-size:1.08rem;
+    }
+    .hero-meta{
+      border-radius:var(--radius-lg);
+      padding:24px;
+      display:grid;
+      gap:14px;
+      align-content:start;
+    }
+    .meta-kicker{
+      font-size:12px;
+      font-weight:800;
+      letter-spacing:.08em;
+      color:var(--green-2);
+      text-transform:uppercase;
+    }
+    .meta-row{
+      padding-top:14px;
+      border-top:1px solid var(--line);
+    }
+    .meta-row strong{
+      display:block;
+      margin-bottom:4px;
+      font-size:.95rem;
+    }
+    .meta-row span{
+      color:var(--muted);
+      font-size:.95rem;
+    }
+
+    .legal-layout{
+      padding:0 0 96px;
+    }
+    .legal-grid{
+      display:grid;
+      grid-template-columns:290px minmax(0,1fr);
+      gap:24px;
+      align-items:start;
+    }
+    .toc-card{
+      position:sticky;
+      top:108px;
+      border-radius:var(--radius-lg);
+      padding:24px;
+    }
+    .toc-card h2{
+      margin:0 0 10px;
+      font-size:1.05rem;
+      letter-spacing:-.03em;
+    }
+    .toc-card p{
+      margin:0 0 18px;
+      color:var(--muted);
+      font-size:.95rem;
+    }
+    .toc-list{
+      list-style:none;
+      padding:0;
+      margin:0;
+      display:grid;
+      gap:10px;
+    }
+    .toc-list a{
+      display:block;
+      padding:12px 14px;
+      border-radius:14px;
+      background:var(--panel-2);
+      border:1px solid rgba(13,20,18,.06);
+      transition:var(--transition);
+      font-size:.96rem;
+    }
+    .toc-list a:hover{
+      border-color:rgba(22,176,91,.22);
+      background:#fff;
+      transform:translateY(-1px);
+    }
+    .content-stack{
+      display:grid;
+      gap:18px;
+    }
+    .legal-card{
+      border-radius:var(--radius-lg);
+      padding:30px;
+    }
+    .legal-card h2{
+      margin:0 0 14px;
+      font-size:1.45rem;
+      letter-spacing:-.04em;
+    }
+    .legal-card p{
+      margin:0 0 14px;
+      color:#32413b;
+    }
+    .legal-card p:last-child{margin-bottom:0}
+    .legal-card ul{
+      margin:0;
+      padding-left:20px;
+      color:#32413b;
+    }
+    .legal-card li + li{margin-top:10px}
+    .highlight-grid{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:14px;
+      margin-top:18px;
+    }
+    .info-card{
+      border-radius:20px;
+      padding:18px;
+    }
+    .info-card strong{
+      display:block;
+      margin-bottom:8px;
+      letter-spacing:-.03em;
+    }
+    .info-card span{
+      color:var(--muted);
+      font-size:.95rem;
+    }
+
+    .site-footer{
+      padding:0 0 34px;
+    }
+    .footer-shell{
+      border-radius:30px;
+      padding:28px;
+    }
+    .footer-grid{
+      display:grid;
+      grid-template-columns:1.3fr .8fr .9fr;
+      gap:24px;
+      padding-bottom:22px;
+      border-bottom:1px solid var(--line);
+    }
+    .footer-brand img{
+      height:52px;
+      width:auto;
+      display:block;
+      margin-bottom:14px;
+    }
+    .footer-brand p,
+    .footer-col a,
+    .footer-meta{
+      color:var(--muted);
+    }
+    .footer-col{
+      display:grid;
+      gap:10px;
+      align-content:start;
+    }
+    .footer-col h4{
+      margin:0 0 4px;
+      font-size:1rem;
+    }
+    .footer-bottom{
+      padding-top:18px;
+      display:flex;
+      justify-content:space-between;
+      gap:16px;
+      color:var(--muted);
+      font-size:.94rem;
+    }
+    .footer-legal-links{
+      display:flex;
+      gap:18px;
+      flex-wrap:wrap;
+    }
+
+    @media (max-width: 1080px){
+      .hero-grid,
+      .legal-grid,
+      .footer-grid{
+        grid-template-columns:1fr;
+      }
+      .toc-card{
+        position:relative;
+        top:0;
+      }
+      .highlight-grid{
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media (max-width: 760px){
+      .nav-toggle{display:inline-flex}
+      .site-nav{
+        position:absolute;
+        top:calc(100% + 10px);
+        left:20px;
+        right:20px;
+        display:none;
+        flex-direction:column;
+        align-items:stretch;
+        gap:14px;
+        padding:18px;
+        border-radius:20px;
+        background:rgba(255,255,255,.96);
+        border:1px solid var(--line);
+        box-shadow:var(--shadow);
+      }
+      .site-nav.open{display:flex}
+      .site-nav .btn{width:100%}
+      .hero{padding-top:72px}
+      .hero-card,
+      .hero-meta,
+      .toc-card,
+      .legal-card,
+      .footer-shell{padding:22px}
+      .hero-card h1{font-size:2.55rem}
+      .footer-bottom{flex-direction:column}
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a href="../index.html" class="brand" aria-label="WebInbound home">
+        <img src="../images/logo.png" alt="Logo WebInbound" />
+      </a>
+
+      <button class="nav-toggle" aria-label="Apri menu" aria-expanded="false">☰</button>
+
+      <nav class="site-nav">
+        <a href="../index.html">Home</a>
+        <a href="servizi.html">Servizi</a>
+        <a href="progetti.html">Progetti</a>
+        <a href="prezzi.html#process">Come Funziona</a>
+        <a href="prezzi.html">Prezzi</a>
+        <a href="contatti.html">Contatti</a>
+        <a href="iniziaora.html" class="btn btn-primary">Inizia Ora</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-card">
+          <span class="eyebrow">Termini e Condizioni</span>
+          <h1>Termini e Condizioni</h1>
+          <p>
+            Questa pagina disciplina le condizioni generali di utilizzo del sito WebInbound, la natura informativa dei contenuti,
+            le richieste di preventivo, i limiti di responsabilità e la tutela dei materiali pubblicati.
+          </p>
+        </div>
+
+        <aside class="hero-meta">
+          <span class="meta-kicker">In sintesi</span>
+          <div class="meta-row">
+            <strong>Ambito</strong>
+            <span>Uso del sito, contenuti pubblicati, richieste di preventivo e contatti</span>
+          </div>
+          <div class="meta-row">
+            <strong>Servizi trattati</strong>
+            <span>Siti web, SEO, design grafico, e-commerce, manutenzione e consulenza digitale</span>
+          </div>
+          <div class="meta-row">
+            <strong>Contatti</strong>
+            <span>info@webinbound.it · +39 379 146 5762</span>
+          </div>
+          <div class="meta-row">
+            <strong>Aggiornamento</strong>
+            <span>Versione termini aggiornata al 12 marzo 2026</span>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="legal-layout">
+      <div class="container legal-grid">
+        <aside class="toc-card">
+          <h2>Indice dei termini</h2>
+          <p>Una panoramica rapida delle condizioni che regolano la navigazione del sito e l’invio di richieste.</p>
+          <ul class="toc-list">
+            <li><a href="#oggetto">1. Oggetto</a></li>
+            <li><a href="#utilizzo-sito">2. Utilizzo del sito</a></li>
+            <li><a href="#proprieta">3. Proprietà intellettuale</a></li>
+            <li><a href="#servizi">4. Informazioni sui servizi</a></li>
+            <li><a href="#preventivi">5. Richieste di preventivo</a></li>
+            <li><a href="#seo">6. Nessuna garanzia di risultati SEO</a></li>
+            <li><a href="#materiali-cliente">7. Responsabilità dei contenuti forniti dal cliente</a></li>
+            <li><a href="#revisioni">8. Revisioni, modifiche e attività extra</a></li>
+            <li><a href="#ritardi">9. Ritardi imputabili al cliente</a></li>
+            <li><a href="#responsabilita">10. Limitazione di responsabilità</a></li>
+            <li><a href="#siti-esterni">11. Servizi di terze parti e collegamenti esterni</a></li>
+            <li><a href="#modifiche-termini">12. Modifiche ai termini</a></li>
+            <li><a href="#legge">13. Legge applicabile</a></li>
+            <li><a href="#contatti">14. Contatti</a></li>
+            <li><a href="#disclaimer">15. Disclaimer legale</a></li>
+          </ul>
+        </aside>
+
+        <div class="content-stack">
+          <section class="legal-card" id="oggetto">
+            <h2>1. Oggetto</h2>
+            <p>
+              I presenti Termini e Condizioni disciplinano l’accesso e l’utilizzo del sito WebInbound,
+              nonché la consultazione dei contenuti e l’invio di richieste informative o di preventivo relative ai servizi offerti.
+            </p>
+            <p>
+              Navigando nel sito, l’utente prende visione delle presenti condizioni e si impegna a utilizzare il sito
+              in modo conforme alla normativa vigente, alla buona fede e alle finalità per cui il sito è stato realizzato.
+            </p>
+          </section>
+
+          <section class="legal-card" id="utilizzo-sito">
+            <h2>2. Utilizzo del sito</h2>
+            <p>
+              L’utente si impegna a utilizzare il sito in modo corretto, lecito e non lesivo dei diritti di WebInbound o di terzi.
+              Non è consentito utilizzare il sito o i suoi contenuti per finalità fraudolente, illecite, diffamatorie,
+              lesive della sicurezza o dirette a compromettere il funzionamento tecnico della piattaforma.
+            </p>
+            <ul>
+              <li>È vietato tentare accessi non autorizzati a sistemi, aree riservate o infrastrutture collegate.</li>
+              <li>È vietato inviare dati falsi, fuorvianti o manifestamente non pertinenti tramite moduli e preventivatori.</li>
+              <li>È vietato utilizzare il sito in modo da danneggiarne disponibilità, prestazioni o reputazione.</li>
+            </ul>
+          </section>
+
+          <section class="legal-card" id="proprieta">
+            <h2>3. Proprietà intellettuale</h2>
+            <p>
+              Tutti i contenuti presenti sul sito, inclusi testi, layout, elementi grafici, marchi, loghi, immagini,
+              strutture informative, codice visibile e materiali editoriali, sono protetti dalla normativa applicabile
+              in materia di proprietà intellettuale e appartengono a WebInbound o ai rispettivi titolari.
+            </p>
+            <p>
+              È vietata la riproduzione, distribuzione, modifica, pubblicazione o riutilizzo, anche parziale,
+              dei contenuti del sito senza preventiva autorizzazione scritta, salvo i casi consentiti dalla legge.
+            </p>
+          </section>
+
+          <section class="legal-card" id="servizi">
+            <h2>4. Informazioni sui servizi</h2>
+            <p>
+              Il sito presenta i servizi offerti da WebInbound, tra cui creazione siti web, SEO e posizionamento,
+              design grafico, e-commerce, manutenzione siti e consulenza digitale.
+            </p>
+            <p>
+              Le informazioni pubblicate sul sito hanno finalità illustrativa e orientativa e sono pensate per aiutare l’utente
+              a comprendere l’approccio, le aree di intervento e le possibili configurazioni di servizio.
+            </p>
+            <p>
+              Salvo diversa indicazione espressa, le descrizioni, i prezzi di partenza, gli esempi progettuali e le funzionalità indicate
+              non costituiscono offerta contrattuale vincolante, ma rappresentano una base informativa suscettibile di personalizzazione.
+            </p>
+            <p>
+              L’offerta dei servizi, le relative modalità operative e le fasce economiche pubblicate possono essere aggiornate nel tempo
+              per riflettere evoluzioni tecniche, organizzative, normative o commerciali, senza che ciò pregiudichi la validità
+              delle informazioni già consultate dall’utente come semplice orientamento iniziale.
+            </p>
+          </section>
+
+          <section class="legal-card" id="preventivi">
+            <h2>5. Richieste di preventivo</h2>
+            <p>
+              Il sito può includere moduli di contatto, richieste di preventivo, configuratori progetto e strumenti di stima automatica.
+              Tali strumenti hanno la finalità di raccogliere informazioni preliminari utili a una successiva analisi commerciale o consulenziale.
+            </p>
+            <ul>
+              <li>Le stime visualizzate online hanno valore indicativo e non impegnano automaticamente WebInbound alla fornitura del servizio ai prezzi mostrati.</li>
+              <li>L’invio di una richiesta non determina la conclusione di alcun contratto.</li>
+              <li>Ogni proposta definitiva può richiedere approfondimenti ulteriori su obiettivi, complessità, tempi e materiali forniti dal cliente.</li>
+            </ul>
+            <p>
+              I preventivi o le stime preliminari vengono elaborati sulla base delle informazioni fornite dall’utente o dal cliente
+              al momento della richiesta. Eventuali variazioni nei materiali, nel perimetro del progetto, nelle integrazioni richieste
+              o nelle esigenze emerse successivamente possono comportare un aggiornamento della proposta economica e dei tempi di lavorazione.
+            </p>
+          </section>
+
+          <section class="legal-card" id="seo">
+            <h2>6. Nessuna garanzia di risultati SEO</h2>
+            <p>
+              I servizi SEO, di posizionamento organico e di crescita digitale proposti o descritti da WebInbound
+              devono essere intesi come attività professionali di analisi, ottimizzazione e consulenza, non come promessa di risultato garantito.
+            </p>
+            <p>
+              Il posizionamento sui motori di ricerca dipende da molteplici fattori esterni al controllo diretto di WebInbound,
+              inclusi aggiornamenti algoritmici, concorrenza, storico del dominio, qualità dei contenuti, aspetti tecnici preesistenti
+              e scelte operative del cliente.
+            </p>
+            <p>
+              Di conseguenza, WebInbound non garantisce posizionamenti specifici, volumi di traffico determinati,
+              incremento certo di contatti o risultati commerciali misurabili entro tempi prestabiliti.
+            </p>
+          </section>
+
+          <section class="legal-card" id="materiali-cliente">
+            <h2>7. Responsabilità dei contenuti forniti dal cliente</h2>
+            <p>
+              Il cliente o l’utente che trasmette materiali, testi, immagini, loghi, marchi, video, documenti o altri contenuti
+              dichiara di esserne legittimamente titolare o di avere le autorizzazioni necessarie per il relativo utilizzo.
+            </p>
+            <ul>
+              <li>Il cliente resta responsabile della liceità, correttezza e non lesività dei materiali forniti.</li>
+              <li>WebInbound non risponde di violazioni di diritti di terzi derivanti da materiali consegnati dal cliente.</li>
+              <li>In caso di contestazioni, il cliente si impegna a collaborare tempestivamente alla sostituzione o rimozione dei contenuti interessati.</li>
+            </ul>
+          </section>
+
+          <section class="legal-card" id="revisioni">
+            <h2>8. Revisioni, modifiche e attività extra</h2>
+            <p>
+              Le eventuali revisioni incluse nei servizi o nei preventivi vengono concordate in base al tipo di progetto,
+              alla complessità dell’attività e all’ambito operativo definito in fase commerciale o contrattuale.
+            </p>
+            <p>
+              Modifiche aggiuntive, richieste ulteriori, estensioni di funzionalità, rielaborazioni sostanziali o attività
+              non comprese nell’ambito iniziale possono richiedere tempi supplementari e, ove necessario, costi extra,
+              previa valutazione e successiva conferma tra le parti.
+            </p>
+          </section>
+
+          <section class="legal-card" id="ritardi">
+            <h2>9. Ritardi imputabili al cliente</h2>
+            <p>
+              Lo sviluppo di siti, configuratori, simulazioni, contenuti o consulenze può richiedere materiali, approvazioni,
+              feedback, accessi tecnici o indicazioni operative da parte del cliente.
+            </p>
+            <p>
+              Qualora tali elementi non vengano forniti nei tempi concordati, il progetto può subire slittamenti,
+              riorganizzazioni di calendario o sospensioni operative, senza che ciò comporti responsabilità di WebInbound
+              per eventuali ritardi, mancati lanci o effetti indiretti sulle attività del cliente.
+            </p>
+          </section>
+
+          <section class="legal-card" id="responsabilita">
+            <h2>10. Limitazione di responsabilità</h2>
+            <p>
+              WebInbound si impegna a mantenere il sito aggiornato, accurato e funzionante, ma non garantisce che i contenuti siano sempre completi,
+              privi di errori o perfettamente idonei a ogni specifica esigenza dell’utente.
+            </p>
+            <p>
+              Nei limiti consentiti dalla legge, WebInbound non risponde di danni diretti o indiretti derivanti dall’uso del sito,
+              dall’affidamento esclusivo su informazioni pubblicate online, da interruzioni temporanee del servizio o downtime,
+              da incompatibilità tecniche o da utilizzi impropri da parte dell’utente.
+            </p>
+            <ul>
+              <li>WebInbound non risponde di perdita di dati, perdita di opportunità commerciali, mancati guadagni o danni indiretti.</li>
+              <li>WebInbound non risponde di malfunzionamenti derivanti da infrastrutture, hosting, plugin, strumenti terzi o servizi esterni non direttamente controllati.</li>
+              <li>Resta esclusa qualsiasi responsabilità per decisioni assunte dal cliente sulla base di stime, simulazioni o dati orientativi pubblicati sul sito.</li>
+            </ul>
+          </section>
+
+          <section class="legal-card" id="siti-esterni">
+            <h2>11. Servizi di terze parti e collegamenti esterni</h2>
+            <p>
+              Il sito può contenere collegamenti a siti, piattaforme o servizi di terze parti. Tali link sono forniti per comodità informativa
+              o operativa, ma non implicano approvazione, controllo continuativo o responsabilità sui relativi contenuti, politiche o pratiche.
+            </p>
+            <p>
+              L’utente che accede a risorse esterne lo fa sotto la propria responsabilità e secondo i termini e le informative
+              predisposte dai rispettivi titolari.
+            </p>
+            <p>
+              Nei servizi offerti da WebInbound possono inoltre essere coinvolti provider di hosting, strumenti analytics,
+              plugin, API, piattaforme email, servizi di prenotazione, componenti e-commerce o altre tecnologie di terze parti.
+              Eventuali interruzioni, limitazioni o malfunzionamenti di tali servizi esterni non sono imputabili a WebInbound,
+              salvo i casi di dolo o colpa grave ove applicabili.
+            </p>
+          </section>
+
+          <section class="legal-card" id="modifiche-termini">
+            <h2>12. Modifiche ai termini</h2>
+            <p>
+              WebInbound può aggiornare, modificare o integrare i presenti Termini e Condizioni in qualsiasi momento,
+              per esigenze organizzative, evoluzioni dei servizi, aggiornamenti normativi o adeguamenti tecnici del sito.
+            </p>
+            <p>
+              Le modifiche diventano efficaci dal momento della pubblicazione su questa pagina.
+              Si consiglia pertanto di consultarla periodicamente.
+            </p>
+            <p>
+              Analogamente, anche la descrizione dei servizi, gli strumenti disponibili sul sito, le modalità di erogazione
+              e le fasce di prezzo comunicate online possono essere aggiornate per mantenere l’offerta coerente con l’evoluzione del mercato
+              e del contesto operativo.
+            </p>
+          </section>
+
+          <section class="legal-card" id="legge">
+            <h2>13. Legge applicabile</h2>
+            <p>
+              I presenti Termini e Condizioni sono disciplinati dalla legge italiana, salva l’applicazione di eventuali norme inderogabili
+              a tutela del consumatore o dell’utente previste dall’ordinamento competente.
+            </p>
+            <p>
+              Per quanto non espressamente previsto, si applicano le disposizioni di legge vigenti in materia civile,
+              commerciale e di servizi digitali.
+            </p>
+          </section>
+
+          <section class="legal-card" id="contatti">
+            <h2>14. Contatti</h2>
+            <p>
+              Per richieste relative all’utilizzo del sito, ai servizi presentati, ai preventivi o ai presenti termini,
+              è possibile contattare WebInbound utilizzando i recapiti ufficiali.
+            </p>
+            <div class="highlight-grid">
+              <div class="info-card">
+                <strong>Email</strong>
+                <span>info@webinbound.it<br>support@webinbound.it</span>
+              </div>
+              <div class="info-card">
+                <strong>Telefono e orari</strong>
+                <span>+39 379 146 5762<br>Lun-Ven 9:00 – 18:00</span>
+              </div>
+            </div>
+          </section>
+
+          <section class="legal-card" id="disclaimer">
+            <h2>15. Disclaimer legale</h2>
+            <p>
+              I presenti documenti e i contenuti legali pubblicati sul sito hanno finalità informativa e di trasparenza
+              rispetto alle modalità di funzionamento del sito e all’impostazione generale dei servizi di WebInbound.
+            </p>
+            <p>
+              Essi non sostituiscono consulenza legale personalizzata, né costituiscono parere professionale riferito a casi specifici,
+              contratti individuali, rapporti personalizzati con clienti o particolari configurazioni tecniche e normative.
+            </p>
+          </section>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-shell">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <img src="../images/logo.png" alt="WebInbound" class="footer-logo" />
+            <p>Agenzia digitale specializzata in siti web orientati ai risultati.</p>
+          </div>
+          <div class="footer-col">
+            <h4>Link</h4>
+            <a href="../index.html">Home</a>
+            <a href="servizi.html">Servizi</a>
+            <a href="progetti.html">Progetti</a>
+            <a href="prezzi.html">Prezzi</a>
+            <a href="contatti.html">Contatti</a>
+          </div>
+          <div class="footer-col">
+            <h4>Contatti</h4>
+            <a href="mailto:info@webinbound.it">info@webinbound.it</a>
+            <a href="mailto:support@webinbound.it">support@webinbound.it</a>
+            <a href="tel:+393791465762">+39 379 146 5762</a>
+            <span class="footer-meta">P.IVA: 02841450022</span>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span>© 2026 Web Inbound. Tutti i diritti riservati. P.IVA: 02841450022</span>
+          <div class="footer-legal-links">
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="cookie.html">Cookie Policy</a>
+            <a href="termini.html">Termini</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/cookie-banner.js"></script>
+  <script>
+    const navToggle = document.querySelector('.nav-toggle');
+    const siteNav = document.querySelector('.site-nav');
+
+    if (navToggle && siteNav) {
+      navToggle.addEventListener('click', () => {
+        const isOpen = siteNav.classList.toggle('open');
+        navToggle.setAttribute('aria-expanded', String(isOpen));
+      });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WebInbound | Siti web che generano clienti</title>
+  <meta name="description" content="WebInbound realizza siti web strategici orientati alla generazione di clienti per PMI locali." />
+  <meta name="theme-color" content="#0b1410" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a href="index.html" class="brand" aria-label="WebInbound home">
+        <img src="images/logo.png" alt="Logo WebInbound" />
+      </a>
+
+      <button class="nav-toggle" aria-label="Apri menu" aria-expanded="false">☰</button>
+
+      <nav class="site-nav">
+        <a href="index.html" class="active">Home</a>
+        <a href="pages/servizi.html">Servizi</a>
+        <a href="pages/progetti.html">Progetti</a>
+        <a href="pages/prezzi.html">Prezzi</a>
+        <a href="pages/contatti.html">Contatti</a>
+        <a href="pages/iniziaora.html" class="btn btn-sm btn-primary">Inizia Ora</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero-slider section">
+      <div class="hero-slider-track" id="heroSliderTrack">
+
+        <!-- SLIDE 1 -->
+        <article class="hero-slide active">
+          <div class="container hero-clean-grid">
+            <div class="hero-clean-copy reveal">
+              <span class="eyebrow">Agenzia specializzata in siti web</span>
+
+              <h1 class="hero-clean-title">
+                Aspettare ti costa
+                <span class="accent">clienti</span>,
+                credibilità e opportunità.
+              </h1>
+
+              <p class="hero-clean-text">
+                Progettiamo piattaforme digitali strategiche per trasformare
+                visitatori in contatti e contatti in clienti.
+              </p>
+
+              <div class="hero-actions">
+                <a href="pages/iniziaora.html" class="btn btn-primary">
+                  Richiedi una consulenza
+                </a>
+                <a href="pages/servizi.html" class="btn btn-secondary">
+                  → Scopri i servizi
+                </a>
+              </div>
+            </div>
+
+            <div class="hero-clean-visual reveal reveal-delay">
+              <div class="browser-demo">
+                <div class="browser-top">
+                  <div class="browser-dots">
+                    <span></span><span></span><span></span>
+                  </div>
+                  <div class="address-bar">
+                    <span class="typed-url" id="typedUrl"></span>
+                    <span class="typing-caret"></span>
+                  </div>
+                </div>
+
+                <div class="browser-body">
+                  <div class="site-loader" id="siteLoader">
+                    <div class="loader-bar">
+                      <span class="loader-progress" id="loaderProgress"></span>
+                    </div>
+                  </div>
+
+                  <div class="mini-site-content" id="miniSiteContent">
+                    <div class="mini-site-inner" id="miniSiteInner">
+
+                      <div class="mini-site-nav">
+                        <div class="mini-site-logo">WebInbound</div>
+                        <div class="mini-site-links">
+                          <span>Servizi</span>
+                          <span>Progetti</span>
+                          <span>Contatti</span>
+                        </div>
+                      </div>
+
+                      <div class="mini-site-hero">
+                        <span class="mini-site-badge">Conversion-first</span>
+                        <h4>Siti web che generano clienti</h4>
+                        <p>Design premium, SEO e strategia per imprese locali.</p>
+                        <button class="mini-site-cta" id="miniSiteCta">
+                          Prenota consulenza
+                        </button>
+                      </div>
+
+                      <div class="mini-site-cards">
+                        <div class="mini-site-card" id="miniCard1">
+                          <strong>SEO</strong>
+                          <span>Più visibilità locale</span>
+                        </div>
+                        <div class="mini-site-card" id="miniCard2">
+                          <strong>UX</strong>
+                          <span>Percorsi che convertono</span>
+                        </div>
+                        <div class="mini-site-card" id="miniCard3">
+                          <strong>Speed</strong>
+                          <span>Sito veloce</span>
+                        </div>
+                      </div>
+
+                      <div class="mini-site-stats">
+                        <div class="mini-site-stat">
+                          <strong>+38%</strong>
+                          <span>richieste</span>
+                        </div>
+                        <div class="mini-site-stat">
+                          <strong>12h</strong>
+                          <span>tempo risposta</span>
+                        </div>
+                      </div>
+
+                      <div class="mini-estimator-card" id="miniEstimatorCard">
+                        <div class="mini-estimator-head">
+                          <strong>Preventivatore automatico</strong>
+                          <span>Online ora</span>
+                        </div>
+                        <div class="mini-estimator-progress" id="miniEstimatorProgress">
+                          <span class="mini-estimator-progress-bar" id="miniEstimatorProgressBar"></span>
+                        </div>
+                        <div class="mini-chat-window">
+                          <div class="mini-chat-bubble mini-chat-bubble-user" id="miniChatQuestion"></div>
+                          <div class="mini-chat-bubble mini-chat-bubble-bot" id="miniChatAnswer"></div>
+                        </div>
+                      </div>
+
+                    </div>
+
+                    <div class="demo-cursor" id="demoCursor"></div>
+                    <div class="cursor-click-ring" id="cursorClickRing"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- SLIDE 2 -->
+        <article class="hero-slide hero-showcase">
+          <div class="container hero-showcase-wrap">
+
+            <div class="hero-showcase-stage">
+              <span class="showcase-chip showcase-chip-before">Prima</span>
+              <span class="showcase-chip showcase-chip-after">Dopo</span>
+
+              <div class="showcase-before">
+                <img src="images/prima.jpg" alt="Sito ristorante prima del restyling" />
+                <div class="showcase-points showcase-points-negative">
+                  <span class="showcase-point">Layout confuso</span>
+                  <span class="showcase-point">Design datato</span>
+                  <span class="showcase-point">Poca fiducia</span>
+                </div>
+              </div>
+
+              <div class="showcase-transition">
+                <span class="showcase-bridge-arrow" aria-hidden="true"></span>
+              </div>
+
+              <div class="showcase-after">
+                <img src="images/dopo.jpg" alt="Sito ristorante dopo il restyling" />
+                <div class="showcase-points showcase-points-positive">
+                  <span class="showcase-point">Menu digitale</span>
+                  <span class="showcase-point">Branding professionale</span>
+                  <span class="showcase-point">Tavoli pieni</span>
+                  <span class="showcase-point">Prenotazione immediata</span>
+                  <span class="showcase-point showcase-point-roi">+280% ROI</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="hero-showcase-copy">
+              <span class="eyebrow">Prima / Dopo</span>
+              <h2 class="before-after-headline">
+                Un sito <span class="accent">vecchio</span> allontana 
+                <span class="accent">clienti</span>.  
+                Un sito giusto li fa 
+                <span class="accent">prenotare</span>.
+              </h2>
+              <p class="hero-showcase-text">
+                Non cambiamo solo l’estetica. Riposizioniamo il brand, aumentiamo la fiducia
+                e rendiamo l’esperienza più chiara, moderna e orientata alla conversione.
+              </p>
+            </div>
+
+          </div>
+        </article>
+
+        <!-- SLIDE 3 -->
+        <article class="hero-slide hero-results-visual">
+          <div class="container hero-results-wrap">
+
+            <div class="hero-results-top">
+              <img src="images/hero-results.jpg" alt="Panoramica progetti WebInbound" class="hero-results-image" />
+            </div>
+
+            <div class="hero-results-bottom">
+              <div class="hero-results-stats-grid">
+                <article class="hero-results-stat-card">
+                  <span class="hero-results-stat-label">Tempi</span>
+                  <strong>7-14 giorni</strong>
+                  <p>Consegna media per un sito professionale orientato alla conversione.</p>
+                </article>
+
+                <article class="hero-results-stat-card">
+                  <span class="hero-results-stat-label">Prezzo</span>
+                  <strong>Da 800 €</strong>
+                  <p>Investimento accessibile per attività locali che vogliono crescere davvero.</p>
+                </article>
+
+                <article class="hero-results-stat-card">
+                  <span class="hero-results-stat-label">Rendimento</span>
+                  <strong>+280% ROI</strong>
+                  <p>Più richieste, più prenotazioni, più valore percepito nel tempo.</p>
+                </article>
+
+                <article class="hero-results-stat-card">
+                  <span class="hero-results-stat-label">Concorrenza</span>
+                  <strong>+Vantaggio</strong>
+                  <p>Ti presenti meglio dei competitor con un sito moderno, veloce e credibile.</p>
+                </article>
+              </div>
+            </div>
+
+          </div>
+        </article>
+
+      <div class="hero-slider-dots" id="heroSliderDots">
+        <button class="hero-dot active" data-slide="0" aria-label="Slide 1"></button>
+        <button class="hero-dot" data-slide="1" aria-label="Slide 2"></button>
+        <button class="hero-dot" data-slide="2" aria-label="Slide 3"></button>
+      </div>
+    </section>
+
+    <!-- METODO -->
+    <section class="section section-light">
+      <div class="container method-grid">
+        <div class="method-copy reveal">
+          <h2>
+            Metodo, strategia e responsabilità.
+            <span class="accent">Prima di tutto.</span>
+          </h2>
+
+          <p class="method-text">
+            Ogni progetto nasce da un'analisi concreta delle esigenze dell'attività.
+            Non costruiamo semplici siti web, ma strumenti digitali pensati per
+            generare valore nel tempo.
+          </p>
+
+          <ul class="check-list">
+            <li>Analisi strategica prima di ogni progetto</li>
+            <li>UX orientata alla conversione</li>
+            <li>SEO tecnica di base inclusa</li>
+            <li>Struttura pensata per acquisire clienti</li>
+            <li>Garanzia design 30 giorni: se il design iniziale non ti convince, lo rifacciamo gratuitamente</li>
+          </ul>
+        </div>
+
+        <div class="method-media reveal reveal-delay">
+          <div class="method-image-card">
+            <img src="images/hero-office.jpg" alt="Team WebInbound al lavoro" />
+          </div>
+
+          <div class="stats-grid">
+            <div class="stat-card">
+              <strong>+38%</strong>
+              <span>richieste attività locali</span>
+            </div>
+            <div class="stat-card">
+              <strong>12h</strong>
+              <span>tempo medio risposta</span>
+            </div>
+            <div class="stat-card">
+              <strong>+54%</strong>
+              <span>tempo permanenza sul sito</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PERCHÉ SCEGLIERCI -->
+    <section class="section why-clean">
+      <div class="container">
+        <div class="section-head center-head reveal">
+          <span class="eyebrow">Perché sceglierci</span>
+          <h2 class="why-clean-title">Il tuo partner per la crescita digitale</h2>
+          <p>
+            Non creiamo solo siti web. Creiamo strumenti che generano risultati concreti
+            per la tua attività.
+          </p>
+        </div>
+
+        <div class="why-clean-grid">
+          <article class="why-clean-card reveal">
+            <div class="icon-box">🚀</div>
+            <h3>Velocità & Performance</h3>
+            <p>Siti web ottimizzati per caricare in pochi secondi.</p>
+          </article>
+
+          <article class="why-clean-card reveal">
+            <div class="icon-box">🎯</div>
+            <h3>Orientati ai Risultati</h3>
+            <p>Ogni decisione orientata a convertire visitatori in clienti.</p>
+          </article>
+
+          <article class="why-clean-card reveal">
+            <div class="icon-box">🏷️</div>
+            <h3>Prezzi Competitivi</h3>
+            <p>Servizi professionali a prezzi accessibili per PMI.</p>
+          </article>
+
+          <article class="why-clean-card reveal">
+            <div class="icon-box">🕒</div>
+            <h3>Consegna Veloce</h3>
+            <p>Il tuo sito online in tempi brevi, senza rinunciare alla qualità.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROGETTI -->
+    <section class="section projects-clean section-light">
+      <div class="container">
+        <div class="section-head center-head reveal">
+          <h2 class="projects-title">I NOSTRI PROGETTI PER FARE CRESCERE LA TUA IMPRESA</h2>
+          <p>
+            Ogni settore ha esigenze diverse. Scopri come possiamo costruire il sito giusto per te.
+          </p>
+        </div>
+
+        <div class="projects-clean-grid">
+          <article class="sector-card reveal">
+            <div class="sector-icon">🍴</div>
+            <h3>Ristoranti</h3>
+            <p>Menu online, prenotazioni tavoli</p>
+          </article>
+
+          <article class="sector-card reveal">
+            <div class="sector-icon">🔨</div>
+            <h3>Imprese Edili</h3>
+            <p>Portafoglio lavori e preventivazione</p>
+          </article>
+
+          <article class="sector-card reveal">
+            <div class="sector-icon">🛍️</div>
+            <h3>Negozi Locali</h3>
+            <p>Vetrina prodotti e acquisti online</p>
+          </article>
+
+          <article class="sector-card reveal">
+            <div class="sector-icon">🏨</div>
+            <h3>Hotel e B&B</h3>
+            <p>Prenotazione camere diretta</p>
+          </article>
+
+          <article class="sector-card reveal">
+            <div class="sector-icon">🏋️</div>
+            <h3>Palestre</h3>
+            <p>Corsi, abbonamenti e iscrizioni</p>
+          </article>
+
+          <article class="sector-card reveal">
+            <div class="sector-icon">💼</div>
+            <h3>Studi Professionali</h3>
+            <p>Appuntamenti e consulenze</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+
+
+  <section class="logos-strip-section">
+    <div class="container">
+      <div class="logos-strip-head reveal">
+        <span class="eyebrow">Si sono affidati a noi</span>
+      </div>
+    </div>
+
+    <div class="logos-marquee" id="logosMarquee">
+      <div class="logos-marquee-track" id="logosMarqueeTrack">
+        <a href="https://www.enfrio.it" target="_blank" rel="noopener noreferrer" class="logo-item">
+          <img src="images/Enfriologo.svg" alt="Enfrio">
+        </a>
+        <a href="https://www.sito2.it" target="_blank" rel="noopener noreferrer" class="logo-item">
+          <img src="images/logo2.png" alt="Brand 2">
+        </a>
+        <a href="https://www.sito3.it" target="_blank" rel="noopener noreferrer" class="logo-item">
+          <img src="images/Enfriologo.svg" alt="Brand 3">
+        </a>
+        <a href="https://www.sito4.it" target="_blank" rel="noopener noreferrer" class="logo-item">
+          <img src="images/Mullinilogo.png" alt="Brand 4">
+        </a>
+        <a href="https://www.sito5.it" target="_blank" rel="noopener noreferrer" class="logo-item">
+          <img src="images/logo5.png" alt="Brand 5">
+        </a>
+        <a href="https://www.sito6.it" target="_blank" rel="noopener noreferrer" class="logo-item">
+          <img src="images/logo6.png" alt="Brand 6">
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="images/logo.png" alt="WebInbound" class="footer-logo" />
+          <p>Agenzia digitale specializzata in siti web orientati ai risultati.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Link</h4>
+          <a href="pages/servizi.html">Servizi</a>
+          <a href="pages/progetti.html">Portfolio</a>
+          <a href="pages/prezzi.html">Prezzi</a>
+          <a href="pages/contatti.html">Contatti</a>
+        </div>
+        <div class="footer-col">
+          <h4>Contatti</h4>
+          <a href="mailto:info@webinbound.it">info@webinbound.it</a>
+          <a href="mailto:support@webinbound.it">support@webinbound.it</a>
+          <a href="tel:+393791465762">+39 379 146 5762</a>
+          <span class="footer-meta">P.IVA: 02841450022</span>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Web Inbound. Tutti i diritti riservati. P.IVA: 02841450022</span>
+        <div class="footer-legal-links">
+          <a href="pages/privacy.html">Privacy Policy</a>
+          <a href="pages/termini.html">Termini</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/cookie-banner.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy | WebInbound</title>
+  <meta name="description" content="Privacy Policy WebInbound: informativa sul trattamento dei dati personali ai sensi del Regolamento UE 2016/679 (GDPR)." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#f4f7f4;
+      --bg-soft:#f8fbf8;
+      --panel:#ffffff;
+      --panel-2:#fbfcfb;
+      --text:#0d1412;
+      --muted:#61706a;
+      --line:rgba(13,20,18,.08);
+      --line-strong:rgba(13,20,18,.14);
+      --green:#16b05b;
+      --green-2:#0d6b36;
+      --green-3:#1ace66;
+      --green-soft:#eaf9f0;
+      --green-deep:#083d21;
+      --dark:#0f1720;
+      --shadow:0 24px 70px rgba(11,25,18,.08);
+      --shadow-soft:0 14px 40px rgba(10,20,18,.06);
+      --radius-xl:34px;
+      --radius-lg:26px;
+      --radius-md:18px;
+      --container:1240px;
+      --nav-h:84px;
+      --transition:.28s cubic-bezier(.2,.8,.2,1);
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:"Inter",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(22,176,91,.08), transparent 24%),
+        radial-gradient(circle at top right, rgba(13,107,54,.06), transparent 22%),
+        linear-gradient(180deg,#f8fbf8 0%,#f4f7f4 100%);
+      line-height:1.6;
+      overflow-x:hidden;
+    }
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      background:
+        radial-gradient(circle at 20% 0%, rgba(22,176,91,.06), transparent 20%),
+        radial-gradient(circle at 100% 30%, rgba(13,107,54,.05), transparent 18%);
+      z-index:-1;
+    }
+    a{text-decoration:none;color:inherit}
+    button{font:inherit}
+    .container{width:min(var(--container), calc(100% - 40px)); margin:0 auto}
+
+    .site-header{
+      position:sticky;
+      top:0;
+      z-index:100;
+      backdrop-filter:blur(14px);
+      background:rgba(248,251,248,.82);
+      border-bottom:1px solid rgba(13,20,18,.05);
+    }
+    .nav-wrap{
+      min-height:var(--nav-h);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:24px;
+    }
+    .brand img{height:48px; width:auto; display:block}
+    .site-nav{
+      display:flex;
+      align-items:center;
+      gap:28px;
+      font-weight:600;
+      color:#28342f;
+    }
+    .site-nav a{opacity:.92; transition:var(--transition)}
+    .site-nav a:hover{opacity:1; color:var(--green-2)}
+    .site-nav a.active{color:var(--green-2)}
+    .nav-toggle{
+      display:none;
+      border:none;
+      background:#fff;
+      border-radius:14px;
+      padding:10px 12px;
+      box-shadow:var(--shadow-soft);
+      cursor:pointer;
+    }
+
+    .btn{
+      appearance:none;
+      border:none;
+      cursor:pointer;
+      border-radius:16px;
+      padding:14px 20px;
+      font-weight:700;
+      font-size:15px;
+      transition:transform var(--transition), box-shadow var(--transition), opacity var(--transition);
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      white-space:nowrap;
+    }
+    .btn:hover{transform:translateY(-2px)}
+    .btn-primary{
+      color:#fff;
+      background:linear-gradient(135deg,var(--green),var(--green-3));
+      box-shadow:0 16px 34px rgba(22,176,91,.22);
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      padding:8px 14px;
+      border-radius:999px;
+      background:var(--green-soft);
+      color:var(--green-2);
+      border:1px solid rgba(22,176,91,.16);
+      font-size:12px;
+      font-weight:800;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+
+    .hero{
+      padding:92px 0 44px;
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns:minmax(0,1.2fr) 340px;
+      gap:24px;
+      align-items:stretch;
+    }
+    .hero-card,
+    .hero-meta,
+    .toc-card,
+    .legal-card,
+    .info-card,
+    .footer-shell{
+      background:rgba(255,255,255,.82);
+      border:1px solid rgba(13,20,18,.08);
+      box-shadow:var(--shadow);
+      backdrop-filter:blur(12px);
+    }
+    .hero-card{
+      border-radius:var(--radius-xl);
+      padding:34px;
+    }
+    .hero-card h1{
+      margin:18px 0 12px;
+      font-size:clamp(2.9rem,5vw,4.8rem);
+      line-height:.95;
+      letter-spacing:-.06em;
+    }
+    .hero-card p{
+      margin:0;
+      max-width:760px;
+      color:var(--muted);
+      font-size:1.08rem;
+    }
+    .hero-meta{
+      border-radius:var(--radius-lg);
+      padding:24px;
+      display:grid;
+      gap:14px;
+      align-content:start;
+    }
+    .meta-kicker{
+      font-size:12px;
+      font-weight:800;
+      letter-spacing:.08em;
+      color:var(--green-2);
+      text-transform:uppercase;
+    }
+    .meta-row{
+      padding-top:14px;
+      border-top:1px solid var(--line);
+    }
+    .meta-row strong{
+      display:block;
+      margin-bottom:4px;
+      font-size:.95rem;
+    }
+    .meta-row span{
+      color:var(--muted);
+      font-size:.95rem;
+    }
+
+    .legal-layout{
+      padding:0 0 96px;
+    }
+    .legal-grid{
+      display:grid;
+      grid-template-columns:290px minmax(0,1fr);
+      gap:24px;
+      align-items:start;
+    }
+    .toc-card{
+      position:sticky;
+      top:108px;
+      border-radius:var(--radius-lg);
+      padding:24px;
+    }
+    .toc-card h2{
+      margin:0 0 10px;
+      font-size:1.05rem;
+      letter-spacing:-.03em;
+    }
+    .toc-card p{
+      margin:0 0 18px;
+      color:var(--muted);
+      font-size:.95rem;
+    }
+    .toc-list{
+      list-style:none;
+      padding:0;
+      margin:0;
+      display:grid;
+      gap:10px;
+    }
+    .toc-list a{
+      display:block;
+      padding:12px 14px;
+      border-radius:14px;
+      background:var(--panel-2);
+      border:1px solid rgba(13,20,18,.06);
+      transition:var(--transition);
+      font-size:.96rem;
+    }
+    .toc-list a:hover{
+      border-color:rgba(22,176,91,.22);
+      background:#fff;
+      transform:translateY(-1px);
+    }
+
+    .content-stack{
+      display:grid;
+      gap:18px;
+    }
+    .legal-card{
+      border-radius:var(--radius-lg);
+      padding:30px;
+    }
+    .legal-card h2{
+      margin:0 0 14px;
+      font-size:1.45rem;
+      letter-spacing:-.04em;
+    }
+    .legal-card p{
+      margin:0 0 14px;
+      color:#32413b;
+    }
+    .legal-card p:last-child{margin-bottom:0}
+    .legal-card ul{
+      margin:0;
+      padding-left:20px;
+      color:#32413b;
+    }
+    .legal-card li + li{margin-top:10px}
+    .highlight-grid{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:14px;
+      margin-top:18px;
+    }
+    .info-card{
+      border-radius:20px;
+      padding:18px;
+    }
+    .info-card strong{
+      display:block;
+      margin-bottom:8px;
+      letter-spacing:-.03em;
+    }
+    .info-card span{
+      color:var(--muted);
+      font-size:.95rem;
+    }
+
+    .site-footer{
+      padding:0 0 34px;
+    }
+    .footer-shell{
+      border-radius:30px;
+      padding:28px;
+    }
+    .footer-grid{
+      display:grid;
+      grid-template-columns:1.3fr .8fr .9fr;
+      gap:24px;
+      padding-bottom:22px;
+      border-bottom:1px solid var(--line);
+    }
+    .footer-brand img{
+      height:52px;
+      width:auto;
+      display:block;
+      margin-bottom:14px;
+    }
+    .footer-brand p,
+    .footer-col a,
+    .footer-meta{
+      color:var(--muted);
+    }
+    .footer-col{
+      display:grid;
+      gap:10px;
+      align-content:start;
+    }
+    .footer-col h4{
+      margin:0 0 4px;
+      font-size:1rem;
+    }
+    .footer-bottom{
+      padding-top:18px;
+      display:flex;
+      justify-content:space-between;
+      gap:16px;
+      color:var(--muted);
+      font-size:.94rem;
+    }
+    .footer-legal-links{
+      display:flex;
+      gap:18px;
+      flex-wrap:wrap;
+    }
+
+    @media (max-width: 1080px){
+      .hero-grid,
+      .legal-grid,
+      .footer-grid{
+        grid-template-columns:1fr;
+      }
+      .toc-card{
+        position:relative;
+        top:0;
+      }
+      .highlight-grid{
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media (max-width: 760px){
+      .nav-toggle{display:inline-flex}
+      .site-nav{
+        position:absolute;
+        top:calc(100% + 10px);
+        left:20px;
+        right:20px;
+        display:none;
+        flex-direction:column;
+        align-items:stretch;
+        gap:14px;
+        padding:18px;
+        border-radius:20px;
+        background:rgba(255,255,255,.96);
+        border:1px solid var(--line);
+        box-shadow:var(--shadow);
+      }
+      .site-nav.open{display:flex}
+      .site-nav .btn{width:100%}
+      .hero{padding-top:72px}
+      .hero-card,
+      .hero-meta,
+      .toc-card,
+      .legal-card,
+      .footer-shell{padding:22px}
+      .hero-card h1{font-size:2.55rem}
+      .footer-bottom{flex-direction:column}
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a href="../index.html" class="brand" aria-label="WebInbound home">
+        <img src="../images/logo.png" alt="Logo WebInbound" />
+      </a>
+
+      <button class="nav-toggle" aria-label="Apri menu" aria-expanded="false">☰</button>
+
+      <nav class="site-nav">
+        <a href="../index.html">Home</a>
+        <a href="servizi.html">Servizi</a>
+        <a href="progetti.html">Progetti</a>
+        <a href="prezzi.html#process">Come Funziona</a>
+        <a href="prezzi.html">Prezzi</a>
+        <a href="contatti.html">Contatti</a>
+        <a href="iniziaora.html" class="btn btn-primary">Inizia Ora</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-card">
+          <span class="eyebrow">Privacy Policy</span>
+          <h1>Privacy Policy</h1>
+          <p>
+            Informativa sul trattamento dei dati personali ai sensi del Regolamento UE 2016/679 (GDPR).
+            WebInbound tratta i dati con criteri di liceità, trasparenza e proporzionalità, per gestire contatti,
+            richieste di preventivo, configurazioni progetto e attività collegate ai servizi digitali offerti.
+          </p>
+        </div>
+
+        <aside class="hero-meta">
+          <span class="meta-kicker">Riferimenti rapidi</span>
+          <div class="meta-row">
+            <strong>Titolare del trattamento</strong>
+            <span>WebInbound · P.IVA 02841450022</span>
+          </div>
+          <div class="meta-row">
+            <strong>Contatti privacy</strong>
+            <span>info@webinbound.it · support@webinbound.it</span>
+          </div>
+          <div class="meta-row">
+            <strong>Canali di raccolta</strong>
+            <span>Form contatto, richieste preventivo, configuratore progetto</span>
+          </div>
+          <div class="meta-row">
+            <strong>Aggiornamento</strong>
+            <span>Versione informativa aggiornata al 12 marzo 2026</span>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="legal-layout">
+      <div class="container legal-grid">
+        <aside class="toc-card">
+          <h2>Indice della policy</h2>
+          <p>Le sezioni seguenti spiegano in modo chiaro quali dati vengono raccolti, perché e come sono gestiti.</p>
+          <ul class="toc-list">
+            <li><a href="#titolare">1. Titolare del trattamento</a></li>
+            <li><a href="#tipologia-dati">2. Tipologia di dati raccolti</a></li>
+            <li><a href="#raccolta">3. Modalità di raccolta dati</a></li>
+            <li><a href="#finalita">4. Finalità del trattamento</a></li>
+            <li><a href="#base-giuridica">5. Base giuridica del trattamento</a></li>
+            <li><a href="#modalita">6. Modalità di trattamento</a></li>
+            <li><a href="#conservazione">7. Conservazione dei dati</a></li>
+            <li><a href="#terze-parti">8. Comunicazione dei dati a terze parti</a></li>
+            <li><a href="#diritti">9. Diritti dell’interessato</a></li>
+            <li><a href="#sicurezza">10. Sicurezza dei dati</a></li>
+            <li><a href="#cookie">11. Cookie e tecnologie di tracciamento</a></li>
+            <li><a href="#modifiche">12. Modifiche alla privacy policy</a></li>
+            <li><a href="#contatti-privacy">13. Contatti per richieste privacy</a></li>
+            <li><a href="#nota-informativa">14. Nota informativa</a></li>
+          </ul>
+        </aside>
+
+        <div class="content-stack">
+          <section class="legal-card" id="titolare">
+            <h2>1. Titolare del trattamento</h2>
+            <p>
+              Il Titolare del trattamento dei dati personali raccolti attraverso il sito è <strong>WebInbound</strong>,
+              agenzia digitale specializzata nella realizzazione di siti web, SEO, design grafico, e-commerce,
+              manutenzione siti e consulenza digitale.
+            </p>
+            <div class="highlight-grid">
+              <div class="info-card">
+                <strong>Contatti principali</strong>
+                <span>info@webinbound.it<br>support@webinbound.it<br>+39 379 146 5762</span>
+              </div>
+              <div class="info-card">
+                <strong>Dati aziendali</strong>
+                <span>P.IVA 02841450022<br>Lun-Ven 9:00 – 18:00</span>
+              </div>
+            </div>
+          </section>
+
+          <section class="legal-card" id="tipologia-dati">
+            <h2>2. Tipologia di dati raccolti</h2>
+            <p>WebInbound può raccogliere, in funzione delle interazioni effettuate sul sito, le seguenti categorie di dati personali:</p>
+            <ul>
+              <li>dati identificativi come nome e cognome;</li>
+              <li>dati di contatto come indirizzo email e numero di telefono;</li>
+              <li>dati professionali o aziendali come nome dell’azienda e informazioni sul settore di attività;</li>
+              <li>informazioni relative al progetto, agli obiettivi, al budget indicativo e alle funzionalità richieste;</li>
+              <li>dati tecnici di navigazione, compresi indirizzo IP, log di accesso, dispositivo, browser e interazioni di base con il sito;</li>
+              <li>eventuali dati ulteriori liberamente comunicati dall’utente nei messaggi inviati tramite moduli o richieste di preventivo.</li>
+            </ul>
+          </section>
+
+          <section class="legal-card" id="raccolta">
+            <h2>3. Modalità di raccolta dati</h2>
+            <p>I dati vengono raccolti in modo diretto quando l’utente:</p>
+            <ul>
+              <li>compila il <strong>form contatto</strong> presente nel sito;</li>
+              <li>invia una <strong>richiesta di preventivo</strong> tramite il configuratore o altri moduli dedicati;</li>
+              <li>utilizza il <strong>configuratore progetto</strong> o gli strumenti di stima guidata e generazione automatica;</li>
+              <li>contatta WebInbound via email, telefono o altri canali indicati sul sito;</li>
+              <li>naviga nel sito, attraverso dati tecnici raccolti automaticamente dai sistemi e dalle piattaforme di hosting, sicurezza o analytics.</li>
+            </ul>
+          </section>
+
+          <section class="legal-card" id="finalita">
+            <h2>4. Finalità del trattamento</h2>
+            <p>I dati personali sono trattati per finalità determinate, esplicite e legittime, tra cui:</p>
+            <ul>
+              <li>rispondere a richieste di contatto, informazioni o supporto;</li>
+              <li>elaborare richieste di preventivo e valutazioni preliminari di progetto;</li>
+              <li>analizzare le esigenze dell’utente in relazione ai servizi offerti da WebInbound;</li>
+              <li>erogare servizi di consulenza, sviluppo siti web, SEO, design, e-commerce e manutenzione;</li>
+              <li>adempiere a obblighi di legge, fiscali, amministrativi o di difesa di diritti del Titolare;</li>
+              <li>garantire sicurezza, continuità operativa, prevenzione di abusi e corretta gestione tecnica del sito;</li>
+              <li>misurare il rendimento del sito e migliorare contenuti, usabilità e conversioni in forma compatibile con la normativa applicabile.</li>
+            </ul>
+          </section>
+
+          <section class="legal-card" id="base-giuridica">
+            <h2>5. Base giuridica del trattamento</h2>
+            <p>Il trattamento dei dati personali da parte di WebInbound si fonda, a seconda dei casi, su una o più delle seguenti basi giuridiche:</p>
+            <ul>
+              <li>esecuzione di misure precontrattuali richieste dall’interessato, ad esempio per richieste di contatto o preventivo;</li>
+              <li>esecuzione di un contratto o di attività connesse all’erogazione dei servizi richiesti;</li>
+              <li>adempimento di obblighi legali cui è soggetto il Titolare;</li>
+              <li>legittimo interesse del Titolare a garantire sicurezza, organizzazione del servizio, prevenzione di frodi e miglioramento del sito;</li>
+              <li>consenso dell’interessato, ove richiesto, ad esempio per specifiche attività di tracciamento o comunicazioni non strettamente necessarie.</li>
+            </ul>
+          </section>
+
+          <section class="legal-card" id="modalita">
+            <h2>6. Modalità di trattamento</h2>
+            <p>
+              Il trattamento avviene con strumenti elettronici, informatici e organizzativi adeguati alla natura dei dati trattati.
+              WebInbound adotta misure ragionevoli per garantire che i dati siano trattati in modo lecito, corretto,
+              pertinente e limitato a quanto necessario rispetto alle finalità per cui sono raccolti.
+            </p>
+            <p>
+              L’accesso ai dati è consentito esclusivamente a soggetti autorizzati o a fornitori che operano per conto del Titolare,
+              sulla base di istruzioni documentate e nel rispetto di obblighi di riservatezza.
+            </p>
+          </section>
+
+          <section class="legal-card" id="conservazione">
+            <h2>7. Conservazione dei dati</h2>
+            <p>
+              I dati personali sono conservati per un periodo non superiore a quello necessario al perseguimento delle finalità per cui sono stati raccolti.
+              In particolare, salvo esigenze differenti legate a obblighi di legge o tutela del Titolare:
+            </p>
+            <ul>
+              <li>i dati delle richieste di contatto e preventivo sono conservati per il tempo necessario a gestire la richiesta e per un periodo successivo congruo a finalità organizzative e commerciali;</li>
+              <li>i dati relativi a rapporti contrattuali o amministrativi possono essere conservati per i termini richiesti dalla normativa civilistica, fiscale e contabile;</li>
+              <li>i dati tecnici e di sicurezza possono essere conservati per il tempo strettamente necessario a garantire integrità, monitoraggio e protezione del sito.</li>
+            </ul>
+          </section>
+
+          <section class="legal-card" id="terze-parti">
+            <h2>8. Comunicazione dei dati a terze parti</h2>
+            <p>
+              I dati possono essere comunicati, nei limiti delle finalità indicate, a soggetti che supportano WebInbound
+              nella gestione del sito e dei servizi, come fornitori di hosting, servizi email, strumenti analytics,
+              piattaforme di gestione richieste, consulenti tecnici o professionisti amministrativi e fiscali.
+            </p>
+            <p>
+              Tali soggetti trattano i dati in qualità di responsabili del trattamento o titolari autonomi, a seconda del ruolo svolto.
+              WebInbound seleziona partner che offrono adeguate garanzie di affidabilità, sicurezza e conformità normativa.
+            </p>
+            <p>
+              In relazione ai servizi digitali offerti, possono inoltre essere utilizzati strumenti esterni per hosting,
+              protezione del sito, form management, preventivazione, analytics, plugin o integrazioni funzionali.
+              L’eventuale utilizzo di tali strumenti avviene nel rispetto di accordi, configurazioni o misure ragionevolmente idonee
+              a tutelare i dati trattati in relazione al servizio effettivamente erogato.
+            </p>
+          </section>
+
+          <section class="legal-card" id="diritti">
+            <h2>9. Diritti dell’interessato (GDPR)</h2>
+            <p>L’interessato può esercitare i diritti previsti dagli articoli 15 e seguenti del GDPR, tra cui:</p>
+            <ul>
+              <li>ottenere conferma dell’esistenza o meno di dati personali che lo riguardano;</li>
+              <li>chiedere accesso, rettifica o aggiornamento dei dati inesatti;</li>
+              <li>richiedere la cancellazione dei dati nei casi previsti dalla legge;</li>
+              <li>ottenere la limitazione del trattamento, ove applicabile;</li>
+              <li>opporsi al trattamento fondato sul legittimo interesse;</li>
+              <li>ricevere i dati in formato strutturato, di uso comune e leggibile da dispositivo automatico, nei casi di portabilità;</li>
+              <li>revocare il consenso eventualmente prestato, senza pregiudicare la liceità del trattamento precedente alla revoca;</li>
+              <li>proporre reclamo all’Autorità Garante per la protezione dei dati personali.</li>
+            </ul>
+          </section>
+
+          <section class="legal-card" id="sicurezza">
+            <h2>10. Sicurezza dei dati</h2>
+            <p>
+              WebInbound adotta misure tecniche e organizzative adeguate per ridurre il rischio di accesso non autorizzato,
+              perdita, divulgazione, modifica o utilizzo improprio dei dati personali.
+            </p>
+            <p>
+              Tali misure possono includere protezioni di accesso, aggiornamenti di sicurezza, sistemi di monitoraggio,
+              criteri di minimizzazione dei dati e procedure di gestione degli incidenti, in relazione alla natura del servizio prestato.
+            </p>
+          </section>
+
+          <section class="legal-card" id="cookie">
+            <h2>11. Cookie e tecnologie di tracciamento</h2>
+            <p>
+              Il sito può utilizzare cookie tecnici, strumenti di misurazione del traffico e tecnologie analoghe
+              finalizzate al corretto funzionamento del sito, all’analisi delle performance e al miglioramento dell’esperienza utente.
+            </p>
+            <p>
+              L’uso di cookie o strumenti non strettamente necessari è gestito, ove richiesto, tramite meccanismi di consenso dedicati.
+              Per informazioni di maggior dettaglio è disponibile una <a href="cookie.html" style="color:#0d6b36; font-weight:700;">Cookie Policy dedicata</a>.
+            </p>
+          </section>
+
+          <section class="legal-card" id="modifiche">
+            <h2>12. Modifiche alla privacy policy</h2>
+            <p>
+              WebInbound si riserva il diritto di aggiornare o modificare la presente Privacy Policy in qualsiasi momento,
+              anche in conseguenza di evoluzioni normative, tecniche o organizzative.
+            </p>
+            <p>
+              Le modifiche saranno pubblicate su questa pagina con indicazione della data di aggiornamento.
+              Si invita l’utente a consultarla periodicamente, soprattutto prima di inviare richieste o dati tramite il sito.
+            </p>
+          </section>
+
+          <section class="legal-card" id="contatti-privacy">
+            <h2>13. Contatti per richieste privacy</h2>
+            <p>
+              Per esercitare i propri diritti, chiedere chiarimenti sul trattamento dei dati personali
+              o segnalare esigenze relative alla privacy, è possibile contattare WebInbound ai riferimenti sotto indicati.
+            </p>
+            <div class="highlight-grid">
+              <div class="info-card">
+                <strong>Email privacy</strong>
+                <span>info@webinbound.it<br>support@webinbound.it</span>
+              </div>
+              <div class="info-card">
+                <strong>Telefono e disponibilità</strong>
+                <span>+39 379 146 5762<br>Lun-Ven 9:00 – 18:00</span>
+              </div>
+            </div>
+          </section>
+
+          <section class="legal-card" id="nota-informativa">
+            <h2>14. Nota informativa</h2>
+            <p>
+              La presente informativa ha finalità di trasparenza e comunicazione nei confronti degli utenti del sito
+              e descrive in forma sintetica e organizzata le principali modalità di trattamento adottate da WebInbound.
+            </p>
+            <p>
+              Il documento non sostituisce eventuali valutazioni legali o adempimenti specifici richiesti in relazione a singoli progetti,
+              piattaforme, strumenti di terze parti o rapporti contrattuali personalizzati.
+            </p>
+          </section>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-shell">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <img src="../images/logo.png" alt="WebInbound" class="footer-logo" />
+            <p>Agenzia digitale specializzata in siti web orientati ai risultati.</p>
+          </div>
+          <div class="footer-col">
+            <h4>Link</h4>
+            <a href="../index.html">Home</a>
+            <a href="servizi.html">Servizi</a>
+            <a href="progetti.html">Progetti</a>
+            <a href="prezzi.html">Prezzi</a>
+            <a href="contatti.html">Contatti</a>
+          </div>
+          <div class="footer-col">
+            <h4>Contatti</h4>
+            <a href="mailto:info@webinbound.it">info@webinbound.it</a>
+            <a href="mailto:support@webinbound.it">support@webinbound.it</a>
+            <a href="tel:+393791465762">+39 379 146 5762</a>
+            <span class="footer-meta">P.IVA: 02841450022</span>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span>© 2026 Web Inbound. Tutti i diritti riservati. P.IVA: 02841450022</span>
+          <div class="footer-legal-links">
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="cookie.html">Cookie Policy</a>
+            <a href="termini.html">Termini</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/cookie-banner.js"></script>
+  <script>
+    const navToggle = document.querySelector('.nav-toggle');
+    const siteNav = document.querySelector('.site-nav');
+
+    if (navToggle && siteNav) {
+      navToggle.addEventListener('click', () => {
+        const isOpen = siteNav.classList.toggle('open');
+        navToggle.setAttribute('aria-expanded', String(isOpen));
+      });
+    }
+  </script>
+</body>
+</html>

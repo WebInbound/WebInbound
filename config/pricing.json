@@ -1,0 +1,447 @@
+{
+  "meta": {
+    "currency": "EUR",
+    "currencySymbol": "€",
+    "version": "1.0",
+    "agency": "WebInbound",
+    "source": "guided-estimate"
+  },
+  "packages": [
+    {
+      "id": "starter",
+      "name": "Starter",
+      "basePrice": 169,
+      "description": "Pacchetto iniziale per progetti semplici e strutture snelle.",
+      "allowedPageOptions": [
+        {
+          "value": 1,
+          "label": "1 pagina"
+        },
+        {
+          "value": 2,
+          "label": "2 pagine"
+        },
+        {
+          "value": 3,
+          "label": "3 pagine"
+        },
+        {
+          "value": 4,
+          "label": "4 pagine"
+        }
+      ],
+      "includedFeatures": [
+        "Setup iniziale del sito",
+        "Design responsive essenziale",
+        "SEO base gia inclusa",
+        "Pubblicazione e configurazione iniziale",
+        "Compliance legale (policy, cookie, trattamenti dati)"
+      ],
+      "defaultFeatureIds": [
+        "maps",
+        "social",
+        "whatsapp",
+        "hosting",
+        "domain"
+      ],
+      "availableFeatureIds": [
+        "seoAdvanced",
+        "aiIntegration",
+        "analyticsSetup",
+        "blog",
+        "ecommerce",
+        "bookings",
+        "maps",
+        "social",
+        "contactForm",
+        "whatsapp",
+        "gallery",
+        "portfolio",
+        "multilingual",
+        "hosting",
+        "domain"
+      ]
+    },
+    {
+      "id": "professional",
+      "name": "Professional",
+      "basePrice": 429,
+      "description": "Pacchetto piu scelto per attivita locali, professionisti e siti orientati ai contatti.",
+      "allowedPageOptions": [
+        {
+          "value": 4,
+          "label": "4 pagine"
+        },
+        {
+          "value": 5,
+          "label": "5 pagine"
+        },
+        {
+          "value": 6,
+          "label": "6 pagine"
+        },
+        {
+          "value": 7,
+          "label": "7 pagine"
+        },
+        {
+          "value": 8,
+          "label": "8 pagine"
+        }
+      ],
+      "includedFeatures": [
+        "Design piu strutturato e personalizzato",
+        "SEO avanzata gia inclusa",
+        "Lead form ottimizzato",
+        "Set up tecnico completo",
+        "Compliance legale (policy, cookie, trattamenti dati)"
+      ],
+      "defaultFeatureIds": [
+        "blog",
+        "maps",
+        "social",
+        "contactForm",
+        "whatsapp",
+        "hosting",
+        "domain"
+      ],
+      "availableFeatureIds": [
+        "aiIntegration",
+        "analyticsSetup",
+        "blog",
+        "ecommerce",
+        "bookings",
+        "maps",
+        "social",
+        "contactForm",
+        "whatsapp",
+        "gallery",
+        "portfolio",
+        "multilingual",
+        "hosting",
+        "domain"
+      ]
+    },
+    {
+      "id": "business",
+      "name": "Business",
+      "basePrice": 899,
+      "description": "Pacchetto avanzato per progetti piu strutturati, crescita, funnel e richieste complesse.",
+      "allowedPageOptions": [
+        {
+          "value": 8,
+          "label": "8 pagine"
+        },
+        {
+          "value": 10,
+          "label": "10 pagine"
+        },
+        {
+          "value": 12,
+          "label": "12 pagine"
+        },
+        {
+          "value": 14,
+          "label": "14+ pagine"
+        }
+      ],
+      "includedFeatures": [
+        "Struttura avanzata per crescita e conversioni",
+        "SEO avanzata gia inclusa",
+        "Architettura estesa per piu sezioni",
+        "Compliance legale avanzata",
+        "Base pronta per automazioni e funnel"
+      ],
+      "defaultFeatureIds": [
+        "blog",
+        "maps",
+        "social",
+        "contactForm",
+        "whatsapp",
+        "hosting",
+        "domain",
+        "quoteSystem"
+      ],
+      "availableFeatureIds": [
+        "aiIntegration",
+        "analyticsSetup",
+        "blog",
+        "ecommerce",
+        "bookings",
+        "maps",
+        "social",
+        "contactForm",
+        "whatsapp",
+        "gallery",
+        "portfolio",
+        "multilingual",
+        "commercePolicy",
+        "hosting",
+        "domain",
+        "quoteSystem"
+      ]
+    }
+  ],
+  "pagePricing": {
+    "model": "selection-by-page-count",
+    "defaultExtraPagePrice": null,
+    "types": [
+      {
+        "id": "page-1",
+        "name": "1 pagina",
+        "pageCount": 1,
+        "price": 0
+      },
+      {
+        "id": "page-2",
+        "name": "2 pagine",
+        "pageCount": 2,
+        "price": 150
+      },
+      {
+        "id": "page-3",
+        "name": "3 pagine",
+        "pageCount": 3,
+        "price": 300
+      },
+      {
+        "id": "page-4",
+        "name": "4 pagine",
+        "pageCount": 4,
+        "price": 450
+      },
+      {
+        "id": "page-5",
+        "name": "5 pagine",
+        "pageCount": 5,
+        "price": 600
+      },
+      {
+        "id": "page-6",
+        "name": "6 pagine",
+        "pageCount": 6,
+        "price": 750
+      },
+      {
+        "id": "page-7",
+        "name": "7 pagine",
+        "pageCount": 7,
+        "price": 900
+      },
+      {
+        "id": "page-8",
+        "name": "8 pagine",
+        "pageCount": 8,
+        "price": 1050
+      },
+      {
+        "id": "page-10",
+        "name": "10 pagine",
+        "pageCount": 10,
+        "price": 1350
+      },
+      {
+        "id": "page-12",
+        "name": "12 pagine",
+        "pageCount": 12,
+        "price": 1650
+      },
+      {
+        "id": "page-14",
+        "name": "14+ pagine",
+        "pageCount": 14,
+        "price": 1950
+      }
+    ]
+  },
+  "features": [
+    {
+      "id": "seoAdvanced",
+      "name": "SEO avanzata",
+      "price": 80,
+      "category": "seo",
+      "description": "Ottimizzazione extra per spingere meglio visibilita e conversione"
+    },
+    {
+      "id": "aiIntegration",
+      "name": "Integrazione AI",
+      "price": 250,
+      "category": "advanced",
+      "description": "Chatbot intelligente per richieste, supporto e prequalifica contatti"
+    },
+    {
+      "id": "analyticsSetup",
+      "name": "Setup Tracciamento e Analytics",
+      "price": 150,
+      "category": "tracking",
+      "description": "Configurazione strumenti di analisi per monitorare visite, conversioni e richieste contatto."
+    },
+    {
+      "id": "blog",
+      "name": "Blog integrato",
+      "price": 70,
+      "category": "content",
+      "description": "Area contenuti per autorevolezza e crescita organica"
+    },
+    {
+      "id": "ecommerce",
+      "name": "E-commerce",
+      "price": 250,
+      "category": "payments",
+      "description": "Catalogo, prodotto, checkout e logica commerciale"
+    },
+    {
+      "id": "bookings",
+      "name": "Prenotazioni online",
+      "price": 120,
+      "category": "advanced",
+      "description": "Per hotel, B&B, studi, appuntamenti e booking"
+    },
+    {
+      "id": "maps",
+      "name": "Integrazione mappe",
+      "price": 35,
+      "category": "contact",
+      "description": "Sede, local SEO e punti di riferimento"
+    },
+    {
+      "id": "social",
+      "name": "Social integration",
+      "price": 25,
+      "category": "contact",
+      "description": "Connessione con i tuoi canali e CTA coordinate"
+    },
+    {
+      "id": "contactForm",
+      "name": "Form contatto avanzato",
+      "price": 60,
+      "category": "lead-generation",
+      "description": "Lead form piu efficace e piu chiaro"
+    },
+    {
+      "id": "whatsapp",
+      "name": "WhatsApp CTA",
+      "price": 25,
+      "category": "contact",
+      "description": "Contatto rapido ad alto tasso di utilizzo"
+    },
+    {
+      "id": "gallery",
+      "name": "Gallery fotografica",
+      "price": 55,
+      "category": "content",
+      "description": "Per ambienti, prodotti, lavori e showcase"
+    },
+    {
+      "id": "portfolio",
+      "name": "Portfolio lavori",
+      "price": 85,
+      "category": "content",
+      "description": "Case study e lavori fatti per aumentare fiducia"
+    },
+    {
+      "id": "multilingual",
+      "name": "Multilingua",
+      "price": 140,
+      "category": "advanced",
+      "description": "Per clienti turistici o business internazionali"
+    },
+    {
+      "id": "commercePolicy",
+      "name": "Commerce Policy",
+      "price": 250,
+      "category": "legal",
+      "description": "Termini di vendita, resi, spedizioni e policy e-commerce."
+    },
+    {
+      "id": "hosting",
+      "name": "Hosting premium",
+      "price": 90,
+      "category": "hosting",
+      "description": "Prestazioni, uptime e gestione iniziale"
+    },
+    {
+      "id": "domain",
+      "name": "Dominio gestito",
+      "price": 20,
+      "category": "hosting",
+      "description": "Gestione tecnica del dominio"
+    },
+    {
+      "id": "quoteSystem",
+      "name": "Sistema preventivazione automatica",
+      "price": 400,
+      "category": "advanced",
+      "description": "Richieste guidate con stima iniziale automatizzata"
+    }
+  ],
+  "maintenancePlans": [],
+  "industries": [
+    {
+      "id": "restaurant",
+      "name": "Ristorante",
+      "recommendedFeatureIds": [
+        "bookings",
+        "gallery",
+        "maps",
+        "whatsapp"
+      ]
+    },
+    {
+      "id": "construction",
+      "name": "Impresa edile",
+      "recommendedFeatureIds": [
+        "portfolio",
+        "gallery",
+        "contactForm",
+        "maps",
+        "whatsapp"
+      ]
+    },
+    {
+      "id": "hotel",
+      "name": "Hotel / B&B",
+      "recommendedFeatureIds": [
+        "bookings",
+        "gallery",
+        "multilingual",
+        "maps"
+      ]
+    },
+    {
+      "id": "professional-studio",
+      "name": "Studio professionale",
+      "recommendedFeatureIds": [
+        "contactForm",
+        "blog",
+        "maps",
+        "whatsapp"
+      ]
+    },
+    {
+      "id": "ecommerce",
+      "name": "Progetto e-commerce",
+      "recommendedFeatureIds": [
+        "ecommerce",
+        "analyticsSetup",
+        "commercePolicy"
+      ]
+    },
+    {
+      "id": "local-business",
+      "name": "Azienda / attivita locale",
+      "recommendedFeatureIds": [
+        "contactForm",
+        "maps",
+        "whatsapp",
+        "seoAdvanced"
+      ]
+    }
+  ],
+  "quoteRules": {
+    "minimumQuote": 169,
+    "roundToNearest": 1,
+    "showAs": "indicative-total",
+    "disclaimer": "La stima ha valore indicativo e non costituisce offerta contrattuale vincolante."
+  }
+}
