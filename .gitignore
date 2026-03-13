@@ -1,2 +1,6 @@
 .DS_Store
 backend/config/mail-config.php
+.env
+.env.*
+!.env.example
+.vercel

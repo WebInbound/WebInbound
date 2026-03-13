@@ -1417,7 +1417,7 @@
             <p id="requestFormSummaryText">Pacchetto Professional, 5 pagine, tempi stimati 5–8 giorni.</p>
           </div>
 
-          <form id="requestForm" action="../send-request.php" method="post" novalidate autocomplete="on">
+          <form id="requestForm" action="/api/send-request" method="post" novalidate autocomplete="on">
             <div class="request-form-grid">
               <div class="request-form-field">
                 <label for="firstName">Nome *</label>
@@ -1646,7 +1646,7 @@
     const aiFollowupMessageText = document.getElementById("aiFollowupMessageText");
     const aiEstimateValue = document.getElementById("aiEstimateValue");
     const aiRequestCta = document.getElementById("aiRequestCta");
-    const aiEndpoint = "../api/preventivatore-ai.php";
+    const aiEndpoint = "/api/preventivatore-ai";
 
     const tabs = Array.from(document.querySelectorAll(".builder-tab"));
     const paneGuided = document.getElementById("pane-guided");
@@ -2538,16 +2538,32 @@ Quando hai abbastanza dati, smetti di approfondire e accompagna verso il prevent
 
       try {
         if (window.location.protocol === "file:") {
-          throw new Error("Per inviare il form devi aprire il sito da un server web con PHP attivo, non con doppio clic sul file.");
+          throw new Error("Per inviare il form devi aprire il sito da un server web, non con doppio clic sul file.");
         }
+
+        const formData = new FormData(requestForm);
+        const payload = {};
+
+        formData.forEach((value, key) => {
+          const normalizedKey = key.endsWith("[]") ? key.slice(0, -2) : key;
+
+          if (Object.prototype.hasOwnProperty.call(payload, normalizedKey)) {
+            payload[normalizedKey] = Array.isArray(payload[normalizedKey])
+              ? [...payload[normalizedKey], value]
+              : [payload[normalizedKey], value];
+            return;
+          }
+
+          payload[normalizedKey] = value;
+        });
 
         const response = await fetch(requestForm.action, {
           method: "POST",
           headers: {
             "Accept": "application/json",
-            "X-Requested-With": "XMLHttpRequest"
+            "Content-Type": "application/json"
           },
-          body: new FormData(requestForm)
+          body: JSON.stringify(payload)
         });
 
         const result = await response.json();

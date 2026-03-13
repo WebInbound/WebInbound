@@ -1,0 +1,10 @@
+{
+  "name": "webinbound-site",
+  "private": true,
+  "version": "1.0.0",
+  "description": "WebInbound site for Vercel deployment",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "nodemailer": "^6.10.1"
+  }
+}
