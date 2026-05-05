@@ -1,0 +1,4 @@
+api/*.php
+send-request.php
+backend/
+vendor/

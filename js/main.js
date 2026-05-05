@@ -358,18 +358,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 document.addEventListener('DOMContentLoaded', () => {
+  const track = document.getElementById('heroSliderTrack');
   const slides = document.querySelectorAll('.hero-slide');
   const dots = document.querySelectorAll('.hero-dot');
 
-  if (!slides.length || !dots.length) return;
+  if (!track || !slides.length || !dots.length) return;
 
   let currentSlide = 0;
-  let autoplayTimer = null;
+  let isPointerDown = false;
+  let isHorizontalDrag = false;
+  let startX = 0;
+  let startY = 0;
+  let startScrollLeft = 0;
+  let dragDeltaX = 0;
+  let dragStartedAt = 0;
 
-  // slide 1 = 10s, slide 2 = 6s, slide 3 = 6s
-  // const slideTimes = [10000, 9000, 6000];
+  function getSlideOffset(index) {
+    return slides[index]?.offsetLeft || 0;
+  }
 
-  function showSlide(index) {
+  function showSlide(index, shouldScroll = true) {
     slides.forEach((slide, i) => {
       slide.classList.toggle('active', i === index);
     });
@@ -379,37 +387,147 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     currentSlide = index;
-  }
 
-  function clearAutoplay() {
-    if (autoplayTimer !== null) {
-      clearTimeout(autoplayTimer);
-      autoplayTimer = null;
+    if (shouldScroll) {
+      track.scrollTo({
+        left: getSlideOffset(index),
+        behavior: 'smooth'
+      });
     }
   }
 
-  function scheduleNext() {
-    clearAutoplay();
+  function syncSlideFromScroll() {
+    const trackCenter = track.scrollLeft + (track.clientWidth / 2);
+    let nearestIndex = 0;
+    let nearestDistance = Number.POSITIVE_INFINITY;
 
-    const delay = slideTimes[currentSlide] || 6000;
+    slides.forEach((slide, index) => {
+      const slideCenter = slide.offsetLeft + (slide.offsetWidth / 2);
+      const distance = Math.abs(slideCenter - trackCenter);
 
-    autoplayTimer = setTimeout(() => {
-      const nextIndex = (currentSlide + 1) % slides.length;
-      showSlide(nextIndex);
-      scheduleNext();
-    }, delay);
+      if (distance < nearestDistance) {
+        nearestDistance = distance;
+        nearestIndex = index;
+      }
+    });
+
+    if (nearestIndex !== currentSlide) {
+      showSlide(nearestIndex, false);
+    } else {
+      dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === nearestIndex);
+      });
+      slides.forEach((slide, index) => {
+        slide.classList.toggle('active', index === nearestIndex);
+      });
+    }
+  }
+
+  function clampIndex(index) {
+    return Math.max(0, Math.min(slides.length - 1, index));
+  }
+
+  function snapToClosestSlide() {
+    const slideWidth = track.clientWidth || slides[0]?.offsetWidth || 1;
+    const quickSwipe = Date.now() - dragStartedAt < 280;
+    const swipeThreshold = Math.min(72, Math.max(26, slideWidth * 0.06));
+
+    if (Math.abs(dragDeltaX) >= swipeThreshold) {
+      const direction = dragDeltaX < 0 ? 1 : -1;
+      showSlide(clampIndex(currentSlide + direction));
+      return;
+    }
+
+    if (quickSwipe && Math.abs(dragDeltaX) >= 18) {
+      const direction = dragDeltaX < 0 ? 1 : -1;
+      showSlide(clampIndex(currentSlide + direction));
+      return;
+    }
+
+    showSlide(currentSlide);
   }
 
   dots.forEach(dot => {
     dot.addEventListener('click', () => {
       const index = Number(dot.dataset.slide);
       showSlide(index);
-      scheduleNext();
     });
   });
 
-  showSlide(0);
-  scheduleNext();
+  track.addEventListener('scroll', () => {
+    syncSlideFromScroll();
+  }, { passive: true });
+
+  function endDrag() {
+    isPointerDown = false;
+    isHorizontalDrag = false;
+    track.classList.remove('is-dragging');
+  }
+
+  track.addEventListener('pointerdown', event => {
+    if (event.pointerType === 'mouse' && event.button !== 0) return;
+
+    isPointerDown = true;
+    isHorizontalDrag = false;
+    startX = event.clientX;
+    startY = event.clientY;
+    startScrollLeft = track.scrollLeft;
+    dragDeltaX = 0;
+    dragStartedAt = Date.now();
+    track.setPointerCapture?.(event.pointerId);
+  });
+
+  track.addEventListener('pointermove', event => {
+    if (!isPointerDown) return;
+
+    const deltaX = event.clientX - startX;
+    const deltaY = event.clientY - startY;
+
+    if (!isHorizontalDrag) {
+      if (Math.abs(deltaX) < 8 && Math.abs(deltaY) < 8) return;
+
+      if (Math.abs(deltaX) <= Math.abs(deltaY)) {
+        endDrag();
+        return;
+      }
+
+      isHorizontalDrag = true;
+      track.classList.add('is-dragging');
+    }
+
+    dragDeltaX = deltaX;
+    event.preventDefault();
+    track.scrollLeft = startScrollLeft - deltaX;
+  });
+
+  track.addEventListener('pointerup', event => {
+    track.releasePointerCapture?.(event.pointerId);
+    if (isHorizontalDrag) {
+      snapToClosestSlide();
+    }
+    endDrag();
+  });
+
+  track.addEventListener('pointercancel', event => {
+    track.releasePointerCapture?.(event.pointerId);
+    if (isHorizontalDrag) {
+      snapToClosestSlide();
+    }
+    endDrag();
+  });
+
+  track.addEventListener('pointerleave', () => {
+    if (!isPointerDown) return;
+    endDrag();
+  });
+
+  window.addEventListener('resize', () => {
+    showSlide(currentSlide, false);
+    track.scrollTo({ left: getSlideOffset(currentSlide), behavior: 'auto' });
+  });
+
+  showSlide(0, false);
+  track.scrollTo({ left: 0, behavior: 'auto' });
 });
 
 /* ===== PREMIUM CLIENT LOGOS CAROUSEL ===== */
